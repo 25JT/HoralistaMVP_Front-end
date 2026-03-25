@@ -1,0 +1,193 @@
+---
+import Logo from "../assets/Logo/logo.png";
+import { Image } from "astro:assets";
+import Sliderbar from "./Sliderbar.astro";
+---
+
+<nav
+  class="fixed top-0 left-0 right-0 bg-white border-b-2 border-blue-500 px-3 py-1 sm:px-4 sm:py-2 z-50"
+>
+  <!-- Botón hamburguesa -->
+  <div class="flex items-center">
+    <div
+      class="flex-1 flex md:justify-start justify-center md:gap-12 gap-3 items-center"
+    >
+      <button
+        id="menuToggle"
+        class="hidden text-4xl size-12 sm:text-6xl"
+        title="Menú"
+      >
+        ☰
+      </button>
+
+      <!-- Logo centrado -->
+      <Image
+        src={Logo}
+        alt="Logo"
+        class="h-8 w-40 sm:h-10 sm:w-48 md:h-12 md:w-56 hover:cursor-pointer"
+        priority={true}
+        densities={[1.5, 2]}
+        onclick='window.location.href = "/"'
+      />
+      <button
+        id="btnIniciarMobile"
+        class="md:hidden text-xs sm:text-sm px-2 py-1 sm:px-4 sm:py-2 uppercase hidden"
+        >Inicia sesión</button
+      >
+    </div>
+
+    <div class="hidden md:flex-1 md:flex md:justify-center">
+      <div class="hidden md:flex gap-4 items-center" id="desktopButtons">
+        <button id="btnBlog" class="px-4 py-2 uppercase hover:cursor-pointer"
+          >BLOG</button
+        >
+        <button
+          id="btnNosotros"
+          class="px-4 py-2 uppercase hover:cursor-pointer">NOSOTROS</button
+        >
+      </div>
+
+      <!-- Botón iniciar sesión en móviles -->
+    </div>
+
+    <div class="hidden md:flex-1 md:flex md:justify-end">
+      <div class="hidden md:flex gap-4 items-center" id="desktopButtons">
+        <!-- <button class="px-4 py-2 uppercase">soporte</button> -->
+        <button
+          id="btnIniciar"
+          class="px-4 py-2 md:!text-[15px] lg:!text-[20px] uppercase hidden"
+          >Inicia sesión</button
+        >
+        <button
+          id="btnCerrar"
+          class="text-2xl px-4 py-2 md:!text-[15px] lg:!text-[20px] uppercase hidden"
+          >Cerrar sesión</button
+        >
+      </div>
+
+      <!-- Botón iniciar sesión en móviles -->
+      <button
+        id="btnIniciarMobile"
+        class="md:hidden px-4 py-2 !text-[15px] uppercase hidden"
+        >Inicia sesión</button
+      >
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <Sliderbar />
+
+  <!-- Fondo desenfocado -->
+  <div
+    id="overlay"
+    class="hidden fixed inset-0 bg-opacity-40 backdrop-blur-sm z-40"
+  >
+  </div>
+
+  <!-- Modal de inicio de sesión -->
+  <div
+    id="loginDropdown"
+    class="hidden fixed w-full h-full top-0 left-0 md:top-0 md:left-0 md:w-full md:h-full backdrop-blur-md flex items-center justify-center z-50"
+  >
+    <div
+      class="border-2 border-gray-400 relative z-10 w-full max-w-sm p-8 bg-white rounded-lg shadow-2xl modal-fade-in"
+    >
+      <button
+        class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+        type="button"
+      >
+        <span id="closeLogin" class="material-icons-outlined">&times;</span>
+      </button>
+      <form id="loginForm">
+        <div class="space-y-6">
+          <label
+            class="block text-sm font-medium text-gray-700"
+            for="loginEmail">Correo electrónico</label
+          >
+
+          <input
+            autocomplete="email"
+            class="border-2 block w-full px-3 py-2 bg-white border-gray-200 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm text-gray-900"
+            id="loginEmail"
+            name="email"
+            required=""
+            type="email"
+            placeholder="usuario@correo.com"
+          />
+
+          <div>
+            <label
+              class="block text-sm font-medium text-gray-700"
+              for="loginPassword">Contraseña</label
+            >
+
+            <input
+              autocomplete="current-password"
+              class="border-2 block w-full px-3 py-2 bg-white border-gray-200 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm text-gray-900"
+              id="loginPassword"
+              name="password"
+              required=""
+              type="password"
+              placeholder="********"
+            />
+          </div>
+          <div>
+            <button
+              class="uppercase border-2 border-blue-600 w-full flex justify-center py-3 px-4 rounded-md shadow-sm
+              text-lg font-bold text-black bg-primary hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors"
+              type="submit"
+            >
+              Ingresar
+            </button>
+          </div>
+        </div>
+        <div id="showForgot" class="mt-6 text-center">
+          <a
+            class="font-bold text-gray-800 hover:text-primary transition-colors text-md hover:text-red-500"
+            href="#"
+          >
+            Olvidé la contraseña
+          </a>
+        </div>
+      </form>
+
+      <form id="forgotForm" class="space-y-4 hidden mt-2">
+        <div>
+          <div class="mt-6 text-center">
+            <h4 class="uppercase font-bold text-gray-800 text-md">
+              Olvidé la contraseña
+            </h4>
+          </div>
+          <label
+            for="forgotEmail"
+            class="block text-sm font-semibold text-slate-600"
+            >Ingresa tu correo electrónico y te enviaremos un enlace para
+            restablecer tu contraseña.</label
+          >
+          <br />
+          <input
+            type="email"
+            id="forgotEmail"
+            required
+            class="border-2 block w-full px-3 py-2 bg-white border-gray-200 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm text-gray-900"
+            placeholder="usuario@correo.com"
+          />
+        </div>
+        <button
+          type="submit"
+          class="uppercase border-2 border-blue-600 size-14 w-full flex justify-center py-3 px-4 rounded-md shadow-sm
+         font-bold text-black bg-primary hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors"
+          type="submit">Enviar enlace</button
+        >
+        <a
+          type="button"
+          id="backToLogin"
+          class="w-full mt-2 text-gray-500 hover:underline text-md hover:cursor-pointer"
+          >Volver al inicio de sesión</a
+        >
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script src="../utils/navJs.js"></script>

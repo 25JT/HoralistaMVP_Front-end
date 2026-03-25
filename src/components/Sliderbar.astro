@@ -1,0 +1,174 @@
+<div
+  id="sidebar"
+  class="fixed top-0 left-0 w-64 h-dvh shadow-lg transform -translate-x-full transition-transform duration-300 z-50"
+>
+  <button id="closeSidebar" class="hidden"></button>
+  <aside
+    class="flex h-full w-64 flex-col justify-between border-r border-slate-200 bg-white bg-background-p-4"
+  >
+    <div class="mt-6 ml-1 flex-1 flex flex-col gap-4 overflow-y-auto">
+      <div class="flex items-center gap-3">
+        <div
+          id="imagenUser"
+          class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+          data-alt="User profile picture"
+          style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA3V9A8lp8z3zlklVxXpnDigALbyYgyZGhjkCAcH59mvUiEkxrTHuw4RChXosuodSH7o-3OUVpauhRz9YyxntZO9042TGbi7gXA267Wb_GpABOOM1c_aQJG4VpcenlsNkYY-mYrQxq0kq0J7pos-Sw8Hio0GRrKTAlFKrsF9GdWFKyoy8AVQZWSsSl6FfQ-2_thpAEcSSAT9NMuf-ZfnOYL9ptq--R01F9HlIfFKxR9VYbVjCAKMubRAAkpNjAAl1mKlxFCib7dFw");'
+        >
+        </div>
+        <div class="flex flex-col">
+          <h2
+            id="nombreUser"
+            class="text-slate-900 text-base font-medium leading-normal"
+          >
+            Dr. Alan Grant
+          </h2>
+          <p
+            id="correoUser"
+            class="text-slate-500 text-sm font-normal leading-normal"
+          >
+            dralan.grant@example.com
+          </p>
+        </div>
+      </div>
+      <div class="border-b-2 border-blue-500"></div>
+      <nav class="flex flex-col gap-2">
+        <a
+          id="PaginaPrincipal"
+          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-500 transition-colors"
+          href="/"
+        >
+          <span class="material-symbols-outlined text-black hover:text-white"
+            >list_alt</span
+          >
+          <p
+            class="text-black text-sm font-medium hover:text-white leading-normal"
+          >
+            Pagina Principal
+          </p>
+        </a>
+        <a
+          id="Negocio"
+          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-500 transition-colors"
+          href="/MenuNegocio"
+        >
+          <span class="material-symbols-outlined text-black hover:text-white"
+            >dashboard</span
+          >
+          <p
+            class="text-black text-sm font-medium leading-normal hover:text-white"
+          >
+            Negocio y Citas
+          </p>
+        </a>
+
+        <a
+          id="Citas"
+          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-500 transition-colors"
+          href="/CitasAgendadas"
+        >
+          <span class="material-symbols-outlined text-black hover:text-white"
+            >calendar_month</span
+          >
+          <p
+            class="text-black text-sm font-medium hover:text-white leading-normal"
+          >
+            Citas
+          </p>
+        </a>
+        <a
+          id="Servicios"
+          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-500 transition-colors"
+          href="/PrincipalCliente"
+        >
+          <span class="material-symbols-outlined text-black hover:text-white"
+            >groups</span
+          >
+          <p
+            class="text-black text-sm font-medium hover:text-white leading-normal"
+          >
+            Servicios
+          </p>
+        </a>
+
+        <a
+          id="VincularWhatsApp"
+          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-500 transition-colors"
+          href="/VincularWhatsApp"
+        >
+          <span class="material-symbols-outlined text-black hover:text-white"
+            >link</span
+          >
+          <p
+            class="text-black text-sm font-medium hover:text-white leading-normal"
+          >
+            Vincular WhatsApp
+          </p>
+        </a>
+
+        <a
+          id="TuPagina"
+          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-500 transition-colors"
+          href="/TuPagina"
+        >
+          <span class="material-symbols-outlined text-black hover:text-white"
+            >page_footer</span
+          >
+          <p
+            class="text-black text-sm font-medium hover:text-white leading-normal"
+          >
+            Tu Pagina
+          </p>
+        </a>
+
+        <button
+          id="AgregarServicio"
+          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-500 transition-colors"
+        >
+          <span class="material-symbols-outlined text-black hover:text-white"
+            >add</span
+          >
+          <p
+            class="text-black text-sm font-medium hover:text-white leading-normal"
+          >
+            Agregar Servicio
+          </p>
+        </button>
+
+        <a
+          id="Settings"
+          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-500 transition-colors"
+          href="/Ajustes"
+        >
+          <span class="material-symbols-outlined text-black hover:text-white"
+            >settings</span
+          >
+          <p
+            class="text-black text-sm font-medium hover:text-white leading-normal"
+          >
+            Ajustes
+          </p>
+        </a>
+      </nav>
+    </div>
+    <div
+      class="ml-1 mb-6 flex flex-col gap-2 cursor-pointer mt-auto border-t border-slate-100 pt-4"
+      id="btnCerrarSidebar"
+    >
+      <a
+        class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-500 transition-colors"
+      >
+        <span class="material-symbols-outlined text-black hover:text-white"
+          >logout</span
+        >
+        <p
+          class="text-black text-sm font-medium hover:text-white leading-normal"
+        >
+          Cerrar sesion
+        </p>
+      </a>
+    </div>
+  </aside>
+</div>
+
+<script src="../utils/Sliderbar.js"></script>
+<script src="../assets/Tutoriales/tutorialGeneral.js"></script>

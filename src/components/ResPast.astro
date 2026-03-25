@@ -1,0 +1,120 @@
+---
+
+---
+
+<div
+  class="flex flex-col items-center justify-center w-screen h-screen bg-blue-50"
+>
+  <div
+    class="flex flex-col items-center border-2 border-gray-300 justify-center rounded-2xl bg-white sm:w-2xl sm:h-3xl p-6 shadow-2xl"
+    id="formContainer"
+  >
+    <h2 class="text-3xl font-bold text-gray-800 text-center mb-6">
+      Cambiar Contraseña
+    </h2>
+    <p class="text-base text-slate-500">La una nueva contraseña segura .</p>
+
+    <br />
+    <div class="flex flex-col gap-1.5">
+      <!-- NUEVA CONTRASEÑA -->
+      <label class="text-sm font-medium text-slate-700" for="x"
+        >Nueva Contraseña</label
+      >
+      <div class="relative">
+        <input
+          type="password"
+          id="password"
+          placeholder="Nueva contraseña"
+          class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+
+        <button
+          class="absolute inset-y-0 right-0 pr-2 h-12 text-slate-600"
+          type="button"
+          data-toggle="password"
+        >
+          <span class="icon">
+            <!-- Ícono abierto -->
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M0 8L3.07945 4.30466C4.29638 2.84434 6.09909 2 8 2C9.90091 2 11.7036 
+            2.84434 12.9206 4.30466L16 8L12.9206 11.6953C11.7036 13.1557 
+            9.90091 14 8 14C6.09909 14 4.29638 13.1557 3.07945 11.6953L0 8ZM8 
+            11C9.65685 11 11 9.65685 11 8C11 6.34315 9.65685 5 8 5C6.34315 5 5 
+            6.34315 5 8C5 9.65685 6.34315 11 8 11Z"
+                fill="#000000"></path>
+            </svg>
+          </span>
+        </button>
+      </div>
+
+      <p class="text-xs text-slate-500">
+        Mínimo 8 caracteres, incluye una mayúscula y un número.
+      </p>
+
+      <!-- CONFIRMAR CONTRASEÑA -->
+      <label class="text-sm font-medium text-slate-700" for="x"
+        >Confirmar Contraseña</label
+      >
+      <div class="relative">
+        <input
+          type="password"
+          id="confirmPassword"
+          placeholder="Confirmar contraseña"
+          class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+
+        <button
+          class="absolute inset-y-0 right-0 pr-2 h-12 text-slate-600"
+          type="button"
+          data-toggle="confirmPassword"
+        >
+          <span class="icon">
+            <!-- ícono abierto -->
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M0 8L3.07945 4.30466C4.29638 2.84434 6.09909 2 8 2C9.90091 2 
+            11.7036 2.84434 12.9206 4.30466L16 8L12.9206 11.6953C11.7036 
+            13.1557 9.90091 14 8 14C6.09909 14 4.29638 13.1557 3.07945 
+            11.6953L0 8ZM8 11C9.65685 11 11 9.65685 11 8C11 6.34315 
+            9.65685 5 8 5C6.34315 5 5 6.34315 5 8C5 9.65685 6.34315 11 
+            8 11Z"
+                fill="#000000"></path>
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <button
+      id="submitBtn"
+      class="w-50 bg-[#135bec] text-white py-3 rounded-lg font-semibold hover:bg-[#e04e52] active:scale-95 transition-transform"
+    >
+      Guardar
+    </button>
+
+    <div
+      id="message"
+      class="mt-4 text-center font-semibold text-sm text-gray-600"
+    >
+    </div>
+  </div>
+</div>
+
+<script src="../utils/ResPastJs.js"></script>

@@ -1,0 +1,696 @@
+---
+
+---
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap"
+  rel="stylesheet"
+/>
+<link
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700"
+  rel="stylesheet"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+
+<div class="bg-blue-50 font-display text-[#0d121b] min-h-screen">
+  <div
+    class="relative flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 md:p-8"
+  >
+    <div class="w-full max-w-5xl rounded-xl bg-white p-8 shadow-sm">
+      <div class="mb-10 text-center">
+        <h1
+          id="tituloNegocio"
+          class="uppercase text-2xl sm:text-4xl font-black leading-tight tracking-[-0.033em] text-[#0d121b] mb-2 gsap-reveal"
+        >
+          Registro de Negocio
+        </h1>
+        <p class="text-gray-500">Configura tu establecimiento en 5 pasos</p>
+      </div>
+
+      <!-- Stepper Indicator -->
+      <div class="mb-12 px-4">
+        <div class="relative flex items-center justify-between">
+          <div
+            class="absolute left-0 top-1/2 h-1 w-full -translate-y-1/2 bg-gray-200"
+          >
+          </div>
+          <div
+            id="stepper-progress"
+            class="absolute left-0 top-1/2 h-1 w-0 -translate-y-1/2 bg-blue-500 transition-all duration-300"
+          >
+          </div>
+
+          <div
+            class="step-item relative z-10 flex flex-col items-center"
+            data-step="1"
+          >
+            <div
+              class="step-circle flex h-10 w-10 items-center justify-center rounded-full border-4 border-white bg-blue-500 text-white shadow-md transition-all"
+            >
+              <span class="material-symbols-outlined text-sm">info</span>
+            </div>
+            <span class="mt-2 text-xs font-bold text-blue-500 sm:text-sm"
+              >Info</span
+            >
+          </div>
+
+          <div
+            class="step-item relative z-10 flex flex-col items-center"
+            data-step="2"
+          >
+            <div
+              class="step-circle flex h-10 w-10 items-center justify-center rounded-full border-4 border-white bg-gray-200 text-gray-400 shadow-md transition-all"
+            >
+              <span class="material-symbols-outlined text-sm">schedule</span>
+            </div>
+            <span class="mt-2 text-xs font-medium text-gray-500 sm:text-sm"
+              >Horarios</span
+            >
+          </div>
+
+          <div
+            class="step-item relative z-10 flex flex-col items-center"
+            data-step="3"
+          >
+            <div
+              class="step-circle flex h-10 w-10 items-center justify-center rounded-full border-4 border-white bg-gray-200 text-gray-400 shadow-md transition-all"
+            >
+              <span class="material-symbols-outlined text-sm">sell</span>
+            </div>
+            <span class="mt-2 text-xs font-medium text-gray-500 sm:text-sm"
+              >Servicio</span
+            >
+          </div>
+
+          <div
+            class="step-item relative z-10 flex flex-col items-center"
+            data-step="4"
+          >
+            <div
+              class="step-circle flex h-10 w-10 items-center justify-center rounded-full border-4 border-white bg-gray-200 text-gray-400 shadow-md transition-all"
+            >
+              <span class="material-symbols-outlined text-sm">image</span>
+            </div>
+            <span class="mt-2 text-xs font-medium text-gray-500 sm:text-sm"
+              >Marca</span
+            >
+          </div>
+
+          <div
+            class="step-item relative z-10 flex flex-col items-center"
+            data-step="5"
+          >
+            <div
+              class="step-circle flex h-10 w-10 items-center justify-center rounded-full border-4 border-white bg-gray-200 text-gray-400 shadow-md transition-all"
+            >
+              <span class="material-symbols-outlined text-sm">verified</span>
+            </div>
+            <span class="mt-2 text-xs font-medium text-gray-500 sm:text-sm"
+              >Resumen</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <form id="registroNegocio" class="space-y-8">
+        <!-- Step 1: Información General -->
+        <section class="form-step" data-step="1">
+          <div class="mb-6">
+            <h2
+              class="text-xl font-bold text-gray-800 border-b-2 border-blue-500 pb-2 inline-block"
+            >
+              Información General
+            </h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <label class="flex flex-col" for="nombre_establecimiento">
+              <p class="text-sm font-medium leading-normal pb-2">
+                Nombre del Establecimiento
+              </p>
+              <div class="relative flex items-center">
+                <input
+                  id="nombre_establecimiento"
+                  name="nombre_establecimiento"
+                  class="form-input flex w-full rounded-lg border border-[#cfd7e7] bg-white h-14 p-4 pl-12 text-base focus:ring-2 focus:ring-blue-200 outline-none transition-all"
+                  placeholder="Ej: Barbería El Rey"
+                  required
+                />
+                <span
+                  class="material-symbols-outlined absolute left-4 text-gray-400"
+                  >store</span
+                >
+              </div>
+            </label>
+
+            <label class="flex flex-col" for="telefono_establecimiento">
+              <p class="text-sm font-medium leading-normal pb-2">
+                Teléfono de Contacto del Establecimiento
+              </p>
+              <div class="relative flex items-center">
+                <input
+                  id="telefono_establecimiento"
+                  name="telefono_establecimiento"
+                  class="form-input flex w-full rounded-lg border border-[#cfd7e7] bg-white h-14 p-4 pl-12 text-base focus:ring-2 focus:ring-blue-200 outline-none transition-all"
+                  placeholder="Ej: +57 300 000 0000"
+                  required
+                />
+                <span
+                  class="material-symbols-outlined absolute left-4 text-gray-400"
+                  >phone</span
+                >
+              </div>
+            </label>
+
+            <label class="flex flex-col md:col-span-2" for="direccion">
+              <p class="text-sm font-medium leading-normal pb-2">
+                Dirección Física del Establecimiento
+              </p>
+              <div class="relative flex items-center">
+                <input
+                  id="direccion"
+                  name="direccion"
+                  class="form-input flex w-full rounded-lg border border-[#cfd7e7] bg-white h-14 p-4 pl-12 text-base focus:ring-2 focus:ring-blue-200 outline-none transition-all"
+                  placeholder="Ej: Calle 123 # 45-67, Ciudad"
+                  required
+                />
+                <span
+                  class="material-symbols-outlined absolute left-4 text-gray-400"
+                  >location_on</span
+                >
+              </div>
+            </label>
+
+            <label class="flex flex-col md:col-span-2" for="descripcion">
+              <p class="text-sm font-medium leading-normal pb-2">
+                Descripción del Establecimiento (Máx. 150 caracteres)
+              </p>
+              <textarea
+                id="descripcion"
+                name="descripcion"
+                maxlength="150"
+                rows="3"
+                class="form-input flex w-full rounded-lg border border-[#cfd7e7] bg-white p-4 text-base focus:ring-2 focus:ring-blue-200 outline-none transition-all resize-none"
+                placeholder="Cuéntanos un poco sobre tu negocio..."></textarea>
+              <p id="char-count" class="text-xs text-right text-gray-400 mt-1">
+                0 / 150
+              </p>
+            </label>
+          </div>
+        </section>
+
+        <!-- Step 2: Horarios -->
+        <section class="form-step hidden" data-step="2">
+          <div class="mb-6">
+            <h2
+              class="text-xl font-bold text-gray-800 border-b-2 border-blue-500 pb-2 inline-block"
+            >
+              Días y Horarios
+            </h2>
+          </div>
+
+          <div class="space-y-8">
+            <div class="flex flex-col gap-3">
+              <p class="text-sm font-medium leading-normal">
+                Selecciona tus días de trabajo
+              </p>
+              <div class="flex flex-wrap sm:grid sm:grid-cols-7 gap-3">
+                {
+                  ["LU", "MA", "MI", "JU", "VI", "SA", "DO"].map((day, i) => {
+                    const dayName = [
+                      "Lunes",
+                      "Martes",
+                      "Miércoles",
+                      "Jueves",
+                      "Viernes",
+                      "Sábado",
+                      "Domingo",
+                    ][i];
+                    return (
+                      <label class="cursor-pointer group">
+                        <input
+                          type="checkbox"
+                          name="dias_trabajo"
+                          value={dayName}
+                          class="peer sr-only"
+                        />
+                        <div class="flex h-12 w-12 items-center justify-center rounded-lg border border-gray-300 bg-white font-bold text-gray-500 transition-all group-hover:bg-gray-50 peer-checked:bg-blue-500 peer-checked:text-white peer-checked:border-blue-500">
+                          {day}
+                        </div>
+                      </label>
+                    );
+                  })
+                }
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="flex flex-col">
+                <label for="hora_inicio" class="text-sm font-medium pb-2"
+                  >Hora de Apertura</label
+                >
+                <div class="relative flex items-center">
+                  <input
+                    type="time"
+                    id="hora_inicio"
+                    name="hora_inicio"
+                    min="06:00"
+                    max="22:00"
+                    step="3600"
+                    class="form-input flex w-full rounded-lg border border-[#cfd7e7] bg-white h-14 p-4 pl-12 text-base focus:ring-2 focus:ring-blue-200 outline-none"
+                    required
+                  />
+                  <span
+                    class="material-symbols-outlined absolute left-4 text-gray-400 pointer-events-none"
+                    >schedule</span
+                  >
+                </div>
+                <p id="hora-error" class="mt-1 text-xs text-red-500 hidden">
+                  Debe ser en punto (ej. 08:00)
+                </p>
+              </div>
+
+              <div class="flex flex-col">
+                <label for="hora_fin" class="text-sm font-medium pb-2"
+                  >Hora de Cierre</label
+                >
+                <div class="relative flex items-center">
+                  <input
+                    type="time"
+                    id="hora_fin"
+                    name="hora_fin"
+                    min="06:00"
+                    max="22:00"
+                    step="3600"
+                    class="form-input flex w-full rounded-lg border border-[#cfd7e7] bg-white h-14 p-4 pl-12 text-base focus:ring-2 focus:ring-blue-200 outline-none"
+                    required
+                  />
+                  <span
+                    class="material-symbols-outlined absolute left-4 text-gray-400 pointer-events-none"
+                    >calendar_today</span
+                  >
+                </div>
+                <p id="hora-fin-error" class="mt-1 text-xs text-red-500 hidden">
+                  Debe ser en punto (ej. 18:00)
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 3: Servicios y Precios -->
+        <section class="form-step hidden" data-step="3">
+          <div class="mb-6">
+            <h2
+              class="text-xl font-bold text-gray-800 border-b-2 border-blue-500 pb-2 inline-block"
+            >
+              Servicio Principal
+            </h2>
+          </div>
+
+          <div class="space-y-6">
+            <div class="flex flex-col gap-4">
+              <p class="text-sm font-medium">Tipo de Servicio</p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <label
+                  class="flex items-center gap-4 rounded-xl border-2 border-gray-200 p-4 cursor-pointer transition-all hover:border-blue-200 has-checked:border-blue-500 has-checked:bg-blue-50"
+                >
+                  <input
+                    type="radio"
+                    name="tipo_servicio"
+                    value="estilista"
+                    class="h-5 w-5 accent-blue-500"
+                    required
+                  />
+                  <div class="flex flex-col">
+                    <span class="font-bold text-gray-800">Estilista</span>
+                    <span class="text-xs text-gray-500"
+                      >Cortes, tintes, peinados femeninos</span
+                    >
+                  </div>
+                </label>
+
+                <label
+                  class="flex items-center gap-4 rounded-xl border-2 border-gray-200 p-4 cursor-pointer transition-all hover:border-blue-200 has-checked:border-blue-500 has-checked:bg-blue-50"
+                >
+                  <input
+                    type="radio"
+                    name="tipo_servicio"
+                    value="barbero"
+                    class="h-5 w-5 accent-blue-500"
+                  />
+                  <div class="flex flex-col">
+                    <span class="font-bold text-gray-800">Barbería</span>
+                    <span class="text-xs text-gray-500"
+                      >Corte de caballero, barba, afeitado</span
+                    >
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <label class="flex flex-col" for="precio">
+              <p class="text-sm font-medium leading-normal pb-2">
+                Precio Base ($ COP)
+              </p>
+              <div class="relative flex items-center">
+                <input
+                  id="precio"
+                  name="precio"
+                  type="text"
+                  class="form-input flex w-full rounded-lg border border-[#cfd7e7] bg-white h-14 p-4 pl-12 text-base focus:ring-2 focus:ring-blue-200 outline-none"
+                  placeholder="$ 0"
+                  required
+                />
+
+                <span class="absolute right-4 text-xs font-bold text-gray-400"
+                  >COP</span
+                >
+              </div>
+            </label>
+
+            <div class="flex flex-col gap-4">
+              <p class="text-sm font-medium">Intervalo entre citas</p>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {
+                  [30, 60, 120, 180].map((val) => (
+                    <label class="cursor-pointer group">
+                      <input
+                        type="radio"
+                        name="intervaloCitas"
+                        value={val}
+                        checked={val === 60}
+                        class="peer sr-only"
+                      />
+                      <div class="flex flex-col items-center justify-center p-3 rounded-lg border-2 border-gray-200 bg-white transition-all peer-checked:border-blue-500 peer-checked:bg-blue-50">
+                        <span class="font-bold text-lg text-gray-700 peer-checked:text-blue-500">
+                          {val < 60 ? val : val / 60}
+                        </span>
+                        <span class="text-[10px] uppercase font-bold text-gray-400">
+                          {val < 60 ? "min" : "hora(s)"}
+                        </span>
+                      </div>
+                    </label>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 4: Imagen de Marca -->
+        <section class="form-step hidden" data-step="4">
+          <div class="mb-6">
+            <h2
+              class="text-xl font-bold text-gray-800 border-b-2 border-blue-500 pb-2 inline-block"
+            >
+              Imagen de Marca
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="md:col-span-1">
+              <p class="text-sm font-medium mb-3">Logotipo (Cuadrado)</p>
+              <div
+                id="logo-dropzone"
+                class="relative group cursor-pointer aspect-square rounded-2xl border-2 border-dashed border-gray-300 bg-gray-50 flex flex-col items-center justify-center overflow-hidden hover:border-blue-400 transition-all"
+              >
+                <input
+                  type="file"
+                  id="logo"
+                  name="logo"
+                  accept="image/*"
+                  class="hidden"
+                />
+                <div id="logo-placeholder" class="text-center p-4">
+                  <span
+                    class="material-symbols-outlined text-4xl text-gray-400 group-hover:text-blue-500 transition-colors"
+                    >add_photo_alternate</span
+                  >
+                  <p class="text-xs text-gray-400 mt-2">Subir Logo</p>
+                </div>
+                <img
+                  id="logo-preview"
+                  class="hidden absolute inset-0 w-full h-full object-cover"
+                />
+                <div
+                  id="logo-overlay"
+                  class="hidden absolute inset-0 bg-black/40 items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                >
+                  <span class="text-white text-xs font-bold">Cambiar Foto</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="md:col-span-2">
+              <p class="text-sm font-medium mb-3">
+                Banner / Portada (Horizontal)
+              </p>
+              <div
+                id="banner-dropzone"
+                class="relative group cursor-pointer aspect-16/6 rounded-2xl border-2 border-dashed border-gray-300 bg-gray-50 flex flex-col items-center justify-center overflow-hidden hover:border-blue-400 transition-all"
+              >
+                <input
+                  type="file"
+                  id="banner"
+                  name="banner"
+                  accept="image/*"
+                  class="hidden"
+                />
+                <div id="banner-placeholder" class="text-center p-4">
+                  <span
+                    class="material-symbols-outlined text-4xl text-gray-400 group-hover:text-blue-500 transition-colors"
+                    >image</span
+                  >
+                  <p class="text-xs text-gray-400 mt-2">Subir Banner</p>
+                </div>
+                <img
+                  id="banner-preview"
+                  class="hidden absolute inset-0 w-full h-full object-cover"
+                />
+                <div
+                  id="banner-overlay"
+                  class="hidden absolute inset-0 bg-black/40 items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                >
+                  <span class="text-white text-xs font-bold"
+                    >Cambiar Portada</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 5: Resumen -->
+        <section class="form-step hidden" data-step="5">
+          <div class="mb-6">
+            <h2
+              class="text-xl font-bold text-gray-800 border-b-2 border-blue-500 pb-2 inline-block"
+            >
+              Previsualización
+            </h2>
+          </div>
+
+          <div
+            class="max-w-2xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-white"
+          >
+            <!-- Mockup simple -->
+            <div
+              id="summary-banner"
+              class="h-40 bg-linear-to-r from-blue-400 to-blue-600 bg-cover bg-center"
+            >
+            </div>
+            <div class="px-8 pb-8">
+              <div
+                class="flex flex-col sm:flex-row items-center sm:items-end gap-6 mb-6"
+              >
+                <!-- Solo el logo tiene el margen negativo para sobreponerse al banner -->
+                <div
+                  class="relative -mt-12 h-24 w-24 rounded-2xl border-4 border-white shadow-lg overflow-hidden bg-white shrink-0"
+                >
+                  <img
+                    id="summary-logo"
+                    src="https://via.placeholder.com/150"
+                    class="h-full w-full object-cover"
+                  />
+                </div>
+                <div class="mb-2 text-center sm:text-left">
+                  <h3
+                    id="summary-name"
+                    class="text-2xl font-black text-gray-800"
+                  >
+                    Nombre de Negocio
+                  </h3>
+                  <p
+                    id="summary-type"
+                    class="text-blue-500 font-bold text-sm uppercase tracking-wider"
+                  >
+                    Servicio
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="grid grid-cols-1 sm:grid-cols-2 gap-8 py-6 border-y border-gray-100 mb-6"
+              >
+                <div class="space-y-4">
+                  <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-blue-500"
+                      >location_on</span
+                    >
+                    <div>
+                      <p class="text-xs text-gray-400 uppercase font-bold">
+                        Dirección
+                      </p>
+                      <p id="summary-address" class="text-sm font-medium">
+                        Calle 123...
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-blue-500"
+                      >call</span
+                    >
+                    <div>
+                      <p class="text-xs text-gray-400 uppercase font-bold">
+                        Teléfono
+                      </p>
+                      <p id="summary-phone" class="text-sm font-medium">
+                        +57 000...
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="space-y-4">
+                  <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-blue-500"
+                      >payments</span
+                    >
+                    <div>
+                      <p class="text-xs text-gray-400 uppercase font-bold">
+                        Precio Base
+                      </p>
+                      <p
+                        id="summary-price"
+                        class="text-sm font-bold text-green-600"
+                      >
+                        $ 0.000
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-blue-500"
+                      >history</span
+                    >
+                    <div>
+                      <p class="text-xs text-gray-400 uppercase font-bold">
+                        Cita c/u
+                      </p>
+                      <p id="summary-interval" class="text-sm font-medium">
+                        1 hora
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3 mb-6">
+                <span class="material-symbols-outlined text-blue-500"
+                  >calendar_month</span
+                >
+                <div>
+                  <p class="text-xs text-gray-400 uppercase font-bold">
+                    Horarios de Atención
+                  </p>
+                  <p id="summary-hours" class="text-sm font-medium">
+                    Lun - Vie / 08:00 - 18:00
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-gray-50 p-4 rounded-xl">
+                <p
+                  id="summary-description"
+                  class="text-sm text-gray-600 italic"
+                >
+                  "Sin descripción proporcionada..."
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Navigation Buttons -->
+        <div
+          class="flex justify-between items-center pt-8 mt-4 border-t border-gray-100"
+        >
+          <button
+            type="button"
+            id="btn-prev"
+            class="hidden px-4 sm:px-8 h-12 flex items-center gap-1 sm:gap-2 text-gray-500 font-bold hover:text-gray-800 transition-colors"
+          >
+            <span class="material-symbols-outlined text-xl">arrow_back</span>
+            <span class="text-sm">Anterior</span>
+          </button>
+
+          <div class="flex-1"></div>
+
+          <button
+            type="button"
+            id="btn-next"
+            class="px-5 sm:px-8 h-12 bg-blue-500 border-2 border-slate-200 text-white font-black uppercase tracking-widest text-[10px] sm:text-sm rounded-xl hover:bg-blue-600 hover:border-blue-400 transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]"
+          >
+            Siguiente
+            <span
+              class="material-symbols-outlined ml-1 sm:ml-2 text-sm sm:text-base"
+              >arrow_forward</span
+            >
+          </button>
+
+          <button
+            type="submit"
+            id="btn-submit"
+            class="hidden px-6 sm:px-10 h-14 bg-green-500 border-2 border-Slate-200 text-white font-black uppercase tracking-widest text-[10px] sm:text-sm rounded-xl hover:bg-green-600 hover:border-green-400 transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]"
+          >
+            Finalizar
+            <span
+              class="material-symbols-outlined ml-1 sm:ml-2 text-sm sm:text-base"
+              >check_circle</span
+            >
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="../utils/BodyRegNegocioJs.js"></script>
+
+<style>
+  .step-circle {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .step-item.active .step-circle {
+    transform: scale(1.1);
+  }
+
+  /* Form entry animations */
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .form-step {
+    animation: slideIn 0.3s ease-out;
+  }
+</style>

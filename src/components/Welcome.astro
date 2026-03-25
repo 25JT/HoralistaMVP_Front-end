@@ -1,0 +1,606 @@
+---
+import Footter from "../layouts/Footter.astro";
+---
+
+<div id="pagina-Container">
+  <!-- Sección principal  -->
+  <section
+    id="0"
+    class="section section-small bg-blue-50 pt-0 pb-4 sm:pt-28 sm:pb-12 md:pt-32 md:pb-16 lg:pt-36 lg:pb-20 overflow-y-auto"
+  >
+    <div
+      class="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 flex items-start py-2"
+    >
+      <div
+        class="grid grid-cols-1 lg:grid-cols-2 gap-3 content-gap-small sm:gap-8 lg:gap-16 items-start lg:items-center w-full"
+      >
+        <div
+          class="flex flex-col gap-2 content-gap-small sm:gap-4 lg:gap-6 text-center lg:text-left order-1"
+        >
+          <h1
+            class="font-extrabold tracking-tighter main-title-small text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl leading-tight gsap-reveal"
+            id="titulo"
+          >
+            GESTIONA TUS CITAS EN SIMPLES PASOS
+          </h1>
+          <p
+            class="max-w-2xl mx-auto lg:mx-0 main-paragraph-small text-sm sm:text-base lg:text-lg leading-relaxed text-text-secondary-light gsap-reveal"
+            id="parrafo"
+          >
+            Optimiza tu tiempo y elimina las perdidas. con mensajes automaticos
+            de recordatorio de citas, llega a mas clientes y deja que nos
+            encargemos de tu agenda.
+          </p>
+        </div>
+        <div
+          class="border-2 border-gray-400 flex flex-col items-center justify-center form-container-small p-4 sm:p-6 lg:p-8 bg-white rounded-xl shadow-2xl order-2 gsap-reveal"
+          id="animacionFormulario"
+        >
+          <div class="w-full max-w-md">
+            <h2
+              class="text-lg form-title-small sm:text-xl md:text-2xl font-bold text-center text-text-primary-light mb-1"
+            >
+              ¡INICIA AHORA!
+            </h2>
+            <p
+              class="text-xs form-subtitle-small sm:text-sm md:text-base text-center text-text-secondary-light mb-3 sm:mb-4"
+            >
+              Crea tu cuenta para empezar a agendar.
+            </p>
+            <form
+              class="space-y-3 form-spacing-small sm:space-y-4"
+              id="registro"
+            >
+              <div
+                class="grid grid-cols-1 sm:grid-cols-2 gap-3 form-grid-small sm:gap-4"
+              >
+                <div>
+                  <label
+                    class="block text-xs form-label-small sm:text-sm font-medium text-text-secondary-light mb-1"
+                    for="name">Nombre</label
+                  >
+                  <input
+                    class="w-full h-9 form-input-small sm:h-10 px-3 text-sm rounded-lg border border-border-light bg-background-light focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                    id="name"
+                    name="name"
+                    placeholder="Tu nombre"
+                    type="text"
+                  />
+                </div>
+                <div>
+                  <label
+                    class="block text-xs form-label-small sm:text-sm font-medium text-text-secondary-light mb-1"
+                    for="lastname"
+                    >Apellido
+                  </label>
+                  <input
+                    class="w-full h-9 form-input-small sm:h-10 px-3 text-sm rounded-lg border border-border-light bg-background-light focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                    id="lastname"
+                    name="lastname"
+                    type="text"
+                    placeholder="Tu Apellido "
+                    required
+                  />
+                </div>
+              </div>
+              <div>
+                <label
+                  class="block text-xs form-label-small sm:text-sm font-medium text-text-secondary-light mb-1"
+                  for="email">Correo Electrónico</label
+                >
+                <input
+                  class="w-full h-9 form-input-small sm:h-10 px-3 text-sm rounded-lg border border-border-light bg-background-light focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                  id="email"
+                  name="email"
+                  placeholder="tucorreo@ejemplo.com"
+                  type="email"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  class="block text-xs form-label-small sm:text-sm font-medium text-text-secondary-light mb-1"
+                  for="password">Contraseña</label
+                >
+                <input
+                  class="w-full h-9 form-input-small sm:h-10 px-3 text-sm rounded-lg border border-border-light bg-background-light focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                  id="password"
+                  name="password"
+                  placeholder="********"
+                  type="password"
+                  required
+                />
+              </div>
+              <div class="flex flex-row gap-2">
+                <div class="relative" id="cpWrapper">
+                  <label
+                    class="block text-xs form-label-small sm:text-sm font-medium text-text-secondary-light mb-1"
+                    >País</label
+                  >
+                  <input
+                    type="hidden"
+                    id="codePais"
+                    name="codePais"
+                    value="57"
+                  />
+
+                  <!-- Botón -->
+                  <button
+                    type="button"
+                    id="cpBtn"
+                    class="h-9 sm:h-10 px-2 flex items-center gap-1.5 text-sm rounded-lg border border-border-light bg-background-light focus:ring focus:ring-primary focus:border-primary transition-colors cursor-pointer whitespace-nowrap"
+                  >
+                    <img
+                      id="cpFlag"
+                      src="https://flagcdn.com/w20/co.png"
+                      alt="CO"
+                      class="w-5 h-auto rounded-sm"
+                    />
+                    <span id="cpCode" class="text-sm font-medium">+57</span>
+                    <svg
+                      class="w-3 h-3 text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2.5"
+                        d="M19 9l-7 7-7-7"></path></svg
+                    >
+                  </button>
+
+                  <!-- Lista -->
+                  <ul
+                    id="cpList"
+                    class="hidden absolute z-50 top-full left-0 mt-1 w-40 bg-white border border-border-light rounded-lg shadow-lg overflow-hidden"
+                  >
+                    <li
+                      data-val="57"
+                      data-iso="co"
+                      data-code="+57"
+                      class="flex items-center gap-2 px-3 py-2 hover:bg-blue-50 cursor-pointer text-sm"
+                    >
+                      <img
+                        src="https://flagcdn.com/w20/co.png"
+                        alt="CO"
+                        class="w-5 h-auto rounded-sm"
+                      />
+                      <span class="font-medium text-gray-800">+57</span>
+                      <span class="text-gray-400 text-xs">Colombia</span>
+                    </li>
+                    <li
+                      data-val="56"
+                      data-iso="cl"
+                      data-code="+56"
+                      class="flex items-center gap-2 px-3 py-2 hover:bg-blue-50 cursor-pointer text-sm"
+                    >
+                      <img
+                        src="https://flagcdn.com/w20/cl.png"
+                        alt="CL"
+                        class="w-5 h-auto rounded-sm"
+                      />
+                      <span class="font-medium text-gray-800">+56</span>
+                      <span class="text-gray-400 text-xs">Chile</span>
+                    </li>
+                    <li
+                      data-val="34"
+                      data-iso="es"
+                      data-code="+34"
+                      class="flex items-center gap-2 px-3 py-2 hover:bg-blue-50 cursor-pointer text-sm"
+                    >
+                      <img
+                        src="https://flagcdn.com/w20/es.png"
+                        alt="ES"
+                        class="w-5 h-auto rounded-sm"
+                      />
+                      <span class="font-medium text-gray-800">+34</span>
+                      <span class="text-gray-400 text-xs">España</span>
+                    </li>
+                    <li
+                      data-val="52"
+                      data-iso="mx"
+                      data-code="+52"
+                      class="flex items-center gap-2 px-3 py-2 hover:bg-blue-50 cursor-pointer text-sm"
+                    >
+                      <img
+                        src="https://flagcdn.com/w20/mx.png"
+                        alt="MX"
+                        class="w-5 h-auto rounded-sm"
+                      />
+                      <span class="font-medium text-gray-800">+52</span>
+                      <span class="text-gray-400 text-xs">México</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="w-full">
+                  <label
+                    class="block text-xs form-label-small sm:text-sm font-medium text-text-secondary-light mb-1"
+                    for="phone">Teléfono</label
+                  >
+                  <input
+                    class="w-full h-9 form-input-small sm:h-10 px-3 text-sm rounded-lg border border-border-light bg-background-light focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                    id="phone"
+                    name="phone"
+                    placeholder="+57 325 256 66 871"
+                    type="tel"
+                    required
+                  />
+                </div>
+              </div>
+              <div>
+                <fieldset>
+                  <legend
+                    class="block text-gray-700 gap-4 text-xs form-legend-small sm:text-sm font-bold mb-1 sm:mb-2"
+                    >Rol</legend
+                  >
+                  <div class="flex flex-row form-radio-small">
+                    <label
+                      class="inline-flex items-center text-sm form-radio-small mr-2"
+                      for="role-cliente"
+                    >
+                      <input
+                        type="radio"
+                        name="role"
+                        value="cliente"
+                        id="role-cliente"
+                        checked
+                      />
+                      <span class="ml-2">Cliente</span>
+                    </label>
+                    <label
+                      class="inline-flex items-center text-sm form-radio-small"
+                      for="role-profesional"
+                    >
+                      <input
+                        type="radio"
+                        name="role"
+                        value="profesional"
+                        id="role-profesional"
+                      />
+                      <span class="ml-2">Profesional</span>
+                    </label>
+                  </div>
+                </fieldset>
+              </div>
+              <button
+                class="border-2 border-blue-500 w-full flex items-center justify-center rounded-lg h-10 form-button-small sm:h-12 px-6 sm:px-8 bg-primary text-black text-sm sm:text-base font-semibold shadow-lg hover:bg-primary-hover transition-colors"
+                type="submit"
+              >
+                Registrarse
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Nosotros -->
+  <section
+    id="1"
+    class="section bg-white pt-8 p-2 sm:pt-8 sm:pb-8 md:pt-12 md:pb-12 lg:pt-16 lg:pb-16 overflow-y-auto"
+  >
+    <div
+      class="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 flex items-start py-2"
+    >
+      <div class="flex flex-col gap-2 sm:gap-4 md:gap-8 lg:gap-16 w-full">
+        <div
+          class="flex flex-col gap-2 sm:gap-3 md:gap-4 lg:gap-4 text-center max-w-3xl mx-auto"
+        >
+          <h2
+            id="titulo2"
+            class="uppercase text-lg sm:text-xl md:text-3xl lg:text-5xl font-extrabold tracking-tighter text-text-primary-light gsap-reveal"
+          >
+            Potentes Características
+          </h2>
+          <p
+            id="parrafo2"
+            class="text-sm sm:text-base md:text-lg leading-relaxed text-text-secondary-light gsap-reveal"
+          >
+            Nuestras potentes características están diseñadas para hacer que la
+            reserva de citas sea perfecta para ti y tus clientes.
+          </p>
+        </div>
+
+        <div
+          id="controlCitas"
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-3 sm:gap-4 md:gap-6 lg:gap-8 gsap-reveal"
+        >
+          <div
+            class="flex flex-row sm:flex-col md:flex-col lg:flex-col gap-3 sm:gap-4 p-3 sm:p-4 md:p-6 lg:p-8 rounded-xl bg-background-light border-border-light border"
+          >
+            <span
+              class="material-symbols-outlined text-primary !text-[24px] sm:!text-[28px] md:!text-[32px] lg:text-3xl"
+              >calendar_month</span
+            >
+            <div class="flex flex-col gap-1 sm:gap-2">
+              <h3
+                class="text-sm sm:text-base md:text-lg font-bold text-text-primary-light"
+              >
+                Controla tus citas
+              </h3>
+              <p
+                class="text-xs sm:text-sm md:text-base text-text-secondary-light"
+              >
+                Cada reserva quedara registrada en tu calendario las cuales
+                puedes cancelar cuando quieras
+              </p>
+            </div>
+          </div>
+
+          <div
+            id="notificaciones"
+            class="flex flex-row sm:flex-col md:flex-col lg:flex-col gap-3 sm:gap-4 p-3 sm:p-4 md:p-6 lg:p-8 rounded-xl bg-background-light border-border-light border"
+          >
+            <span
+              class="material-symbols-outlined text-primary text-[24px] sm:text-[28px] md:text-[32px] lg:text-3xl"
+              >notifications_active</span
+            >
+            <div class="flex flex-col gap-1 sm:gap-2">
+              <h3
+                class="text-sm sm:text-base md:text-lg font-bold text-text-primary-light"
+              >
+                Recordatorios Automatizados
+              </h3>
+              <p
+                class="text-xs sm:text-sm md:text-base text-text-secondary-light"
+              >
+                Reduce las ausencias con recordatorios automáticos por email y
+                SMS para todas tus citas programadas.
+              </p>
+            </div>
+          </div>
+          <div
+            id="compartir"
+            class="flex flex-row sm:flex-col md:flex-col lg:flex-col gap-3 sm:gap-4 p-3 sm:p-4 md:p-6 lg:p-8 rounded-xl bg-background-light border-border-light border"
+          >
+            <span
+              class="material-symbols-outlined text-primary text-[24px] sm:text-[28px] md:text-[32px] lg:text-3xl"
+              >group</span
+            >
+            <div class="flex flex-col gap-1 sm:gap-2">
+              <h3
+                class="text-sm sm:text-base md:text-lg font-bold text-text-primary-light"
+              >
+                Llega a mas clientes
+              </h3>
+              <p
+                class="text-xs sm:text-sm md:text-base text-text-secondary-light"
+              >
+                Maten una agenda perfecta para que cada cliente llegue a ti, y
+                no pierdas tiempo
+              </p>
+            </div>
+          </div>
+          <div
+            id="PagPersonalizada"
+            class="flex flex-row sm:flex-col md:flex-col lg:flex-col gap-3 sm:gap-4 p-3 sm:p-4 md:p-6 lg:p-8 rounded-xl bg-background-light border-border-light border"
+          >
+            <span
+              class="material-symbols-outlined text-primary text-[24px] sm:text-[28px] md:text-[32px] lg:text-3xl"
+              >palette
+            </span>
+            <div class="flex flex-col gap-1 sm:gap-2">
+              <h3
+                class="text-sm sm:text-base md:text-lg font-bold text-text-primary-light"
+              >
+                Páginas Personalizables
+              </h3>
+              <p
+                class="text-xs sm:text-sm md:text-base text-text-secondary-light"
+              >
+                Crea una página de reservas profesional y alineada con tu marca
+                que puedes compartir con un simple enlace.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Empieza en tres pasos -->
+  <section
+    id="2"
+    class="section pt-8 pb-6 sm:py-16 md:py-24 lg:py-32 bg-blue-50 overflow-y-auto"
+  >
+    <div class="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center mb-6 sm:mb-10 md:mb-16">
+        <h2
+          id="titulo3"
+          class="uppercase text-lg sm:text-2xl md:text-4xl lg:text-5xl font-extrabold tracking-tighter text-text-primary-light dark:text-text-primary-dark gsap-reveal"
+        >
+          Empieza en tres pasos
+        </h2>
+        <p
+          id="parrafo3"
+          class="mt-2 sm:mt-3 md:mt-4 text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed text-text-secondary-light dark:text-text-secondary-dark gsap-reveal"
+        >
+          Programar citas nunca ha sido tan fácil. Conecta tu calendario y
+          empieza a compartir tu enlace en cuestión de minutos.
+        </p>
+      </div>
+      <div class="relative">
+        <div
+          aria-hidden="true"
+          class="hidden md:block absolute top-1/2 left-0 w-full h-px bg-border-light dark:bg-border-dark -translate-y-1/2"
+        >
+        </div>
+        <div
+          class="relative grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10 lg:gap-12"
+        >
+          <div
+            class="flex flex-col items-center text-center gap-2 sm:gap-3 md:gap-4"
+          >
+            <div
+              id="rounded"
+              class="flex items-center justify-center size-12 sm:size-14 md:size-16 rounded-full bg-primary/10 text-primary mb-2 sm:mb-3 md:mb-4 border-4 sm:border-6 md:border-8 border-background-light dark:border-background-dark"
+            >
+              <span class="font-bold text-lg sm:text-xl md:text-2xl">1</span>
+            </div>
+            <h3
+              id="miniTitulo"
+              class="text-base sm:text-lg md:text-xl font-bold gsap-reveal"
+            >
+              Crea una cuenta
+            </h3>
+            <p
+              id="parrafo3"
+              class="text-xs sm:text-sm md:text-base lg:text-lg text-text-secondary-light dark:text-text-secondary-dark"
+            >
+              Crea una cuenta para registrar tus clientes o si eres cliente para
+              contactar con tu servicio
+            </p>
+          </div>
+          <div
+            class="flex flex-col items-center text-center gap-2 sm:gap-3 md:gap-4"
+          >
+            <div
+              id="rounded2"
+              class="text-blue-500 flex items-center justify-center size-12 sm:size-14 md:size-16 rounded-full bg-primary/10 text-primary mb-2 sm:mb-3 md:mb-4 border-4 sm:border-6 md:border-8 border-background-light dark:border-background-dark"
+            >
+              <span class="font-bold text-lg sm:text-xl md:text-2xl">2</span>
+            </div>
+            <h3
+              id="miniTitulo"
+              class="text-base sm:text-lg md:text-xl font-bold"
+            >
+              Define tu disponibilidad
+            </h3>
+            <p
+              id="parrafo3"
+              class="text-xs sm:text-sm md:text-base lg:text-lg text-text-secondary-light dark:text-text-secondary-dark"
+            >
+              Establece tus horas de trabajo o atencion y organiza tus citas de
+              acuerdo a tu disponibilidad.
+            </p>
+          </div>
+          <div
+            class="flex flex-col items-center text-center gap-2 sm:gap-3 md:gap-4"
+          >
+            <div
+              id="rounded3"
+              class="flex items-center justify-center size-12 sm:size-14 md:size-16 rounded-full bg-primary/10 text-primary mb-2 sm:mb-3 md:mb-4 border-4 sm:border-6 md:border-8 border-background-light dark:border-background-dark"
+            >
+              <span class="font-bold text-lg sm:text-xl md:text-2xl">3</span>
+            </div>
+            <h3
+              id="miniTitulo"
+              class="text-base sm:text-lg md:text-xl font-bold"
+            >
+              Cancela cuando quieras o modifica tus citas
+            </h3>
+            <p
+              id="parrafo3"
+              class="text-xs sm:text-sm md:text-base lg:text-lg text-text-secondary-light dark:text-text-secondary-dark"
+            >
+              Cancela cuando quieras tus citas, o modifica tus citas cuando
+              quieras.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Final -->
+  <section
+    id="3"
+    class="section pt-12 pb-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-br from-primary/20 via-primary/10 to-white overflow-y-auto"
+  >
+    <div class="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+      <div
+        class="max-w-4xl mx-auto text-center bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 lg:p-16 shadow-xl border border-border-light"
+      >
+        <h2
+          id="ctaFinal"
+          class="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-extrabold tracking-tighter text-text-primary-light mb-3 sm:mb-4 md:mb-6 gsap-reveal"
+        >
+          ¿Listo para simplificar tu agenda?
+        </h2>
+        <p
+          id="ctaFinal"
+          class="text-sm sm:text-base md:text-lg lg:text-xl text-text-secondary-light mb-6 sm:mb-8 md:mb-10 leading-relaxed max-w-2xl mx-auto gsap-reveal"
+        >
+          Únete a miles de profesionales que ya están optimizando su tiempo con
+          HoraLista. Comienza gratis hoy y descubre lo fácil que puede ser
+          gestionar tus citas.
+        </p>
+        <div
+          class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center"
+        >
+          <a
+            href="#0"
+            class="w-full sm:w-auto inline-flex hover:bg-blue-500 hover:text-white hover:border-blue-500 items-center justify-center px-6 sm:px-8 md:px-10 py-3 sm:py-3.5 md:py-4 text-sm sm:text-base md:text-lg font-bold text-black bg-gradient-to-r from-primary to-primary-hover rounded-lg sm:rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 border-2 border-black"
+          >
+            Comenzar Gratis
+            <svg
+              class="ml-2 w-4 h-4 sm:w-5 sm:h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+            </svg>
+          </a>
+          <a
+            href="#1"
+            class="w-full sm:w-auto inline-flex items-center justify-center px-6 sm:px-8 md:px-10 py-3 sm:py-3.5 md:py-4 text-sm sm:text-base md:text-lg font-semibold text-text-primary-light bg-white rounded-lg sm:rounded-xl border-2 border-border-light hover:border-primary hover:bg-gray-50 shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
+          >
+            Ver más información
+          </a>
+        </div>
+        <p
+          id="ctaFinal"
+          class="mt-4 sm:mt-6 text-xs sm:text-sm text-text-secondary-light/70"
+        >
+          No se requiere tarjeta de crédito • Configuración en menos de 5
+          minutos
+        </p>
+      </div>
+    </div>
+  </section>
+  <section
+    id="4"
+    class="section section-small bg-blue-50 pt-0 pb-4 sm:pt-28 sm:pb-12 md:pt-32 md:pb-16 lg:pt-36 lg:pb-20 overflow-y-auto"
+  >
+    <Footter />
+  </section>
+</div>
+
+<script src="../utils/welcomJs.js"></script>
+
+<script>
+  const cpBtn = document.getElementById("cpBtn") as HTMLButtonElement | null;
+  const cpList = document.getElementById("cpList") as HTMLElement | null;
+  const cpFlag = document.getElementById("cpFlag") as HTMLImageElement | null;
+  const cpCode = document.getElementById("cpCode") as HTMLElement | null;
+  const cpInput = document.getElementById(
+    "codePais",
+  ) as HTMLInputElement | null;
+
+  cpBtn?.addEventListener("click", () => cpList?.classList.toggle("hidden"));
+
+  cpList?.querySelectorAll("li").forEach((li) => {
+    li.addEventListener("click", () => {
+      const el = li as HTMLElement;
+      if (cpFlag) {
+        cpFlag.src = `https://flagcdn.com/w20/${el.dataset.iso}.png`;
+        cpFlag.alt = el.dataset.iso?.toUpperCase() ?? "";
+      }
+      if (cpCode) cpCode.textContent = el.dataset.code ?? "";
+      if (cpInput) cpInput.value = el.dataset.val ?? "";
+      cpList.classList.add("hidden");
+    });
+  });
+
+  document.addEventListener("click", (e) => {
+    const wrapper = document.getElementById("cpWrapper");
+    if (wrapper && !wrapper.contains(e.target as Node))
+      cpList?.classList.add("hidden");
+  });
+</script>

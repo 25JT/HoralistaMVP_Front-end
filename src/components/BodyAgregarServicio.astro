@@ -1,0 +1,358 @@
+<body>
+  <div class="xl:mt-0 mt-10 flex flex-col lg:flex-row min-h-screen bg-blue-50">
+    <main
+      class="flex-1 max-w-4xl mx-auto w-full p-6 lg:p-12 xl:p-20 lg:border-r lg:border-slate-100 bg-white"
+    >
+      <header class="mb-12">
+        <div
+          class="text-blue-500 flex items-center gap-2 text-accent font-semibold text-sm mb-3"
+        >
+          <a href="/TuPagina">Regresar </a>
+        </div>
+        <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 mb-2">
+          Agregar Servicio
+        </h1>
+        <p class="text-slate-500 text-lg">
+          Define los detalles de tu nueva oferta de servicio.
+        </p>
+      </header>
+      <div class="space-y-12">
+        <section>
+          <div class="flex items-center gap-4 mb-8">
+            <div
+              class="size-11 flex items-center justify-center rounded-2xl bg-slate-50 text-slate-800 shadow-sm border border-slate-100"
+            >
+              <span class="material-symbols-outlined text-xl">description</span>
+            </div>
+            <div>
+              <h2 class="text-xl font-bold text-slate-900">
+                Información del Servicio
+              </h2>
+              <p class="text-sm text-slate-400">
+                Datos básicos que verán tus clientes.
+              </p>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+            <div class="md:col-span-2">
+              <label
+                class="block text-sm font-semibold text-slate-700 mb-2"
+                for="service-name">Nombre del servicio</label
+              >
+              <input
+                class="input-style border border-slate-200 bg-slate-50 rounded-3xl w-full h-[40px] pl-2"
+                id="service-name"
+                placeholder="Ej: Manicura Rusa Express"
+                type="text"
+              />
+            </div>
+            <div>
+              <label
+                class="block text-sm font-semibold text-slate-700 mb-2"
+                for="service-price">Precio</label
+              >
+              <div class="relative bg-slate-50 rounded-3xl">
+                <span
+                  class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-700 font-semibold"
+                  >$</span
+                >
+                <input
+                  class="input-style !pl-10 w-full rounded-3xl border border-slate-200"
+                  id="service-price"
+                  placeholder="0.00"
+                  type="number"
+                />
+              </div>
+            </div>
+            <div>
+              <label
+                class="block text-sm font-semibold text-slate-700 mb-2"
+                for="service-duration">Duración</label
+              >
+              <div class="relative">
+                <select
+                  class="input-style appearance-none rounded-3xl pl-2 w-full bg-slate-50 border border-slate-200"
+                  id="service-duration"
+                >
+                  <option value="15">15 min</option>
+                  <option value="30">30 min</option>
+                  <option selected="" value="45">45 min</option>
+                  <option value="60">1 hora</option>
+                  <option value="90">1.5 horas</option>
+                </select>
+                <span
+                  class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"
+                  >expand_more</span
+                >
+              </div>
+            </div>
+            <div class="md:col-span-2">
+              <label
+                class="block text-sm font-semibold text-slate-700 mb-2"
+                for="service-desc">Descripción</label
+              >
+              <textarea
+                class="input-style resize-none rounded-xl border border-slate-200 w-full bg-slate-50 pl-4"
+                id="service-desc"
+                placeholder="¿Qué incluye este servicio?"
+                rows="3"
+                maxlength="125"></textarea>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div class="flex items-center gap-4 mb-8">
+            <div
+              class="size-11 flex items-center justify-center rounded-2xl bg-slate-50 text-slate-800 shadow-sm border border-slate-100"
+            >
+              <span class="material-symbols-outlined text-xl">collections</span>
+            </div>
+            <div>
+              <h2 class="text-xl font-bold text-slate-900">
+                Galería de imagenes
+              </h2>
+              <p class="text-sm text-slate-400">
+                Las mejores fotos de este servicio.
+              </p>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            <div>
+              <label for="foto1">
+                <div
+                  class="aspect-square flex flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-slate-100 bg-slate-50/50 hover:bg-slate-50 hover:border-accent/30 transition-all cursor-pointer group"
+                >
+                  <div
+                    class="size-10 rounded-full bg-white shadow-sm flex items-center justify-center text-slate-400 group-hover:text-accent group-hover:scale-110 transition-all"
+                  >
+                    <input
+                      type="file"
+                      id="foto1"
+                      class="hidden w-full h-full"
+                    />
+                    <span class="material-symbols-outlined text-xl"
+                      >collections</span
+                    >
+                  </div>
+                  <span
+                    class="text-xs font-bold text-slate-400 uppercase tracking-widest"
+                    >Subir Foto</span
+                  >
+                </div>
+              </label>
+            </div>
+            <label for="foto2">
+              <div
+                class="aspect-square flex flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-slate-100 bg-slate-50/50 hover:bg-slate-50 hover:border-accent/30 transition-all cursor-pointer group"
+              >
+                <div
+                  class="size-10 rounded-full bg-white shadow-sm flex items-center justify-center text-slate-400 group-hover:text-accent group-hover:scale-110 transition-all"
+                >
+                  <input type="file" id="foto2" class="hidden w-full h-full" />
+                  <span class="material-symbols-outlined text-xl"
+                    >collections</span
+                  >
+                </div>
+                <span
+                  class="text-xs font-bold text-slate-400 uppercase tracking-widest"
+                  >Subir Foto</span
+                >
+              </div>
+            </label>
+
+            <div>
+              <label for="foto3">
+                <div
+                  class="aspect-square flex flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-slate-100 bg-slate-50/50 hover:bg-slate-50 hover:border-accent/30 transition-all cursor-pointer group"
+                >
+                  <div
+                    class="size-10 rounded-full bg-white shadow-sm flex items-center justify-center text-slate-400 group-hover:text-accent group-hover:scale-110 transition-all"
+                  >
+                    <input
+                      type="file"
+                      id="foto3"
+                      class="hidden w-full h-full"
+                    />
+                    <span class="material-symbols-outlined text-xl"
+                      >collections</span
+                    >
+                  </div>
+                  <span
+                    class="text-xs font-bold text-slate-400 uppercase tracking-widest"
+                    >Subir Foto</span
+                  >
+                </div>
+              </label>
+            </div>
+          </div>
+        </section>
+        <div class="pt-6">
+          <button
+            id="guardarServicio"
+            class="w-full bg-accent hover:bg-blue-700 text-black font-bold py-5 px-8 rounded-2xl shadow-xl shadow-accent/20 transition-all flex items-center justify-center gap-3 hover:-translate-y-0.5 active:translate-y-0"
+          >
+            <span class="material-symbols-outlined">publish</span>
+            Guardar Servicio
+          </button>
+        </div>
+      </div>
+    </main>
+    <!---Previwe del servicio -->
+    <aside
+      class="flex w-full lg:w-[480px] bg-slate-50 border-t lg:border-t-0 lg:border-l border-slate-200 flex-col items-center justify-center p-8 lg:sticky lg:top-0 lg:h-screen"
+    >
+      <div class="max-w-md w-full">
+        <div class="text-center mb-8">
+          <span
+            class="inline-block px-3 py-1 rounded-full bg-accent/10 text-accent text-[10px] font-bold uppercase tracking-[0.2em] mb-3"
+            >Live Preview</span
+          >
+          <h3 class="text-slate-900 font-bold text-xl">
+            Vista previa del servicio
+          </h3>
+        </div>
+        <div
+          class="bg-white rounded-3xl shadow-premium border border-slate-100 overflow-hidden"
+        >
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img
+              alt="Service main"
+              id="foto1-preview"
+              class="w-full h-full object-cover"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkUfUP1gFVo3HZO5Frp1_KHZCoUTa0GZqumL379y7Fl-ZQLq3_7ZMPoGiwAZaJHcNTxII_oEbBMscWjUr-A_J81RixbTjh5x6XHmhUht4JDo7N9jUyTb0clRF_2YmIYhEDd9i_lQxFREN8UhJ4A1125mKNQ3mLZRUoQbCih6KPMgQy8PhU6slk3-11Aap6VGhYYnmOl4WoHg4fGX5snW8eGU8GMWvL0BOUeOGGwDwZzWxEfmYP8yWZKsVo5L10EcKW3xnU5iltzQ"
+            />
+            <!-- <div class="absolute top-4 right-4">
+              <button
+                class="size-10 rounded-full bg-white/90 backdrop-blur shadow-sm flex items-center justify-center text-slate-700 hover:text-red-500 transition-colors"
+              >
+                <span class="material-symbols-outlined text-[22px]"
+                  >favorite</span
+                >
+              </button>
+            </div> -->
+          </div>
+          <div class="p-8">
+            <div class="flex justify-between items-start gap-4 mb-6">
+              <div class="flex-1">
+                <h4
+                  id="service-name-preview"
+                  class="text-2xl font-bold text-slate-900 tracking-tight leading-tight mb-2"
+                >
+                  Corte de Cabello Premium
+                </h4>
+                <div class="flex items-center gap-4">
+                  <div
+                    class="flex items-center gap-1.5 text-slate-500 font-medium"
+                  >
+                    <span class="material-symbols-outlined text-lg"
+                      >schedule</span
+                    >
+                    <span id="service-duration-preview" class="text-sm"
+                      >45 min</span
+                    >
+                  </div>
+                  <div
+                    class="flex items-center gap-1.5 text-amber-500 font-bold"
+                  >
+                    <span class="material-symbols-outlined text-lg fill-current"
+                      >star</span
+                    >
+                    <span class="text-sm">4.9 (124)</span>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="bg-blue-50 px-4 py-2 rounded-xl text-center min-w-[80px]"
+              >
+                <span
+                  class="block text-xs font-bold text-accent uppercase tracking-wider mb-0.5"
+                  >Precio</span
+                >
+                <span
+                  id="service-price-preview"
+                  class="text-2xl font-black text-accent">$0.000</span
+                >
+              </div>
+            </div>
+            <div class="space-y-6">
+              <p
+                id="service-description-preview"
+                class="text-slate-500 leading-relaxed"
+              >
+                Incluye lavado, masaje capilar, corte con tijera o máquina y
+                peinado profesional con productos premium.
+              </p>
+              <div>
+                <h5
+                  class="text-[11px] font-bold text-slate-400 uppercase tracking-[0.15em] mb-4"
+                >
+                  Galería del Servicio
+                </h5>
+                <div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+                  <img
+                    alt="Work 1"
+                    id="foto11-preview"
+                    class="size-20 rounded-xl object-cover flex-shrink-0 border border-slate-100"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkUfUP1gFVo3HZO5Frp1_KHZCoUTa0GZqumL379y7Fl-ZQLq3_7ZMPoGiwAZaJHcNTxII_oEbBMscWjUr-A_J81RixbTjh5x6XHmhUht4JDo7N9jUyTb0clRF_2YmIYhEDd9i_lQxFREN8UhJ4A1125mKNQ3mLZRUoQbCih6KPMgQy8PhU6slk3-11Aap6VGhYYnmOl4WoHg4fGX5snW8eGU8GMWvL0BOUeOGGwDwZzWxEfmYP8yWZKsVo5L10EcKW3xnU5iltzQ"
+                  />
+                  <div
+                    class="size-20 rounded-xl bg-slate-50 border-2 border-slate-100 border-dashed flex items-center justify-center text-slate-300 flex-shrink-0"
+                  >
+                    <img
+                      alt="Work 1"
+                      id="foto2-preview"
+                      class="size-20 rounded-xl object-cover flex-shrink-0 border border-slate-100"
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkUfUP1gFVo3HZO5Frp1_KHZCoUTa0GZqumL379y7Fl-ZQLq3_7ZMPoGiwAZaJHcNTxII_oEbBMscWjUr-A_J81RixbTjh5x6XHmhUht4JDo7N9jUyTb0clRF_2YmIYhEDd9i_lQxFREN8UhJ4A1125mKNQ3mLZRUoQbCih6KPMgQy8PhU6slk3-11Aap6VGhYYnmOl4WoHg4fGX5snW8eGU8GMWvL0BOUeOGGwDwZzWxEfmYP8yWZKsVo5L10EcKW3xnU5iltzQ"
+                    />
+                  </div>
+                  <div
+                    class="size-20 rounded-xl bg-slate-50 border-2 border-slate-100 border-dashed flex items-center justify-center text-slate-300 flex-shrink-0"
+                  >
+                    <img
+                      alt="Work 1"
+                      id="foto3-preview"
+                      class="size-20 rounded-xl object-cover flex-shrink-0 border border-slate-100"
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkUfUP1gFVo3HZO5Frp1_KHZCoUTa0GZqumL379y7Fl-ZQLq3_7ZMPoGiwAZaJHcNTxII_oEbBMscWjUr-A_J81RixbTjh5x6XHmhUht4JDo7N9jUyTb0clRF_2YmIYhEDd9i_lQxFREN8UhJ4A1125mKNQ3mLZRUoQbCih6KPMgQy8PhU6slk3-11Aap6VGhYYnmOl4WoHg4fGX5snW8eGU8GMWvL0BOUeOGGwDwZzWxEfmYP8yWZKsVo5L10EcKW3xnU5iltzQ"
+                    />
+                  </div>
+                </div>
+              </div>
+              <button
+                class="w-full bg-slate-900 hover:bg-black text-white font-bold py-4 rounded-2xl shadow-lg transition-all flex items-center justify-center gap-3"
+              >
+                Reservar Ahora
+                <span class="material-symbols-outlined text-lg"
+                  >arrow_forward</span
+                >
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</body>
+
+<div
+  id="loading-overlay"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm transition-all"
+>
+  <div
+    class="flex flex-col items-center gap-4 rounded-2xl bg-white p-8 shadow-2xl"
+  >
+    <div class="relative flex h-16 w-16">
+      <div class="absolute inset-0 rounded-full border-4 border-slate-100">
+      </div>
+      <div
+        class="absolute inset-0 animate-spin rounded-full border-4 border-primary border-t-transparent text-blue-500"
+      >
+      </div>
+    </div>
+    <div class="text-center">
+      <h3 class="text-lg font-bold text-slate-900">Guardando cambios</h3>
+      <p class="text-sm text-slate-500">Por favor, espera un momento...</p>
+    </div>
+  </div>
+</div>
+
+<script src="../utils/BodyAgregarServicio.js"></script>

@@ -1,0 +1,333 @@
+<body class="bg-background mt-10!">
+  <div
+    class="flex flex-col lg:flex-row desktop-height w-full overflow-x-hidden"
+  >
+    <aside
+      class="w-full lg:w-[550px] lg:h-full overflow-y-auto border-r border-border-color bg-white custom-scrollbar flex flex-col shrink-0"
+    >
+      <div class="p-6 md:p-8 pb-4">
+        <h1 class="text-xl md:text-2xl font-bold tracking-tight text-slate-900">
+          Configuración de Perfil
+        </h1>
+        <p class="text-sm text-slate-500 mt-1">
+          Gestiona la información pública de tu negocio.
+        </p>
+      </div>
+      <div class="p-6 md:p-8 pt-4 space-y-8 md:space-y-10 flex-grow">
+        <section>
+          <div class="mb-6 flex items-center gap-2">
+            <span class="material-symbols-outlined text-blue-500">palette</span>
+            <h2 class="text-lg font-bold text-slate-800">Identidad Visual</h2>
+          </div>
+          <div class="space-y-5">
+            <div class="grid grid-cols-1 gap-5">
+              <div>
+                <label
+                  class="mb-1.5 block text-xs font-bold uppercase text-slate-500"
+                  for="shop-name">Nombre del Establecimiento</label
+                >
+                <input
+                  class="w-full rounded-lg shadow-lg border-slate-300 border-[0.5px] text-sm py-3 focus:border-primary focus:ring-primary"
+                  id="shop-name"
+                  placeholder="Ej: Alpha Design Studio"
+                  type="text"
+                  value=""
+                />
+              </div>
+
+              <div>
+                <label
+                  class="mb-1.5 block text-xs font-bold uppercase text-slate-500"
+                  for="shop-desc">Descripción del Negocio</label
+                >
+                <textarea
+                  class="w-full rounded-lg shadow-lg border-slate-300 border-[0.5px] text-sm focus:border-primary focus:ring-primary"
+                  id="shop-desc"
+                  placeholder="Describe brevemente lo que haces..."
+                  maxlength="150"
+                  rows="3"></textarea>
+              </div>
+              <div>
+                <label
+                  class="mb-1.5 block text-xs font-bold uppercase text-slate-500"
+                  for="shop-address">Dirección</label
+                >
+                <input
+                  class="w-full rounded-lg shadow-lg border-slate-300 border-[0.5px] text-sm py-3 focus:border-primary focus:ring-primary"
+                  id="shop-address"
+                  placeholder="Ej: Calle Principal 123, Madrid"
+                  type="text"
+                />
+              </div>
+              <div>
+                <label
+                  class="mb-1.5 block text-xs font-bold uppercase text-slate-500"
+                  for="shop-phone">Teléfono del Establecimiento</label
+                >
+                <input
+                  class="w-full rounded-lg shadow-lg border-slate-300 border-[0.5px] text-sm py-3 focus:border-primary focus:ring-primary"
+                  id="shop-phone"
+                  placeholder="Ej: +57 300 000 0000"
+                  type="text"
+                />
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <p class="mb-3 text-sm font-semibold text-slate-700">
+                  Logotipo
+                </p>
+
+                <label
+                  class="group flex cursor-pointer flex-col items-center gap-2 rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 p-6 transition-all hover:border-primary/50 hover:bg-primary/5"
+                >
+                  <input type="file" id="logo" class="hidden" />
+
+                  <div
+                    class="flex size-10 items-center justify-center rounded-full bg-white text-slate-400 shadow-sm group-hover:text-primary"
+                  >
+                    <span class="material-symbols-outlined text-xl"
+                      >cloud_upload</span
+                    >
+                  </div>
+                  <p
+                    class="text-[10px] font-bold text-slate-700 uppercase tracking-wider"
+                  >
+                    Subir Logo
+                  </p>
+                </label>
+              </div>
+              <div>
+                <p class="mb-3 text-sm font-semibold text-slate-700">Banner</p>
+                <label
+                  class="group relative flex h-[104px] sm:h-[104px] cursor-pointer flex-col items-center justify-center gap-1 overflow-hidden rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 transition-all hover:border-primary/50"
+                >
+                  <input type="file" id="banner" class="hidden" />
+                  <div
+                    class="z-10 flex items-center justify-center rounded-full bg-white/90 p-2 text-slate-500 shadow-sm group-hover:text-primary"
+                  >
+                    <span class="material-symbols-outlined text-lg">image</span>
+                  </div>
+                  <img
+                    alt="Banner preview"
+                    class="absolute inset-0 size-full object-cover opacity-20"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBP-IMlDIqaNWrsjUTT4z4uoMdE5j4mSuNVCrwrmBGp4iuilA40aDI97VJb2XwPk0IsZst4sBxWFUjQolVaudL1hdsnSBEl0yD4j0jo_ncrOeA0ZqPtI8uFu0PIV4iIbgwhq45pprUMBAYIAg7vJ9bb1Oy1zQ9cL5HNu9xSPvMVOOCnHKg7oHGV8CxWBBTGsdPhq-s8-RE6ZayXx674YgXAx9B8kH7rhwAN84ymtVrsmZBQZUO2IpOgJc8-4EcJp3anG4_cg6RJTw"
+                  />
+                </label>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="border-t border-slate-100 pt-10">
+          <div
+            class="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+          >
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-blue-500"
+                >inventory_2</span
+              >
+              <h2 class="text-lg font-bold text-slate-800">
+                Gestión de Catálogo
+              </h2>
+            </div>
+
+            <button
+              id="AñadirCita"
+              class="flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-bold text-black transition-all hover:bg-blue-700 w-full sm:w-auto"
+            >
+              <span class="material-symbols-outlined text-lg">add</span>
+              Añadir Servicio
+            </button>
+          </div>
+          <!--generar tarjetas de servicios-->
+          <div class="space-y-4" id="catalogo-container"></div>
+        </section>
+      </div>
+      <div
+        class="mt-auto border-t border-slate-100 p-6 bg-slate-50/50 flex flex-col sm:flex-row gap-3"
+      >
+        <a href="MenuNegocio">
+          <button
+            class="w-full sm:flex-1 rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-600 hover:bg-slate-50 transition-colors"
+            >Descartar</button
+          >
+        </a>
+        <button
+          id="btn-guardar-cambios"
+          class="w-full sm:flex-1 rounded-lg bg-primary px-4 py-3 text-sm font-semibold text-black shadow-lg shadow-primary/20 hover:bg-blue-700 transition-all"
+          >Guardar Cambios</button
+        >
+      </div>
+    </aside>
+    <main
+      class="flex-1 bg-slate-100 lg:h-auto overflow-y-auto custom-scrollbar flex flex-col items-center py-12 px-6 md:px-12"
+    >
+      <div class="mb-10 flex flex-col items-center gap-3 text-center">
+        <div
+          class="flex items-center gap-2 px-3 py-1 bg-white rounded-full border border-slate-300 shadow-sm"
+        >
+          <span class="relative flex h-2 w-2">
+            <span
+              class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"
+            ></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"
+            ></span>
+          </span>
+          <span
+            class="text-[10px] font-bold uppercase tracking-widest text-slate-500"
+            >Vista previa en vivo</span
+          >
+        </div>
+        <p class="text-sm text-slate-400 max-w-[300px]">
+          Así es como tus clientes verán tu perfil.
+        </p>
+      </div>
+      <!--Preview -->
+      <div
+        class="shadow- w-full max-w-[420px] bg-white rounded-[2.5rem] shadow-xl-soft overflow-hidden border-[8px] border-white"
+      >
+        <div class="relative h-48 w-full bg-slate-200">
+          <img
+            alt="Business Banner"
+            class="size-full object-cover"
+            id="banner-preview"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBP-IMlDIqaNWrsjUTT4z4uoMdE5j4mSuNVCrwrmBGp4iuilA40aDI97VJb2XwPk0IsZst4sBxWFUjQolVaudL1hdsnSBEl0yD4j0jo_ncrOeA0ZqPtI8uFu0PIV4iIbgwhq45pprUMBAYIAg7vJ9bb1Oy1zQ9cL5HNu9xSPvMVOOCnHKg7oHGV8CxWBBTGsdPhq-s8-RE6ZayXx674YgXAx9B8kH7rhwAN84ymtVrsmZBQZUO2IpOgJc8-4EcJp3anG4_cg6RJTw"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"
+          >
+          </div>
+          <div
+            class="absolute -bottom-10 left-6 size-24 rounded-2xl border-4 border-white bg-white shadow-xl overflow-hidden"
+          >
+            <img
+              alt="Business Logo"
+              id="logo-preview"
+              class="size-full object-cover"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkUfUP1gFVo3HZO5Frp1_KHZCoUTa0GZqumL379y7Fl-ZQLq3_7ZMPoGiwAZaJHcNTxII_oEbBMscWjUr-A_J81RixbTjh5x6XHmhUht4JDo7N9jUyTb0clRF_2YmIYhEDd9i_lQxFREN8UhJ4A1125mKNQ3mLZRUoQbCih6KPMgQy8PhU6slk3-11Aap6VGhYYnmOl4WoHg4fGX5snW8eGU8GMWvL0BOUeOGGwDwZzWxEfmYP8yWZKsVo5L10EcKW3xnU5iltzQ"
+            />
+          </div>
+        </div>
+        <div class="px-6 pt-14 pb-8">
+          <div class="flex flex-col gap-2">
+            <h3
+              id="shop-name-preview"
+              class="text-2xl font-black text-slate-900 tracking-tight leading-tight"
+            >
+              Hora Lista
+            </h3>
+            <div class="flex flex-wrap items-center gap-3">
+              <div
+                class="flex items-center gap-1 bg-amber-50 px-2.5 py-1 rounded-full"
+              >
+                <span
+                  class="material-symbols-outlined text-amber-500 text-sm fill-1"
+                  >star</span
+                >
+                <span class="text-xs font-bold text-amber-700">4.9</span>
+                <span class="text-[10px] text-amber-600 font-medium"
+                  >(128 reseñas)</span
+                >
+              </div>
+              <span
+                class="text-xs font-bold text-green-600 flex items-center gap-1"
+              >
+                <span class="size-1.5 rounded-full bg-green-500"></span>
+                Abierto ahora
+              </span>
+            </div>
+          </div>
+          <div class="mt-6 space-y-5">
+            <p
+              id="description-preview"
+              class="text-sm text-slate-600 leading-relaxed line-clamp-3"
+            >
+              Optimiza tu tiempo y elimina las perdidas. Concéntrate en lo que
+              más importa y deja que HoraLista se encargue de tu agenda.
+            </p>
+            <div
+              class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100"
+            >
+              <span class="material-symbols-outlined text-primary text-xl"
+                >location_on</span
+              >
+              <div class="flex flex-col">
+                <span
+                  class="text-[10px] font-bold text-slate-400 uppercase tracking-wide"
+                  >Ubicación</span
+                >
+                <span
+                  id="location-preview"
+                  class="text-xs font-medium text-slate-700"
+                  >Calle de la Innovación 25, Colombia</span
+                >
+              </div>
+            </div>
+            <div
+              class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100"
+            >
+              <span class="material-symbols-outlined text-primary text-xl"
+                >call</span
+              >
+              <div class="flex flex-col">
+                <span
+                  class="text-[10px] font-bold text-slate-400 uppercase tracking-wide"
+                  >Teléfono</span
+                >
+                <span
+                  id="phone-preview"
+                  class="text-xs font-medium text-slate-700"
+                  >+57 000 000 0000</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="mt-8 grid grid-cols-2 gap-3">
+            <button
+              class="flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-3.5 text-sm font-bold text-white transition-all active:scale-95"
+            >
+              <span class="material-symbols-outlined text-lg"
+                >calendar_month</span
+              >
+              Reservar
+            </button>
+            <button
+              class="flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-3.5 text-sm font-bold text-slate-700 transition-all active:scale-95"
+            >
+              <span class="material-symbols-outlined text-lg">info</span>
+              Servicios
+            </button>
+          </div>
+        </div>
+        <!--fin Preview -->
+
+        <div class="h-20 lg:hidden"></div>
+      </div>
+      <!--fin Preview -->
+    </main>
+  </div>
+
+  <div
+    id="loading-overlay"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm transition-all"
+  >
+    <div
+      class="flex flex-col items-center gap-4 rounded-2xl bg-white p-8 shadow-2xl"
+    >
+      <div class="relative flex h-16 w-16">
+        <div class="absolute inset-0 rounded-full border-4 border-slate-100">
+        </div>
+        <div
+          class="absolute inset-0 animate-spin rounded-full border-4 border-primary border-t-transparent text-blue-500"
+        >
+        </div>
+      </div>
+      <div class="text-center">
+        <h3 class="text-lg font-bold text-slate-900">Guardando cambios</h3>
+        <p class="text-sm text-slate-500">Por favor, espera un momento...</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="../utils/BodyTuPagina.js"></script>
+</body>

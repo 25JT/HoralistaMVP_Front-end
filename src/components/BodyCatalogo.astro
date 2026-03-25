@@ -1,0 +1,47 @@
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+  rel="stylesheet"
+/>
+<link
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+  rel="stylesheet"
+/>
+
+<body class="bg-background-lightfont-display text-slate-900 min-h-screen">
+  <!-- Top Navigation Bar -->
+
+  <main class="mt-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <!-- Hero & Filters -->
+    <div class="mb-10">
+      <h1 class="text-4xl font-black text-slate-900 mb-2 tracking-tight">
+        Nuestros Servicios
+      </h1>
+      <p class="text-slate-500 max-w-2xl text-lg">
+        Reserva tu cita hoy mismo con nuestros profesionales especializados.
+        Resultados garantizados.
+      </p>
+    </div>
+    <!-- Filter Chips -->
+    <!-- Service Grid -->
+    <div
+      id="loader-catalogo"
+      class="hidden flex justify-center items-center py-20"
+    >
+      <div
+        class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"
+      >
+      </div>
+    </div>
+    <div class="card-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    </div>
+    <button
+      id="btn-regresar"
+      class="mt-5 bg-primary hover:bg-primary/90 text-black px-6 py-2.5 rounded-lg text-sm font-bold transition-all active:scale-95 shadow-lg shadow-primary/20"
+      >Regresar</button
+    >
+  </main>
+
+  <!--  -->
+</body>
+
+<script src="../utils/BodyCatalogo"></script>

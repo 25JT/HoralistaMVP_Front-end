@@ -1,0 +1,38 @@
+---
+export const prerender = false;
+const { id } = Astro.params;
+
+import "/src/styles/global.css";
+import Nav from "../../components/Nav.astro";
+import Layout from "../../layouts/Layout.astro";
+import BodyId from "../../components/BodyId.astro";
+---
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap"
+  rel="stylesheet"
+/>
+<link
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+  rel="stylesheet"
+/>
+
+<Layout title="Agenda cita">
+  <Nav />
+  <BodyId />
+  <!-- Hidden Data Containers for Logic -->
+  <div>
+    <h1 id="idservicio" class="hidden" data-id={id}>ID Establecimiento:</h1>
+    <h2 id="id" class="hidden"></h2>
+    <!-- ID Usuario will be set by JS -->
+    <h1 id="nombre" class="hidden"></h1>
+    <h1 id="apellido" class="hidden"></h1>
+    <h1 id="telefono" class="hidden"></h1>
+    <h1 id="correo" class="hidden"></h1>
+    <h1 id="dias" class="hidden"></h1>
+    <h1 id="negocio" class="hidden"></h1>
+    <h1 id="telefono_negocio" class="hidden"></h1>
+    <h1 id="direccion" class="hidden"></h1>
+  </div>
+</Layout>
+<script src="../../utils/idJs.js"></script>

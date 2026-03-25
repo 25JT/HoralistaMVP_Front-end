@@ -1,0 +1,227 @@
+---
+
+---
+
+<!doctype html>
+<html class="light" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Vinculación WhatsApp v2 (Con Pasos)</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="lg:overflow-y-hidden bg-blue-50 min-h-screen font-display transition-colors duration-300"
+  >
+    <div class="mt-10 flex flex-col min-h-screen">
+      <!-- Top Navigation -->
+
+      <main
+        class="h-[calc(100vh-10rem)] flex-1 flex flex-col items-center py-8 px-4"
+      >
+        <div class="max-w-[1000px] w-full">
+          <!-- Success Alert Banner (Simulating successful link) -->
+
+          <!-- Page Heading -->
+          <div class="flex flex-col gap-2 mb-10 text-center sm:text-left">
+            <h1
+              class="text-[#0d121b] text-4xl font-black leading-tight tracking-[-0.033em]"
+            >
+              Vinculación de WhatsApp
+            </h1>
+            <p
+              class="text-[#4c669a] text-lg font-normal leading-normal max-w-2xl"
+            >
+              Sigue los pasos para automatizar la gestión de citas y
+              notificaciones directas a tus pacientes.
+            </p>
+          </div>
+          <!-- Main Grid Layout -->
+          <div
+            class="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-white p-8 rounded-2xl shadow-sm border border-[#e7ebf3]"
+          >
+            <!-- Instructions Section (Left) -->
+            <div class="lg:col-span-7 flex flex-col gap-8">
+              <h3
+                class="text-xl font-bold text-[#0d121b] flex items-center gap-2"
+              >
+                <span class="material-symbols-outlined text-primary"
+                  >list_alt</span
+                >
+                Instrucciones de configuración
+              </h3>
+              <div class="space-y-0 relative">
+                <!-- Step 1 -->
+                <div class="grid grid-cols-[48px_1fr] gap-x-4">
+                  <div class="flex flex-col items-center">
+                    <div
+                      class="size-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-lg border-2 border-primary/20"
+                    >
+                      1
+                    </div>
+                    <div class="w-[2px] bg-[#cfd7e7] h-12 my-1"></div>
+                  </div>
+                  <div class="pb-8">
+                    <p
+                      class="text-[#0d121b] text-lg font-semibold leading-normal"
+                    >
+                      Abre WhatsApp en tu teléfono
+                    </p>
+                    <p class="text-[#4c669a] text-base font-normal">
+                      Asegúrate de tener una conexión a internet estable.
+                    </p>
+                  </div>
+                </div>
+                <!-- Step 2 -->
+                <div class="grid grid-cols-[48px_1fr] gap-x-4">
+                  <div class="flex flex-col items-center">
+                    <div
+                      class="size-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-lg border-2 border-primary/20"
+                    >
+                      2
+                    </div>
+                    <div class="w-[2px] bg-[#cfd7e7] h-12 my-1"></div>
+                  </div>
+                  <div class="pb-8">
+                    <p
+                      class="text-[#0d121b] text-lg font-semibold leading-normal"
+                    >
+                      Toca Menú o Configuración
+                    </p>
+                    <p class="text-[#4c669a] text-base font-normal">
+                      Busca el icono de tres puntos (Android) o el engranaje
+                      (iOS).
+                    </p>
+                  </div>
+                </div>
+                <!-- Step 3 -->
+                <div class="grid grid-cols-[48px_1fr] gap-x-4">
+                  <div class="flex flex-col items-center">
+                    <div
+                      class="size-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-lg border-2 border-primary/20"
+                    >
+                      3
+                    </div>
+                    <div class="w-[2px] bg-[#cfd7e7] h-12 my-1"></div>
+                  </div>
+                  <div class="pb-8">
+                    <p
+                      class="text-[#0d121b] text-lg font-semibold leading-normal"
+                    >
+                      Selecciona 'Dispositivos vinculados'
+                    </p>
+                    <p class="text-[#4c669a] text-base font-normal">
+                      Luego presiona el botón 'Vincular un dispositivo'.
+                    </p>
+                  </div>
+                </div>
+                <!-- Step 4 -->
+                <div class="grid grid-cols-[48px_1fr] gap-x-4">
+                  <div class="flex flex-col items-center">
+                    <div
+                      class="size-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-lg border-2 border-primary/20"
+                    >
+                      4
+                    </div>
+                  </div>
+                  <div>
+                    <p
+                      class="text-[#0d121b] text-lg font-semibold leading-normal"
+                    >
+                      Escanea el código QR
+                    </p>
+                    <p class="text-[#4c669a] text-base font-normal">
+                      Apunta la cámara de tu móvil hacia el recuadro de la
+                      derecha.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-8 pt-8 border-t border-[#e7ebf3]">
+                <button
+                  id="btn-cancelar-vinculacion"
+                  class="flex items-center gap-2 text-red-500 font-bold hover:text-red-700 transition-colors px-4 py-2 rounded-lg hover:bg-red-50"
+                >
+                  <span class="material-symbols-outlined">cancel</span>
+                  <span>Cancelar Vinculación</span>
+                </button>
+              </div>
+            </div>
+            <!-- QR Section (Right) -->
+            <div
+              class="lg:col-span-5 flex flex-col items-center justify-center bg-background-light rounded-xl p-8 border border-[#cfd7e7] qr-gradient"
+            >
+              <div
+                class="relative bg-white p-6 rounded-xl shadow-lg border border-[#e7ebf3]"
+              >
+                <!-- QR Code Placeholder -->
+                <div
+                  class="size-64 bg-white flex items-center justify-center relative overflow-hidden"
+                >
+                  <img
+                    id="imgQr"
+                    alt="Código QR de vinculación"
+                    class="size-full opacity-90"
+                    data-alt="Black and white QR code for WhatsApp connection"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXvCLSvDgaJp60xH9618XP5K3x4zvFddTCAEt9kgaZwVwhn3KUKWGP9MxkEMH_LNb6lJzF0Uqei4e8hoLWKQGFwJrm1sIiX2W7jJBtOMf6ZXMc4fi4qinnAYvxPJaAtH0rU8tcdPKTN5bKBjjXTRDmNM_YIe001lZ_O-hlcjXsKlcDSmRL4ePi7qtbu2lDl0iaFsmlAnuQqAyVyQMlVBXr12bGJMmlFnUeTdrWQDxF747WRrsack8rzCaEj981_qoJBsDKFxtlBg"
+                  />
+                  <!-- Decorative corners -->
+                  <div
+                    class="absolute top-0 left-0 size-8 border-t-4 border-l-4 border-primary rounded-tl-lg"
+                  >
+                  </div>
+                  <div
+                    class="absolute top-0 right-0 size-8 border-t-4 border-r-4 border-primary rounded-tr-lg"
+                  >
+                  </div>
+                  <div
+                    class="absolute bottom-0 left-0 size-8 border-b-4 border-l-4 border-primary rounded-bl-lg"
+                  >
+                  </div>
+                  <div
+                    class="absolute bottom-0 right-0 size-8 border-b-4 border-r-4 border-primary rounded-br-lg"
+                  >
+                  </div>
+                </div>
+              </div>
+              <div class="mt-8 text-center">
+                <div class="flex items-center justify-center gap-2 mb-2">
+                  <div class="size-2 bg-green-500 rounded-full animate-pulse">
+                  </div>
+                  <p class="text-[#0d121b] font-bold text-lg">
+                    Esperando escaneo...
+                  </p>
+                </div>
+
+                <button
+                  class="flex items-center gap-2 px-6 py-2.5 rounded-full border border-primary text-primary font-bold hover:bg-primary hover:text-white transition-all"
+                >
+                  <span class="material-symbols-outlined">refresh</span>
+                  <span>Actualizar QR</span>
+                </button>
+              </div>
+              <div
+                class="mt-8 flex items-center gap-2 text-[#4c669a] bg-white/50 px-4 py-2 rounded-full border border-[#e7ebf3] text-sm"
+              >
+                <span class="material-symbols-outlined text-sm">lock</span>
+                Conexión cifrada de extremo a extremo
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
+<script src="../utils/BodyVincularWhatsApp.js"></script>

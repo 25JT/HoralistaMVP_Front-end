@@ -1,0 +1,54 @@
+---
+import "../styles/global.css";
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+---
+
+<Layout title="Ups Error 404">
+  <Nav />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet"
+  />
+
+  <body class="font-display">
+    <div class="pt-20 bg-blue-50 w-screen h-screen relative flex flex-col">
+      <div class="flex flex-1">
+        <!-- SideNavBar -->
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6 lg:p-10">
+          <div class="flex h-full w-full items-center justify-center">
+            <div class="flex flex-col items-center gap-6 text-center">
+              <div class="flex justify-center text-[#135bec]">
+                <span class="material-symbols-outlined !text-9xl"
+                  >search_off</span
+                >
+              </div>
+              <div class="flex max-w-md flex-col items-center gap-2">
+                <h1 class="text-7xl font-bold tracking-tighter text-black">
+                  404
+                </h1>
+                <h2 class="text-2xl font-semibold text-black">
+                  Pagina No Existe
+                </h2>
+                <p class="text-gray-600">
+                  Oops! La pagina que esta intentado acceder no existe.
+                </p>
+              </div>
+              <button
+                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-[#135bec] text-white text-sm font-bold leading-normal tracking-wide shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              >
+                <a href="/">Regresar</a>
+              </button>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</Layout>

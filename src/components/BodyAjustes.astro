@@ -1,0 +1,672 @@
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+  rel="stylesheet"
+/>
+<link
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+  rel="stylesheet"
+/>
+
+<body
+  class="mt-20! overflow-x-hidden w-full h-screen bg-blue-50 font-display bg-background-light text-slate-900 antialiased transition-colors duration-200"
+>
+  <div
+    id="BodyPrinCliente"
+    class="relative flex min-h-screen w-full flex-col overflow-x-hidden"
+  >
+    <main class="flex-1 flex justify-center">
+      <div class="w-full max-w-4xl flex flex-col gap-6">
+        <div
+          class="flex flex-col md:flex-row md:items-end justify-between gap-4"
+        >
+          <div>
+            <h1 class="text-3xl font-bold tracking-tight text-slate-900">
+              Configuración de Agenda
+            </h1>
+            <p class="text-slate-500 mt-1">
+              Define la duración de tus sesiones y organiza tus días laborables.
+            </p>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <section class="lg:col-span-1 space-y-6">
+            <div
+              id="duracion-cita"
+              class="bg-white rounded-xl shadow-sm border border-slate-100 p-5"
+            >
+              <div class="flex items-center gap-2 mb-5 text-slate-900">
+                <span class="material-symbols-outlined text-primary"
+                  >schedule</span
+                >
+                <h3 class="font-bold text-base">Duración de cada cita</h3>
+              </div>
+              <div class="space-y-3">
+                <label
+                  class="relative flex cursor-pointer rounded-lg border p-3 shadow-sm transition-all has-checked:border-primary has-checked:bg-primary/5 border-slate-200 bg-white hover:border-primary/50 hover:bg-slate-50"
+                >
+                  <input
+                    class="sr-only peer"
+                    name="duration"
+                    type="radio"
+                    value="30"
+                  />
+                  <span class="flex flex-1">
+                    <span class="flex flex-col">
+                      <span
+                        class="block text-sm font-medium text-slate-900 peer-checked:font-semibold peer-checked:text-primary"
+                        >30 minutos</span
+                      >
+                      <span
+                        class="mt-0.5 flex items-center text-xs text-slate-500"
+                        >Sesion Corta</span
+                      >
+                    </span>
+                  </span>
+                  <span
+                    class="relative flex items-center justify-center w-5 h-5"
+                  >
+                    <span
+                      class="material-symbols-outlined text-slate-300 peer-checked:opacity-0 text-[20px] absolute"
+                      >radio_button_unchecked</span
+                    >
+                    <span
+                      class="material-symbols-outlined text-blue-500 text-[20px] opacity-0 peer-checked:opacity-100 absolute"
+                      >check_circle</span
+                    >
+                  </span>
+                </label>
+                <label
+                  class="relative flex cursor-pointer rounded-lg border p-3 shadow-sm transition-all has-checked:border-primary has-checked:bg-primary/5 border-slate-200 bg-white hover:border-primary/50 hover:bg-slate-50"
+                >
+                  <input
+                    class="sr-only peer"
+                    name="duration"
+                    type="radio"
+                    value="60"
+                  />
+                  <span class="flex flex-1">
+                    <span class="flex flex-col">
+                      <span
+                        class="block text-sm font-medium text-slate-900 peer-checked:font-semibold peer-checked:text-primary"
+                        >1 hora</span
+                      >
+                      <span
+                        class="mt-0.5 flex items-center text-xs text-slate-500"
+                        >Estandar</span
+                      >
+                    </span>
+                  </span>
+                  <span
+                    class="relative flex items-center justify-center w-5 h-5"
+                  >
+                    <span
+                      class="material-symbols-outlined text-slate-300 peer-checked:opacity-0 text-[20px] absolute"
+                      >radio_button_unchecked</span
+                    >
+                    <span
+                      class="material-symbols-outlined text-blue-500 text-[20px] opacity-0 peer-checked:opacity-100 absolute"
+                      >check_circle</span
+                    >
+                  </span>
+                </label>
+                <label
+                  class="relative flex cursor-pointer rounded-lg border p-3 shadow-sm transition-all has-checked:border-primary has-checked:bg-primary/5 border-slate-200 bg-white hover:border-primary/50 hover:bg-slate-50"
+                >
+                  <input
+                    class="sr-only peer"
+                    name="duration"
+                    type="radio"
+                    value="120"
+                  />
+                  <span class="flex flex-1">
+                    <span class="flex flex-col">
+                      <span
+                        class="block text-sm font-medium text-slate-900 peer-checked:font-semibold peer-checked:text-primary"
+                        >2 horas</span
+                      >
+                      <span
+                        class="mt-0.5 flex items-center text-xs text-slate-500"
+                        >Sesion Larga</span
+                      >
+                    </span>
+                  </span>
+                  <span
+                    class="relative flex items-center justify-center w-5 h-5"
+                  >
+                    <span
+                      class="material-symbols-outlined text-slate-300 peer-checked:opacity-0 text-[20px] absolute"
+                      >radio_button_unchecked</span
+                    >
+                    <span
+                      class="material-symbols-outlined text-blue-500 text-[20px] opacity-0 peer-checked:opacity-100 absolute"
+                      >check_circle</span
+                    >
+                  </span>
+                </label>
+                <label
+                  class="relative flex cursor-pointer rounded-lg border p-3 shadow-sm transition-all has-checked:border-primary has-checked:bg-primary/5 border-slate-200 bg-white hover:border-primary/50 hover:bg-slate-50"
+                >
+                  <input
+                    class="sr-only peer"
+                    name="duration"
+                    type="radio"
+                    value="180"
+                  />
+                  <span class="flex flex-1">
+                    <span class="flex flex-col">
+                      <span
+                        class="block text-sm font-medium text-slate-900 peer-checked:font-semibold peer-checked:text-primary"
+                        >3 horas</span
+                      >
+                      <span
+                        class="mt-0.5 flex items-center text-xs text-slate-500"
+                        >Sesion Intensiva</span
+                      >
+                    </span>
+                  </span>
+                  <span
+                    class="relative flex items-center justify-center w-5 h-5"
+                  >
+                    <span
+                      class="material-symbols-outlined text-slate-300 peer-checked:opacity-0 text-[20px] absolute"
+                      >radio_button_unchecked</span
+                    >
+                    <span
+                      class="material-symbols-outlined text-blue-500 text-[20px] opacity-0 peer-checked:opacity-100 absolute"
+                      >check_circle</span
+                    >
+                  </span>
+                </label>
+              </div>
+              <div
+                class="mt-6
+                  pt-5
+                  border-t
+                  border-slate-100"
+              >
+                <!-- dia de descanso -->
+                <!-- <label
+                  class="flex items-center justify-between text-sm font-medium text-slate-700 mb-2"
+                 >
+                  <span>Tiempo de descanso</span>
+                  <span class="text-xs text-slate-400">minutos</span>
+                 </label>
+                <div class="relative">
+                  <select
+                    class="w-full rounded-lg border-slate-200 bg-slate-50 text-slate-900 text-sm focus:ring-primary focus:border-primary py-2.5 px-3 appearance-none"
+                  >
+                    <option>0 min (Sin descanso)</option>
+                    <option selected="">5 min</option>
+                    <option>10 min</option>
+                    <option>15 min</option>
+                    <option>30 min</option>
+                  </select>
+                  <div
+                    class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-500"
+                  >
+                    <span class="material-symbols-outlined text-[20px]"
+                      >expand_more</span
+                    >
+                  </div>
+                </div> -->
+              </div>
+            </div>
+            <div
+              id="horario-jornada"
+              class="bg-white rounded-xl shadow-sm border border-slate-100 p-5"
+            >
+              <div class="flex items-center gap-2 mb-5 text-slate-900">
+                <span class="material-symbols-outlined text-primary"
+                  >access_time</span
+                >
+                <h3 class="font-bold text-base">Horario de jornada</h3>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-medium text-slate-500 mb-1.5"
+                    >Hora de Inicio</label
+                  >
+                  <div class="relative">
+                    <select
+                      id="hora_inicio"
+                      class="w-full rounded-lg border-slate-200 bg-slate-50 text-slate-900 text-sm focus:ring-primary focus:border-primary py-2.5 pl-3 pr-8 appearance-none transition-shadow"
+                    >
+                      <option value="--">--</option>
+                      <option value="06:00:00">06:00</option>
+                      <option value="07:00:00">07:00</option>
+                      <option value="08:00:00">08:00</option>
+                      <option value="09:00:00">09:00</option>
+                      <option value="10:00:00">10:00</option>
+                      <option value="11:00:00">11:00</option>
+                      <option value="12:00:00">12:00</option>
+                      <option value="13:00:00">13:00</option>
+                      <option value="14:00:00">14:00</option>
+                      <option value="15:00:00">15:00</option>
+                      <option value="16:00:00">16:00</option>
+                      <option value="17:00:00">17:00</option>
+                      <option value="18:00:00">18:00</option>
+                      <option value="19:00:00">19:00</option>
+                      <option value="20:00:00">20:00</option>
+                    </select>
+                    <div
+                      class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-500"
+                    >
+                      <span class="material-symbols-outlined text-[20px]"
+                        >expand_more</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-medium text-slate-500 mb-1.5"
+                    >Hora de Fin</label
+                  >
+                  <div class="relative">
+                    <select
+                      id="hora_fin"
+                      class="w-full rounded-lg border-slate-200 bg-slate-50 text-slate-900 text-sm focus:ring-primary focus:border-primary py-2.5 pl-3 pr-8 appearance-none transition-shadow"
+                    >
+                      <option value="--">--</option>
+                      <option value="10:00:00">10:00</option>
+                      <option value="11:00:00">11:00</option>
+                      <option value="12:00:00">12:00</option>
+                      <option value="13:00:00">13:00</option>
+                      <option value="14:00:00">14:00</option>
+                      <option value="15:00:00">15:00</option>
+                      <option value="16:00:00">16:00</option>
+                      <option value="17:00:00">17:00</option>
+                      <option value="18:00:00">18:00</option>
+                      <option value="19:00:00">19:00</option>
+                      <option value="20:00:00">20:00</option>
+                      <option value="21:00:00">21:00</option>
+                      <option value="22:00:00">22:00</option>
+                      <option value="23:00:00">23:00</option>
+                    </select>
+                    <div
+                      class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-500"
+                    >
+                      <span class="material-symbols-outlined text-[20px]"
+                        >expand_more</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-primary/5 rounded-xl p-4 border border-primary/10">
+              <div class="flex gap-3">
+                <span
+                  class="material-symbols-outlined text-primary text-[20px] mt-0.5"
+                  >info</span
+                >
+                <div class="text-sm text-slate-600">
+                  <p class="font-medium text-slate-900 mb-1">Nota importante</p>
+                  Los cambios solo afectarán a las futuras citas, no a las ya agendadas
+                  si tienes una cita agendada con un horario que no coincide con el
+                  nuevo horario cancelala manualmente.
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="lg:col-span-2">
+            <div
+              id="calendario-laboral"
+              class="bg-white rounded-xl shadow-sm border border-slate-100 h-auto flex flex-col"
+            >
+              <div
+                class="p-5 border-b border-slate-100 flex flex-wrap gap-4 items-center justify-between"
+              >
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-primary"
+                    >calendar_today</span
+                  >
+                  <h3 class="font-bold text-base text-slate-900">
+                    Calendario laboral Y fechas especiales
+                  </h3>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div
+                    class="flex items-center gap-2 bg-slate-50 rounded-lg p-1"
+                  >
+                    <button
+                      id="btn-mes-anterior"
+                      class="size-7 flex items-center justify-center rounded hover:bg-white shadow-sm text-slate-500 transition-all"
+                    >
+                      <span class="material-symbols-outlined text-[18px]"
+                        >chevron_left</span
+                      >
+                    </button>
+                    <span
+                      id="mes-anio-texto"
+                      class="text-sm font-semibold w-24 text-center text-slate-700"
+                      >Dec 2025</span
+                    >
+                    <button
+                      id="btn-mes-siguiente"
+                      class="size-7 flex items-center justify-center rounded hover:bg-white shadow-sm text-slate-500 transition-all"
+                    >
+                      <span class="material-symbols-outlined text-[18px]"
+                        >chevron_right</span
+                      >
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-5 flex-1">
+                <div class="grid grid-cols-7 mb-2">
+                  <div
+                    class="text-center text-xs font-semibold text-slate-400 uppercase tracking-wider py-2"
+                  >
+                    Lun
+                  </div>
+                  <div
+                    class="text-center text-xs font-semibold text-slate-400 uppercase tracking-wider py-2"
+                  >
+                    Mar
+                  </div>
+                  <div
+                    class="text-center text-xs font-semibold text-slate-400 uppercase tracking-wider py-2"
+                  >
+                    Mié
+                  </div>
+                  <div
+                    class="text-center text-xs font-semibold text-slate-400 uppercase tracking-wider py-2"
+                  >
+                    Jue
+                  </div>
+                  <div
+                    class="text-center text-xs font-semibold text-slate-400 uppercase tracking-wider py-2"
+                  >
+                    Vie
+                  </div>
+                  <div
+                    class="text-center text-xs font-semibold text-slate-400 uppercase tracking-wider py-2"
+                  >
+                    Sáb
+                  </div>
+                  <div
+                    class="text-center text-xs font-semibold text-slate-400 uppercase tracking-wider py-2"
+                  >
+                    Dom
+                  </div>
+                </div>
+                <div id="calendario-dias" class="grid grid-cols-7 gap-2">
+                  <!-- Los días se generarán dinámicamente con JavaScript -->
+                </div>
+              </div>
+              <div
+                class="px-5 py-3 border-t border-slate-100 bg-slate-50/50 rounded-b-xl flex gap-6 text-xs font-medium text-slate-600"
+              >
+                <div class="flex items-center gap-2">
+                  <div class="size-3 rounded-full bg-blue-500"></div>
+                  <span>Laborable</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div
+                    class="size-3 rounded-full bg-slate-200 border border-slate-300"
+                  >
+                  </div>
+                  <span>No laborable</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div
+                    class="size-3 rounded-full bg-white border-2 border-blue-500"
+                  >
+                  </div>
+                  <span>Dia Actual</span>
+                </div>
+              </div>
+            </div>
+
+            <div
+              id="actualizar-dias"
+              class="mt-6 bg-white rounded-xl shadow-sm border border-slate-100 p-5"
+            >
+              <div class="flex flex-col gap-2 border-b border-slate-200">
+                <h3 class="font-bold text-base text-slate-900">
+                  Actualizar dias de trabajo
+                </h3>
+              </div>
+              <div class="flex flex-wrap sm:grid sm:grid-cols-7 gap-2 mt-4">
+                <!-- Lunes -->
+                <label class="cursor-pointer">
+                  <input
+                    type="checkbox"
+                    id="lunes"
+                    name="dias_trabajo"
+                    value="Lunes"
+                    class="peer sr-only"
+                  />
+                  <div
+                    class="flex h-12 w-12 items-center justify-center rounded-lg border border-gray-300 bg-background-light font-medium text-gray-700 transition-colors hover:bg-gray-200 peer-checked:bg-blue-500 peer-checked:text-white peer-checked:border-primary"
+                  >
+                    LU
+                  </div>
+                </label>
+
+                <!-- Martes -->
+                <label class="cursor-pointer">
+                  <input
+                    type="checkbox"
+                    id="martes"
+                    name="dias_trabajo"
+                    value="Martes"
+                    class="peer sr-only"
+                  />
+                  <div
+                    class="flex h-12 w-12 items-center justify-center rounded-lg border border-gray-300 bg-background-light font-medium text-gray-700 transition-colors hover:bg-gray-200 peer-checked:bg-blue-500 peer-checked:text-white peer-checked:border-primary"
+                  >
+                    MA
+                  </div>
+                </label>
+
+                <!-- Miércoles -->
+                <label class="cursor-pointer">
+                  <input
+                    type="checkbox"
+                    id="miercoles"
+                    name="dias_trabajo"
+                    value="Miércoles"
+                    class="peer sr-only"
+                  />
+                  <div
+                    class="flex h-12 w-12 items-center justify-center rounded-lg border border-gray-300 bg-background-light font-medium text-gray-700 transition-colors hover:bg-gray-200 peer-checked:bg-blue-500 peer-checked:text-white peer-checked:border-primary"
+                  >
+                    MI
+                  </div>
+                </label>
+
+                <!-- Jueves -->
+                <label class="cursor-pointer">
+                  <input
+                    type="checkbox"
+                    id="jueves"
+                    name="dias_trabajo"
+                    value="Jueves"
+                    class="peer sr-only"
+                  />
+                  <div
+                    class="flex h-12 w-12 items-center justify-center rounded-lg border border-gray-300 bg-background-light font-medium text-gray-700 transition-colors hover:bg-gray-200 peer-checked:bg-blue-500 peer-checked:text-white peer-checked:border-primary"
+                  >
+                    JU
+                  </div>
+                </label>
+
+                <!-- Viernes -->
+                <label class="cursor-pointer">
+                  <input
+                    type="checkbox"
+                    id="viernes"
+                    name="dias_trabajo"
+                    value="Viernes"
+                    class="peer sr-only"
+                  />
+                  <div
+                    class="flex h-12 w-12 items-center justify-center rounded-lg border border-gray-300 bg-background-light font-medium text-gray-700 transition-colors hover:bg-gray-200 peer-checked:bg-blue-500 peer-checked:text-white peer-checked:border-primary"
+                  >
+                    VI
+                  </div>
+                </label>
+
+                <!-- Sábado -->
+                <label class="cursor-pointer">
+                  <input
+                    type="checkbox"
+                    id="sabado"
+                    name="dias_trabajo"
+                    value="Sábado"
+                    class="peer sr-only"
+                  />
+                  <div
+                    class="flex h-12 w-12 items-center justify-center rounded-lg border border-gray-300 bg-background-light font-medium text-gray-700 transition-colors hover:bg-gray-200 peer-checked:bg-blue-500 peer-checked:text-white peer-checked:border-primary"
+                  >
+                    SA
+                  </div>
+                </label>
+
+                <!-- Domingo -->
+                <label class="cursor-pointer">
+                  <input
+                    type="checkbox"
+                    id="domingo"
+                    name="dias_trabajo"
+                    value="Domingo"
+                    class="peer sr-only"
+                  />
+                  <div
+                    class="flex h-12 w-12 items-center justify-center rounded-lg border border-gray-300 bg-background-light font-medium text-black transition-colors hover:bg-gray-200 peer-checked:bg-blue-500 peer-checked:text-white peer-checked:border-primary"
+                  >
+                    DO
+                  </div>
+                </label>
+                <div
+                  class="px-5 py-3 border-t border-slate-100 bg-slate-50/50 rounded-b-xl flex gap-6 text-xs font-medium text-slate-600"
+                >
+                  <div class="flex items-center gap-2">
+                    <div class="size-3 rounded-full bg-blue-500"></div>
+                    <span>Laborable</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <div
+                      class="size-3 rounded-full bg-white border border-slate-300"
+                    >
+                    </div>
+                    <span>No laborable</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="mt-6 bg-white rounded-xl shadow-sm border border-slate-100 p-5 hidden transition-all duration-300 transform scale-95 opacity-0"
+              id="seccion-capacidad"
+            >
+              <div
+                class="flex flex-col gap-2 border-b border-slate-200 pb-3 font-display"
+              >
+                <h3 class="font-bold text-base text-slate-900">
+                  Ajusta capacidad y franjas para este dia
+                </h3>
+                <p class="text-xs text-slate-500">
+                  Días seleccionados: <span
+                    id="dias-seleccionados-texto"
+                    class="font-semibold text-primary">Ninguno</span
+                  >
+                </p>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                <!-- Selección de Franja -->
+                <div>
+                  <label class="block text-xs font-medium text-slate-500 mb-1.5"
+                    >Seleccionar Franja</label
+                  >
+                  <div class="relative">
+                    <select
+                      id="select-franja"
+                      class="w-full rounded-lg border-slate-200 bg-slate-50 text-slate-900 text-sm focus:ring-primary focus:border-primary py-2.5 pl-3 pr-8 appearance-none transition-shadow"
+                    >
+                      <option value="manana">Mañana (08:00 - 12:00)</option>
+                      <option value="tarde">Tarde (14:00 - 18:00)</option>
+                      <option value="noche">Noche (18:00 - 22:00)</option>
+                      <option value="personalizada">Personalizada</option>
+                    </select>
+                    <div
+                      class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-500"
+                    >
+                      <span class="material-symbols-outlined text-[20px]"
+                        >expand_more</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Cantidad de Citas -->
+                <div>
+                  <label class="block text-xs font-medium text-slate-500 mb-1.5"
+                    >Cantidad de Citas</label
+                  >
+                  <input
+                    type="number"
+                    id="cantidad-citas"
+                    min="0"
+                    value="0"
+                    class="w-full rounded-lg border-slate-200 bg-slate-50 text-slate-900 text-sm focus:ring-primary focus:border-primary py-2 px-3 transition-shadow"
+                  />
+                </div>
+
+                <!-- Horarios Personalizados (ocultos por defecto) -->
+                <div
+                  id="horarios-personalizados"
+                  class="md:col-span-2 grid-cols-2 gap-4 hidden"
+                >
+                  <div>
+                    <label
+                      class="block text-xs font-medium text-slate-500 mb-1.5"
+                      >Hora Inicio</label
+                    >
+                    <input
+                      type="time"
+                      id="capacidad-hora-inicio"
+                      class="w-full rounded-lg border-slate-200 bg-slate-50 text-slate-900 text-sm focus:ring-primary focus:border-primary py-2 px-3 transition-shadow"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      class="block text-xs font-medium text-slate-500 mb-1.5"
+                      >Hora Fin</label
+                    >
+                    <input
+                      type="time"
+                      id="capacidad-hora-fin"
+                      class="w-full rounded-lg border-slate-200 bg-slate-50 text-slate-900 text-sm focus:ring-primary focus:border-primary py-2 px-3 transition-shadow"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="m-10 flex gap-3">
+              <button
+                id="btn-volver"
+                class="px-4 py-2 rounded-lg border border-slate-200 text-black font-medium text-sm hover:bg-slate-50 transition-colors"
+              >
+                volver
+              </button>
+              <button
+                id="btn-guardar"
+                class="text-black px-4 py-2 rounded-lg bg-primary font-medium text-sm hover:bg-blue-700 shadow-sm shadow-blue-500/30 transition-colors flex items-center gap-2"
+              >
+                <span class="material-symbols-outlined text-[18px]">save</span>
+                Guardar cambios
+              </button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+
+<script src="../assets/Tutoriales/tutorialAjustes.js"></script>

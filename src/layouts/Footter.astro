@@ -1,0 +1,68 @@
+---
+import "../styles/global.css";
+import Logo from "../assets/Logo/logo.png";
+import { Image } from "astro:assets";
+---
+
+<footer class="bg-white border-t border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="col-span-1 md:col-span-1">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="text-primary">
+            <Image
+              src={Logo}
+              alt="Logo"
+              class="h-8 w-40 sm:h-10 sm:w-48 md:h-12 md:w-56 hover:cursor-pointer"
+              priority={true}
+              width={224}
+              height={48}
+              onclick='window.location.href = "/"'
+            />
+          </div>
+        </div>
+        <p class="text-slate-500 text-sm">
+          Gestionamos tus citas con la mayor eficiencia y profesionalidad del
+          mercado.
+        </p>
+      </div>
+      <div>
+        <h4 class="font-bold mb-4">Enlaces</h4>
+        <ul class="space-y-2 text-sm text-slate-500">
+          <li><a class="hover:text-primary" href="/Nosotros">Nosotros</a></li>
+          <li><a class="hover:text-primary" href="/Blog">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold mb-4">Legal</h4>
+        <ul class="space-y-2 text-sm text-slate-500">
+          <li><a class="hover:text-primary" href="#">Privacidad</a></li>
+          <li><a class="hover:text-primary" href="#">Términos</a></li>
+          <li><a class="hover:text-primary" href="#">Cookies</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold mb-4">Síguenos</h4>
+        <div class="flex gap-4">
+          <a
+            class="p-2 bg-slate-100 rounded-full text-slate-600 hover:bg-primary hover:text-white transition-all"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-lg">share</span>
+          </a>
+          <a
+            class="p-2 bg-slate-100 rounded-full text-slate-600 hover:bg-primary hover:text-white transition-all"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-lg">language</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      class="border-t border-slate-200 mt-12 pt-8 text-center text-sm text-slate-500"
+    >
+      <p>© 2026 Horalista. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,230 @@
+<main
+  class="bg-blue-50 sm:w-screen sm:h-screen sm:flex sm:flex-col sm:items-center sm:justify-center flex flex-1 justify-center py-10 px-4 sm:px-6 lg:px-8"
+>
+  <div class="layout-content-container flex flex-col w-full max-w-4xl">
+    <header class="flex flex-wrap justify-between gap-4 p-4 mt-2 items-center">
+      <h1
+        id="nombre-negocio-titulo"
+        class="text-slate-900 text-4xl font-black leading-tight tracking-[-0.033em]"
+      >
+        Agendar en
+      </h1>
+    </header>
+    <div
+      class="bg-white rounded-xl border-2 border-gray-200 shadow-lg md:p-8 p-6"
+    >
+      <form id="citaForm" class="flex flex-col gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+          <div class="flex flex-col gap-4 w-full">
+            <label class="flex flex-col w-full">
+              <p class="text-slate-800 text-base font-bold leading-normal pb-2">
+                Fecha
+              </p>
+              <div class="relative flex w-full flex-1 items-stretch rounded-lg">
+                <input
+                  id="fecha"
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-slate-900 focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-slate-300 bg-background-light h-14 placeholder:text-slate-500 p-4 text-base font-normal leading-normal"
+                  placeholder="Seleccionar fecha"
+                  type="date"
+                />
+              </div>
+            </label>
+            <div
+              class="flex flex-col gap-3 p-4 rounded-lg bg-background-light border border-slate-100"
+            >
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-sm"
+                  >schedule</span
+                >
+                <p
+                  class="text-xs font-semibold text-slate-500 uppercase tracking-wide"
+                >
+                  Días de Trabajo
+                </p>
+              </div>
+              <div id="contenedor-dias" class="flex flex-wrap gap-2">
+                <!-- Generated or Toggled by JS -->
+
+                <div
+                  class="dia-circle flex flex-col items-center gap-1"
+                  data-day="Lunes"
+                >
+                  <div
+                    class="w-8 h-8 rounded-full bg-slate-200 text-slate-400 flex items-center justify-center text-xs font-bold border border-slate-300"
+                  >
+                    L
+                  </div>
+                  <span
+                    class="text-[10px] text-slate-400 font-medium hidden sm:block"
+                    >Lun</span
+                  >
+                </div>
+                <div
+                  class="dia-circle flex flex-col items-center gap-1"
+                  data-day="Martes"
+                >
+                  <div
+                    class="w-8 h-8 rounded-full bg-slate-200 text-slate-400 flex items-center justify-center text-xs font-bold border border-slate-300"
+                  >
+                    M
+                  </div>
+                  <span
+                    class="text-[10px] text-slate-400 font-medium hidden sm:block"
+                    >Mar</span
+                  >
+                </div>
+                <div
+                  class="dia-circle flex flex-col items-center gap-1"
+                  data-day="Miercoles"
+                >
+                  <div
+                    class="w-8 h-8 rounded-full bg-slate-200 text-slate-400 flex items-center justify-center text-xs font-bold border border-slate-300"
+                  >
+                    M
+                  </div>
+                  <span
+                    class="text-[10px] text-slate-400 font-medium hidden sm:block"
+                    >Mié</span
+                  >
+                </div>
+                <div
+                  class="dia-circle flex flex-col items-center gap-1"
+                  data-day="Jueves"
+                >
+                  <div
+                    class="w-8 h-8 rounded-full bg-slate-200 text-slate-400 flex items-center justify-center text-xs font-bold border border-slate-300"
+                  >
+                    J
+                  </div>
+                  <span
+                    class="text-[10px] text-slate-400 font-medium hidden sm:block"
+                    >Jue</span
+                  >
+                </div>
+                <div
+                  class="dia-circle flex flex-col items-center gap-1"
+                  data-day="Viernes"
+                >
+                  <div
+                    class="w-8 h-8 rounded-full bg-slate-200 text-slate-400 flex items-center justify-center text-xs font-bold border border-slate-300"
+                  >
+                    V
+                  </div>
+                  <span
+                    class="text-[10px] text-slate-400 font-medium hidden sm:block"
+                    >Vie</span
+                  >
+                </div>
+                <div
+                  class="dia-circle flex flex-col items-center gap-1"
+                  data-day="Sabado"
+                >
+                  <div
+                    class="w-8 h-8 rounded-full bg-slate-200 text-slate-400 flex items-center justify-center text-xs font-bold border border-slate-300"
+                  >
+                    S
+                  </div>
+                  <span
+                    class="text-[10px] text-slate-400 font-medium hidden sm:block"
+                    >Sáb</span
+                  >
+                </div>
+                <div
+                  class="dia-circle flex flex-col items-center gap-1"
+                  data-day="Domingo"
+                >
+                  <div
+                    class="w-8 h-8 rounded-full bg-slate-200 text-slate-400 flex items-center justify-center text-xs font-bold border border-slate-300"
+                  >
+                    D
+                  </div>
+                  <span
+                    class="text-[10px] text-slate-400 font-medium hidden sm:block"
+                    >Dom</span
+                  >
+                </div>
+                <div
+                  class="border-t border-slate-100 bg-slate-50/50 rounded-b-xl flex gap-6 text-xs font-medium text-slate-600"
+                >
+                  <div class="flex items-center gap-2">
+                    <div
+                      class="size-3 rounded-full border border-slate-300 bg-blue-500"
+                    >
+                    </div>
+                    <span>Laborable</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <div
+                      class="size-3 rounded-full bg-slate-200 border border-slate-300"
+                    >
+                    </div>
+                    <span>No laborable</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <p class="text-slate-800 text-base font-bold leading-normal pb-3">
+              Fechas especiales
+            </p>
+            <div id="fechas-especiales" class="flex flex-col gap-2"></div>
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <p class="text-slate-800 text-base leading-normal pb-3 font-bold">
+            Seleccionar Hora
+          </p>
+          <!-- spinner para esperar a que carge los servicios -->
+          <div
+            id="loader-servicios"
+            class="hidden align-center flex justify-center items-center h-48 w-full"
+          >
+            <span class="loader"></span>
+          </div>
+
+          <!-- aqui saldran las horas contenedor-->
+          <div
+            id="horas"
+            class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3"
+          >
+            <!-- Generated by JS -->
+          </div>
+        </div>
+
+        <!-- Input Hidden Hora -->
+        <input type="hidden" id="hora" name="hora" />
+
+        <label class="flex flex-col">
+          <p class="text-slate-800 text-base font-bold leading-normal pb-2">
+            Mensaje (Opcional)
+          </p>
+          <textarea
+            id="mensaje"
+            class="form-textarea flex w-full min-w-0 flex-1 resize-y overflow-hidden rounded-lg text-slate-900 focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-slate-300 bg-background-light min-h-32 placeholder:text-slate-500 p-4 text-base font-normal leading-normal"
+            placeholder="Añadir notas o detalles sobre la cita..."></textarea>
+          <div class="text-right text-xs text-gray-500 mt-1">
+            <span id="contador-mensaje">100</span> caracteres restantes
+          </div>
+        </label>
+        <div
+          class="flex items-center justify-end gap-4 pt-4 border-t border-blue-500"
+        >
+          <button
+            class="border-2 border-blue-500 px-6 py-3 rounded-lg text-black bg-primary hover:bg-primary/90 transition-colors text-base font-medium leading-normal flex items-center gap-2"
+            type="submit"
+          >
+            <span class="material-symbols-outlined">add</span>
+            Agendar Cita
+          </button>
+
+          <button
+            id="volver"
+            class="px-6 py-3 rounded-lg text-slate-700 text-base font-medium leading-normal hover:bg-slate-100 transition-colors"
+            type="button">Cancelar</button
+          >
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
