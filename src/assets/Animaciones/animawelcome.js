@@ -25,7 +25,7 @@ function observarSeccion(elemento, callback) {
         observer.unobserve(entry.target);
       }
     });
-  }, { 
+  }, {
     threshold: 0.1,
     rootMargin: "0px 0px -50px 0px" // Un pequeño margen para evitar disparos accidentales
   });
@@ -42,11 +42,11 @@ export function prepareAnimations() {
 export function animarTitulo() {
   const element = document.querySelector("#titulo");
   if (!element) return;
-  
+
   // Lazy Split
   const splitText = getOrInitSplit(element, { type: "chars,words" });
   element.style.perspective = "1000px";
-  
+
   gsap.from(splitText.chars, {
     duration: 1,
     y: 50,
@@ -63,11 +63,13 @@ export function animarTitulo() {
   shineTl.to(splitText.chars, {
     duration: 0.4,
     color: "#3b82f6",
+    scale: 1.2,
     stagger: 0.03,
     ease: "power2.out",
   }).to(splitText.chars, {
     duration: 0.4,
     color: "inherit",
+    scale: 1,
     stagger: 0.03,
     ease: "power2.in",
   }, "-=0.2");
@@ -76,7 +78,7 @@ export function animarTitulo() {
 export function animarParrafo() {
   const parrafo = document.querySelector("#parrafo");
   if (!parrafo) return;
-  
+
   // Pequeño delay extra para esperar al título
   setTimeout(() => {
     const splitText = getOrInitSplit(parrafo, { type: "words,lines" });
@@ -94,11 +96,11 @@ export function animarParrafo() {
 export function animarFormulario() {
   const form = document.querySelector("#animacionFormulario");
   if (!form) return;
-  gsap.from(form, { 
-    delay: 0.9, 
-    duration: 0.8, 
-    y: 20, 
-    autoAlpha: 0, 
+  gsap.from(form, {
+    delay: 0.9,
+    duration: 0.8,
+    y: 20,
+    autoAlpha: 0,
     ease: "power3.out",
     willChange: "transform, opacity"
   });
@@ -109,12 +111,12 @@ export function animarTitulo2() {
   const titulo = document.querySelector("#titulo2");
   observarSeccion(titulo, () => {
     const splitText = getOrInitSplit(titulo, { type: "chars" });
-    gsap.from(splitText.chars, { 
-      duration: 0.5, 
-      y: 20, 
-      scale: 0.8, 
-      opacity: 0, 
-      stagger: 0.02, 
+    gsap.from(splitText.chars, {
+      duration: 0.5,
+      y: 20,
+      scale: 0.8,
+      opacity: 0,
+      stagger: 0.02,
       ease: "back.out(1.2)",
       willChange: "transform, opacity"
     });
@@ -125,11 +127,11 @@ export function animarParrafo2() {
   const p = document.querySelector("#parrafo2");
   observarSeccion(p, () => {
     const splitText = getOrInitSplit(p, { type: "words" });
-    gsap.from(splitText.words, { 
-      duration: 0.5, 
-      opacity: 0, 
-      y: 10, 
-      stagger: 0.015, 
+    gsap.from(splitText.words, {
+      duration: 0.5,
+      opacity: 0,
+      y: 10,
+      stagger: 0.015,
       ease: "power2.out",
       willChange: "transform, opacity"
     });
@@ -139,11 +141,11 @@ export function animarParrafo2() {
 export function animarControlCitas() {
   const grid = document.querySelector("#controlCitas");
   observarSeccion(grid, () => {
-    gsap.from(grid.children, { 
-      duration: 0.5, 
-      y: 30, 
-      opacity: 0, 
-      stagger: 0.05, 
+    gsap.from(grid.children, {
+      duration: 0.5,
+      y: 30,
+      opacity: 0,
+      stagger: 0.05,
       ease: "power2.out",
       willChange: "transform, opacity"
     });
