@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
             mode: "range",
             dateFormat: "Y-m-d",
             locale: Spanish,
-            minDate: "today",
             onClose: function (selectedDates, dateStr, instance) {
                 if (selectedDates.length === 2) {
                     filtroFechaInicio = selectedDates[0];
@@ -70,11 +69,14 @@ function aplicarFiltros() {
     citasFiltradas = todasLasCitas.filter(cita => {
         // Filtro por Fecha
         if (filtroFechaInicio && filtroFechaFin) {
-            const fechaCita = new Date(cita.fecha);
-            // Tratamos fecha como local, comparamos timestamps del día
-            const fechaCitaTime = new Date(fechaCita.toDateString()).getTime();
-            const inicioTime = new Date(filtroFechaInicio.toDateString()).getTime();
-            const finTime = new Date(filtroFechaFin.toDateString()).getTime();
+            // Aseguramos que la fecha de la cita se trate como local para evitar desfases de zona horaria
+            const fechaCitaRaw = cita.fecha;
+            const fechaCita = new Date(fechaCitaRaw.includes('T') ? fechaCitaRaw : fechaCitaRaw.replace(/-/g, '/'));
+            
+            // Comparamos solo la parte de la fecha (año, mes, día)
+            const fechaCitaTime = new Date(fechaCita.getFullYear(), fechaCita.getMonth(), fechaCita.getDate()).getTime();
+            const inicioTime = new Date(filtroFechaInicio.getFullYear(), filtroFechaInicio.getMonth(), filtroFechaInicio.getDate()).getTime();
+            const finTime = new Date(filtroFechaFin.getFullYear(), filtroFechaFin.getMonth(), filtroFechaFin.getDate()).getTime();
 
             if (fechaCitaTime < inicioTime || fechaCitaTime > finTime) {
                 return false;
@@ -83,7 +85,13 @@ function aplicarFiltros() {
 
         // Filtro por Estado
         if (estadoFiltro !== "Todos") {
-            if (cita.estado.toLowerCase() !== estadoFiltro.toLowerCase()) {
+            const estadoCita = String(cita.estado).toLowerCase();
+            const estadoSelect = estadoFiltro.toLowerCase();
+
+            // Mapeo de '0' a 'pendiente' y comparación normal
+            const esPendiente = (estadoCita === "0" || estadoCita === "pendiente") && estadoSelect === "pendiente";
+            
+            if (!esPendiente && estadoCita !== estadoSelect) {
                 return false;
             }
         }
@@ -107,7 +115,8 @@ function aplicarFiltros() {
 
 // Función para formatear fecha
 function formatearFecha(fecha) {
-    const fechaObj = new Date(fecha);
+    if (!fecha) return "N/A";
+    const fechaObj = new Date(fecha.includes('T') ? fecha : fecha.replace(/-/g, '/'));
     return fechaObj.toLocaleDateString("es-CO", {
         day: "numeric",
         month: "short",
@@ -123,6 +132,8 @@ function formatearHora(hora) {
 
 // Función para obtener clase de estado
 function obtenerClaseEstado(estado) {
+    if (!estado) return "bg-gray-100 text-gray-800";
+    const estadoLower = String(estado).toLowerCase();
     const estados = {
         confirmada: "bg-purple-100 text-purple-800",
         pendiente: "bg-yellow-100 text-yellow-800",
@@ -130,7 +141,8 @@ function obtenerClaseEstado(estado) {
         "en curso": "bg-blue-100 text-blue-800",
         completada: "bg-green-100 text-green-800",
     };
-    return estados[estado.toLowerCase()] || "bg-gray-100 text-gray-800";
+    if (estadoLower == "0") return estados.pendiente;
+    return estados[estadoLower] || "bg-gray-100 text-gray-800";
 }
 
 // Función para capitalizar primera letra

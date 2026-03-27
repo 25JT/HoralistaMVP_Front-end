@@ -16,6 +16,10 @@ if (idElement && id) {
 
 import { ruta } from "../utils/ruta.js";
 import gsap from "gsap";
+import flatpickr from "flatpickr";
+import { Spanish } from "flatpickr/dist/l10n/es.js";
+import "flatpickr/dist/flatpickr.min.css";
+
 import {
     alertaCheck3,
     alertaCheck4,
@@ -69,7 +73,10 @@ async function cargarHorasDisponibles() {
         }
     }
 
-    if (loader) loader.classList.remove("hidden");
+    if (loader) {
+        loader.classList.remove("hidden");
+        loader.classList.add("flex");
+    }
     contenedor.innerHTML = "";
 
     try {
@@ -88,12 +95,7 @@ async function cargarHorasDisponibles() {
 
         const data = await response.json();
 
-
         if (data.success) {
-            //    console.log(data);
-
-            // Actualizar el nombre del servicio en el campo de mensaje/notas dinámicamente
-            // Solo si no estamos en modo edición (donde las notas ya vienen de la cita)
             const mensajeInput = document.getElementById("mensaje");
             const contadorMensaje = document.getElementById("contador-mensaje");
             if (mensajeInput && !citaId) {
@@ -102,19 +104,18 @@ async function cargarHorasDisponibles() {
                     contadorMensaje.textContent = 100 - mensajeInput.value.length;
                 }
             }
-
             mostrarHorasDisponibles(data);
-
-
         } else {
-
-            contenedor.innerHTML = `<div class="col-span-full text-center py-4 text-gray-500">${data.message || "No hay horas disponibles"}</div>`;
+            contenedor.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400 border-2 border-dashed border-slate-100 rounded-xl">${data.message || "No hay horas disponibles"}</div>`;
         }
     } catch (error) {
         console.error("Error:", error);
         mostrarError("No se pudieron cargar las horas disponibles.");
     } finally {
-        if (loader) loader.classList.add("hidden");
+        if (loader) {
+            loader.classList.add("hidden");
+            loader.classList.remove("flex");
+        }
     }
 }
 
@@ -148,16 +149,13 @@ function mostrarHorasDisponibles(data) {
 
     if (horasDisponibles.length === 0) {
         contenedor.innerHTML = `
-            <div class="col-span-full text-center py-4 text-gray-500">
-                No hay horas disponibles para esta fecha.
+            <div class="col-span-full text-center py-12 text-slate-400 border-2 border-dashed border-slate-100 rounded-xl">
+                No hay horas disponibles para hoy con el margen de tiempo requerido.
             </div>
         `;
         return;
     }
 
-
-
-    // Creamos botones para cada hora disponible
     horasDisponibles.forEach(hora24 => {
         const [hora, minuto] = hora24.split(':');
         const horaNum = parseInt(hora);
@@ -167,30 +165,39 @@ function mostrarHorasDisponibles(data) {
         const labelTime = `${hora12}:${String(minutoNum).padStart(2, '0')}`;
 
         const boton = document.createElement('button');
-        boton.className = 'hora flex flex-col items-center justify-center p-3 rounded-lg border border-slate-200 bg-background-light hover:bg-primary hover:text-white hover:border-primary transition-all group';
+        boton.className = 'hora-btn flex flex-col items-center justify-center p-4 rounded-2xl border border-slate-100 bg-slate-50 hover:bg-white hover:border-blue-500 hover:shadow-lg transition-all transform active:scale-95 group relative overflow-hidden';
         boton.dataset.id = hora24;
         boton.type = 'button';
 
         boton.innerHTML = `
-             <span class="text-lg font-bold pointer-events-none ">${labelTime}</span>
-             <span class="text-xs uppercase font-medium text-slate-500 group-hover:text-blue-100 pointer-events-none">${ampm}</span>
+             <span class="text-base font-black text-slate-800 group-hover:text-blue-600 transition-colors z-10">${labelTime}</span>
+             <span class="text-[10px] uppercase font-black text-slate-400 group-hover:text-blue-400 transition-colors z-10">${ampm}</span>
+             <div class="absolute inset-0 bg-blue-50 opacity-0 group-hover:opacity-100 transition-opacity"></div>
         `;
 
         boton.addEventListener('click', () => {
-            document.querySelectorAll('.hora').forEach(b => {
-                // Reset styles
-                b.className = 'hora flex flex-col items-center justify-center p-3 rounded-lg border border-slate-200 bg-background-light hover:bg-primary hover:text-white hover:border-primary transition-all group';
+            document.querySelectorAll('.hora-btn').forEach(b => {
+                b.classList.remove('border-blue-600', 'bg-blue-600', 'shadow-blue-200', 'ring-4', 'ring-blue-100');
+                b.classList.add('border-slate-100', 'bg-slate-50');
                 const spans = b.querySelectorAll('span');
-                if (spans[1]) spans[1].classList.add('text-slate-500');
-                if (spans[1]) spans[1].classList.remove('text-blue-800');
+                spans[0].className = 'text-base font-black text-slate-800 group-hover:text-blue-600 transition-colors z-10';
+                spans[1].className = 'text-[10px] uppercase font-black text-slate-400 group-hover:text-blue-400 transition-colors z-10';
             });
-            // Active style
-            boton.className = 'hora flex flex-col items-center justify-center p-3 rounded-lg border border-blue-500 bg-primary text-black transition-all shadow-md ring-2 ring-primary/20  ';
+            
+            boton.classList.add('border-blue-600', 'bg-blue-600', 'shadow-blue-200', 'ring-4', 'ring-blue-100');
+            boton.classList.remove('bg-slate-50', 'border-slate-100');
             const activeSpans = boton.querySelectorAll('span');
-            if (activeSpans[1]) activeSpans[1].classList.remove('text-slate-500');
-            if (activeSpans[1]) activeSpans[1].classList.add('text-blue-800');
+            activeSpans[0].className = 'text-base font-black text-white z-10';
+            activeSpans[1].className = 'text-[10px] uppercase font-black text-blue-100 z-10';
 
             document.getElementById('hora').value = hora24;
+            
+            // Actualizar label de hora seleccionada
+            const labelSel = document.getElementById('label-horario-seleccionado');
+            if (labelSel) {
+                labelSel.textContent = `Seleccionado: ${labelTime} ${ampm}`;
+                labelSel.classList.remove('hidden');
+            }
         });
 
         contenedor.appendChild(boton);
@@ -200,7 +207,8 @@ function mostrarHorasDisponibles(data) {
 function mostrarError(mensaje) {
     const contenedor = document.getElementById("horas");
     contenedor.innerHTML = `
-        <div class="col-span-full text-center py-4 text-red-500">
+        <div class="col-span-full text-center py-12 text-red-500 border-2 border-dashed border-red-100 rounded-xl bg-red-50/50">
+            <span class="material-symbols-outlined block mb-2">error</span>
             ${mensaje}
         </div>
     `;
@@ -267,50 +275,48 @@ function actualizarCirculosDias(diasStr) {
         1: 'Lunes', 2: 'Martes', 3: 'Miercoles', 4: 'Jueves', 5: 'Viernes', 6: 'Sabado', 0: 'Domingo'
     };
 
-    // Reset all circles
-    document.querySelectorAll('.dia-circle').forEach(div => {
-        const circle = div.querySelector('div');
-        if (circle) {
-            circle.className = 'w-8 h-8 rounded-full bg-slate-200 text-slate-400 flex items-center justify-center text-xs font-bold border border-slate-300';
-        }
-    });
-
-    // Highlight allowed
-    diasTrabajoPermitidos.forEach(dayIdx => {
-        // Find element by data-day or similar
-        // BodyId uses names like "Lunes", "Martes"
-        // Need to match dayIdx to these
-        const name = mapDayToName[dayIdx]; // e.g. "Lunes"
-        // Try simple search
-        // Note: BodyId uses "Miercoles" no accent in data-day if I set it so. 
-        // Let's assume standard names.
-
-        // Improve selector in BodyId to have data-attributes or just query text
-    });
-
-    // More robust approach: Iterate circles and check data-day
-    const circles = document.querySelectorAll('.dia-circle'); // Added class in BodyId step
+    const circles = document.querySelectorAll('.dia-circle'); 
     circles.forEach(circleContainer => {
-        const dayName = circleContainer.dataset.day; // "Lunes", "Martes"
-        // Map dayName to index
+        const dayName = circleContainer.dataset.day; 
         const dayNameLower = dayName.toLowerCase().replace('é', 'e').replace('á', 'a');
         const map = {
             'lunes': 1, 'martes': 2, 'miercoles': 3, 'jueves': 4, 'viernes': 5, 'sabado': 6, 'domingo': 0
         };
 
-        if (diasTrabajoPermitidos.includes(map[dayNameLower])) {
-            const div = circleContainer.querySelector('div');
-            if (div) {
-
-                //diseño de los botones de los dias permitidos
-                div.className = 'w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs font-bold shadow-sm';
+        const div = circleContainer.querySelector('div');
+        if (div) {
+            if (diasTrabajoPermitidos.includes(map[dayNameLower])) {
+                div.className = 'w-9 h-9 rounded-xl bg-blue-600 text-white flex items-center justify-center text-xs font-black shadow-lg shadow-blue-200 border-none';
+                const span = circleContainer.querySelector('span');
+                if (span) {
+                    span.className = 'text-[10px] text-blue-600 font-bold';
+                    span.classList.remove('hidden');
+                }
+            } else {
+                div.className = 'w-9 h-9 rounded-xl bg-slate-100 text-slate-400 flex items-center justify-center text-xs font-bold border border-transparent opacity-50';
+                const span = circleContainer.querySelector('span');
+                if (span) span.className = 'text-[10px] text-slate-400 font-medium hidden sm:block';
             }
         }
     });
 }
 
 
-document.getElementById("fecha").addEventListener("change", cargarHorasDisponibles);
+// --- INITIALIZE FLATPICKR ---
+document.addEventListener("DOMContentLoaded", () => {
+    const fechaInput = document.getElementById("fecha");
+    if (fechaInput) {
+        flatpickr(fechaInput, {
+            dateFormat: "Y-m-d",
+            locale: Spanish,
+            minDate: "today",
+            disableMobile: "true", // Use custom flatpickr on mobile too for consistency
+            onChange: function(selectedDates, dateStr) {
+                cargarHorasDisponibles();
+            }
+        });
+    }
+});
 
 
 fetch(`${ruta}/datosUsuario`, {
@@ -377,16 +383,20 @@ async function cargarDatosCitaEdicion() {
             // Pre-llenar campos
             if (document.getElementById("fecha")) {
                 const fechaLimpia = cita.fecha.split('T')[0];
-                document.getElementById("fecha").value = fechaLimpia;
-                // Disparar cambio para cargar horas
+                const input = document.getElementById("fecha");
+                input.value = fechaLimpia;
+                
+                // Actualizar Flatpickr si existe
+                if (input._flatpickr) {
+                    input._flatpickr.setDate(fechaLimpia);
+                }
+
                 await cargarHorasDisponibles();
 
-                // Marcar la hora actual de la cita
                 if (document.getElementById("hora")) {
                     document.getElementById("hora").value = cita.hora;
-                    // Intentar seleccionar el botón de hora correspondiente
                     setTimeout(() => {
-                        const botonesHora = document.querySelectorAll('.hora');
+                        const botonesHora = document.querySelectorAll('.hora-btn');
                         botonesHora.forEach(btn => {
                             if (btn.dataset.id === cita.hora) {
                                 btn.click();
@@ -435,7 +445,8 @@ const horaInput = document.getElementById("hora");
 const form = document.getElementById("citaForm");
 const mensaje2 = document.getElementById("mensaje");
 
-// Abrir el selector de fecha al hacer clic en el input
+// Abrir el selector de fecha al hacer clic en el input (ya manejado por flatpickr)
+/*
 if (fechaInput) {
     fechaInput.addEventListener("click", () => {
         if (typeof fechaInput.showPicker === 'function') {
@@ -443,13 +454,16 @@ if (fechaInput) {
         }
     });
 }
+*/
 
-// Bloquear fechas pasadas
+// Bloquear fechas pasadas (ya manejado por flatpickr minDate)
+/*
 document.addEventListener("DOMContentLoaded", () => {
     const today = new Date();
     const minDate = today.toISOString().split("T")[0];
     if (fechaInput) fechaInput.setAttribute("min", minDate);
 });
+*/
 
 // Validar disponibilidad antes de enviar
 if (form) {
@@ -570,46 +584,35 @@ function cargarFechasEspeciales() {
                 const date = new Date(item.fecha);
                 const d = String(date.getUTCDate()).padStart(2, '0');
                 const mIndex = date.getUTCMonth();
-                const mName = meses[mIndex];
+                const mNameLabels = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
+                const mName = mNameLabels[mIndex];
                 const y = date.getUTCFullYear();
                 const fechaCompleta = `${d}-${String(mIndex + 1).padStart(2, '0')}-${y}`;
 
                 const card = document.createElement("div");
 
                 if (item.es_laborable == 0) {
-                    // Diseño NO LABORABLE (Rojo)
-                    card.className = "date-card group relative flex items-center justify-between  bg-white border border-slate-300 rounded-xl transition-all hover:shadow-md hover:border-red-200 ";
+                    card.className = "flex items-center gap-3 p-3 bg-red-50/50 border border-red-100 rounded-xl transition-all hover:shadow-sm";
                     card.innerHTML = `
-                        <div class="flex items-center gap-4">
-                            <div class="flex flex-col items-center justify-center w-12 h-12 rounded-lg bg-red-50 ">
-                                <span class="text-xs font-bold uppercase">${mName}</span>
-                                <span class="text-lg font-bold leading-none">${d}</span>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <span class="font-semibold text-slate-700">${fechaCompleta}</span>
-                                <span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide bg-red-100  rounded-full flex items-center gap-1">
-                                    No Laborable
-                                </span>
-                            </div>
+                        <div class="flex flex-col items-center justify-center w-10 h-10 rounded-lg bg-red-500 text-white shrink-0">
+                            <span class="text-[9px] font-black uppercase leading-none">${mName}</span>
+                            <span class="text-base font-black leading-none">${d}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-bold text-slate-700">${fechaCompleta}</span>
+                            <span class="text-[10px] font-black text-red-500 uppercase tracking-wider">No Laborable</span>
                         </div>
                     `;
                 } else {
-                    // Diseño LABORABLE (Azul/Verde)
-                    card.className = "date-card group relative flex items-center justify-between  bg-white border border-slate-300 rounded-xl transition-all hover:shadow-md hover:border-primary/30";
+                    card.className = "flex items-center gap-3 p-3 bg-blue-50/50 border border-blue-100 rounded-xl transition-all hover:shadow-sm";
                     card.innerHTML = `
-                        <div class="flex items-center space-x-4">
-                            <div class="flex flex-col items-center justify-center w-12 h-12 rounded-lg bg-blue-500 text-white">
-                                <span class="text-xs font-bold uppercase">${mName}</span>
-                                <span class="text-lg font-bold leading-none">${d}</span>
-                            </div>
-                            <div>
-                                <div class="flex items-center gap-4">
-                                    <span class="font-semibold text-slate-700">${fechaCompleta}</span>
-                                    <span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide bg-emerald-100 text-emerald-700 rounded-full flex items-center gap-1">
-                                        Laborable
-                                    </span>
-                                </div>
-                            </div>
+                        <div class="flex flex-col items-center justify-center w-10 h-10 rounded-lg bg-blue-500 text-white shrink-0">
+                            <span class="text-[9px] font-black uppercase leading-none">${mName}</span>
+                            <span class="text-base font-black leading-none">${d}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-bold text-slate-700">${fechaCompleta}</span>
+                            <span class="text-[10px] font-black text-blue-600 uppercase tracking-wider">Laborable Extra</span>
                         </div>
                     `;
                 }

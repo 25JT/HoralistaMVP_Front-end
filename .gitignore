@@ -22,4 +22,4 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
-#src/utils/ruta.js
+src/utils/ruta.js
