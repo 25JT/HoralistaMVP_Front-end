@@ -9,6 +9,9 @@ animacionPrinCliente();
 let paginaActual = 1;
 const serviciosPorPagina = 6;
 let todosLosServicios = [];
+let serviciosFiltrados = [];
+let categoriaActual = "todas";
+let busquedaActual = "";
 
 // Elementos del DOM
 const contenedor = document.getElementById("contenedor-servicios");
@@ -16,7 +19,44 @@ const loader = document.getElementById("loader-servicios");
 const btnAnterior = document.getElementById("btn-anterior");
 const btnSiguiente = document.getElementById("btn-siguiente");
 const infoPaginacion = document.getElementById("info-paginacion");
+const inputBusqueda = document.getElementById("input-busqueda");
+const btnTodas = document.getElementById("btn-todas-categorias");
+const btnManicure = document.getElementById("btn-manicure");
+const btnBarberia = document.getElementById("btn-barberia");
 
+
+function filtrarServicios() {
+  const query = busquedaActual.toLowerCase().trim();
+
+  serviciosFiltrados = todosLosServicios.filter(servicio => {
+    const nombreNegocio = (servicio.nombre_establecimiento || "").toLowerCase();
+    const nombreServicio = (servicio.Servicio || "").toLowerCase();
+    const descripcionNegocio = (servicio.descripcion || "").toLowerCase();
+
+    // Filtro por búsqueda (nombre de negocio, nombre de servicio o descripción)
+    const coincideBusqueda = query === "" ||
+      nombreNegocio.includes(query) ||
+      nombreServicio.includes(query) ||
+      descripcionNegocio.includes(query);
+
+    // Filtro por categoría
+    let coincideCategoria = true;
+    if (categoriaActual !== "todas") {
+      if (categoriaActual === "estilista") {
+        // La categoría "estilista" abarca manicure, pedicure, maquillaje, etc.
+        coincideCategoria = nombreServicio.includes("estilista");
+      } else if (categoriaActual === "barbero") {
+        // La categoría "barbero" abarca barberia, corte de cabello, etc.
+        coincideCategoria = nombreServicio.includes("barbero");
+      }
+    }
+
+    return coincideBusqueda && coincideCategoria;
+  });
+
+  paginaActual = 1; // Reiniciar a la primera página tras filtrar
+  renderizarServicios();
+}
 
 // Función principal para renderizar servicios
 function renderizarServicios() {
@@ -26,7 +66,10 @@ function renderizarServicios() {
 
   const inicio = (paginaActual - 1) * serviciosPorPagina;
   const fin = inicio + serviciosPorPagina;
-  const serviciosPagina = todosLosServicios.slice(inicio, fin);
+  const serviciosPagina = serviciosFiltrados.slice(inicio, fin);
+
+  console.log(serviciosPagina);
+
 
   if (serviciosPagina.length === 0) {
     contenedor.innerHTML = `<p class="col-span-full text-center text-gray-500">No hay servicios disponibles.</p>`;
@@ -191,10 +234,10 @@ function renderizarServicios() {
 }
 
 function actualizarControles() {
-  const totalPaginas = Math.ceil(todosLosServicios.length / serviciosPorPagina);
+  const totalPaginas = Math.ceil(serviciosFiltrados.length / serviciosPorPagina);
 
   if (infoPaginacion) {
-    if (todosLosServicios.length === 0) {
+    if (serviciosFiltrados.length === 0) {
       infoPaginacion.textContent = "0 paginas";
     } else {
       infoPaginacion.textContent = `Pagina ${paginaActual} de ${totalPaginas}`;
@@ -223,12 +266,67 @@ if (btnAnterior) {
 
 if (btnSiguiente) {
   btnSiguiente.addEventListener("click", () => {
-    const totalPaginas = Math.ceil(todosLosServicios.length / serviciosPorPagina);
+    const totalPaginas = Math.ceil(serviciosFiltrados.length / serviciosPorPagina);
     if (paginaActual < totalPaginas) {
       paginaActual++;
       renderizarServicios();
       contenedor.scrollIntoView({ behavior: 'smooth' });
     }
+  });
+}
+
+// Event Listeners para Filtros
+if (inputBusqueda) {
+  inputBusqueda.addEventListener("input", (e) => {
+    busquedaActual = e.target.value;
+    filtrarServicios();
+  });
+}
+
+function actualizarClasesBotones(categoriaElegida) {
+  const botones = [
+    { id: "btn-todas-categorias", cat: "todas" },
+    { id: "btn-manicure", cat: "estilista" },
+    { id: "btn-barberia", cat: "barbero" }
+  ];
+
+  botones.forEach(btn => {
+    const el = document.getElementById(btn.id);
+    if (!el) return;
+
+    if (btn.cat === categoriaElegida) {
+      el.classList.remove("text-gray-600", "hover:bg-gray-100");
+      el.classList.add("text-primary", "bg-primary/10", "hover:bg-primary/20");
+    } else {
+      el.classList.add("text-gray-600", "hover:bg-gray-100");
+      el.classList.remove("text-primary", "bg-primary/10", "hover:bg-primary/20", "bg-transparent");
+      // Asegurarse de que no tenga el fondo de activo
+      el.style.backgroundColor = "";
+    }
+  });
+}
+
+if (btnTodas) {
+  btnTodas.addEventListener("click", () => {
+    categoriaActual = "todas";
+    actualizarClasesBotones("todas");
+    filtrarServicios();
+  });
+}
+
+if (btnManicure) {
+  btnManicure.addEventListener("click", () => {
+    categoriaActual = "estilista";
+    actualizarClasesBotones("estilista");
+    filtrarServicios();
+  });
+}
+
+if (btnBarberia) {
+  btnBarberia.addEventListener("click", () => {
+    categoriaActual = "barbero";
+    actualizarClasesBotones("barbero");
+    filtrarServicios();
   });
 }
 
@@ -250,6 +348,7 @@ fetch(`${ruta}/serviciosDisponibles`, { credentials: 'include' })
 
 
     todosLosServicios = data.data;
+    serviciosFiltrados = [...todosLosServicios];
     renderizarServicios();
   })
   .catch((error) => {
