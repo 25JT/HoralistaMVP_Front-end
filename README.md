@@ -19,7 +19,7 @@ Esta herramienta actualmente considero que es un producto mínimo viable *(MVP)*
 
 Pienso agregarlo en el futuro, pero por ahora busco el feedback de posibles usuarios. La aplicación a día de hoy no ha sido desplegada y continúa en pruebas hechas por mí. También existe el factor monetario.
 
-Este proyecto ha sido desarrollado de forma independiente durante aproximadamente 9 meses, iterando funcionalidades, mejorando la experiencia de usuario y optimizando la arquitectura del sistema.
+Este proyecto ha sido desarrollado de forma independiente, iterando funcionalidades, mejorando la experiencia de usuario y optimizando la arquitectura del sistema.
 
 ---
 
