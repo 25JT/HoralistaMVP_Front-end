@@ -186,7 +186,21 @@ function updateSummary() {
     const inicio = formData.get("hora_inicio");
     const fin = formData.get("hora_fin");
     const dias = formData.getAll("dias_trabajo").join(", ");
-    document.getElementById("summary-hours").textContent = (inicio && fin) ? `${dias} / ${inicio} - ${fin}` : "Horario no definido";
+
+    const format12h = (time24) => {
+        if (!time24) return "";
+        const [h, m] = time24.split(":");
+        let hour = parseInt(h);
+        const period = hour >= 12 ? "PM" : "AM";
+        hour = hour > 12 ? hour - 12 : hour;
+        if (hour === 0) hour = 12;
+        return `${hour.toString().padStart(2, "0")}:${m} ${period}`;
+    };
+
+    const inicio12 = format12h(inicio);
+    const fin12 = format12h(fin);
+
+    document.getElementById("summary-hours").textContent = (inicio && fin) ? `${dias} / ${inicio12} - ${fin12}` : "Horario no definido";
 }
 
 // --- VALIDACIONES DE PRECIO Y HORA (Existentes) ---
@@ -210,37 +224,106 @@ precioInput?.addEventListener('input', (e) => {
     }
 });
 
-function validarHoraEnPunto(inputElement, errorElementId) {
-    if (!inputElement) return;
-    const horaInput = inputElement.value;
-    if (!horaInput) return;
-    const minutos = horaInput.split(':')[1];
-    const errorElement = document.getElementById(errorElementId);
+// --- CUSTOM TIME PICKER LOGIC ---
 
-    if (minutos !== '00') {
-        errorElement?.classList.remove('hidden');
-        inputElement.setCustomValidity('La hora debe ser en punto (minutos :00)');
-    } else {
-        errorElement?.classList.add('hidden');
-        inputElement.setCustomValidity('');
+function setupCustomTimePicker(pickerId) {
+    const picker = document.getElementById(pickerId);
+    if (!picker) return;
+
+    const btn = picker.querySelector('.time-display-btn');
+    const dropdown = picker.querySelector('.time-dropdown');
+    const input = picker.querySelector('input[type="hidden"]');
+    const selectedText = picker.querySelector('.selected-text');
+    const options = picker.querySelectorAll('.time-option');
+
+    // Open/Close dropdown
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        // Close other open pickers
+        document.querySelectorAll('.time-dropdown.active').forEach(d => {
+            if (d !== dropdown) {
+                d.classList.remove('active');
+                d.closest('.custom-time-picker').querySelector('.time-display-btn').classList.remove('active');
+            }
+        });
+        
+        btn.classList.toggle('active');
+        dropdown.classList.toggle('active');
+    });
+
+    // Select option
+    options.forEach(option => {
+        option.addEventListener('click', () => {
+            const val = option.dataset.value;
+            const displayVal = option.dataset.display;
+            
+            input.value = val;
+            selectedText.textContent = displayVal;
+            selectedText.classList.remove('text-gray-400');
+            selectedText.classList.add('text-gray-800', 'font-black');
+
+            // UI feedback
+            options.forEach(opt => opt.classList.remove('selected'));
+            option.classList.add('selected');
+
+            // Close
+            btn.classList.remove('active');
+            dropdown.classList.remove('active');
+
+            // Trigger validation
+            validarHoras();
+            
+            // Hide error if selected
+            const errorId = input.id === 'hora_inicio' ? 'hora-error' : 'hora-fin-error';
+            const errorEl = document.getElementById(errorId);
+            if (errorEl) {
+                errorEl.classList.add('hidden');
+                errorEl.classList.remove('flex');
+            }
+        });
+    });
+}
+
+function validarHoras() {
+    const horaInicio = document.getElementById('hora_inicio').value;
+    const horaFin = document.getElementById('hora_fin').value;
+    const errorFin = document.getElementById('hora-fin-error');
+
+    if (horaInicio && horaFin) {
+        if (horaFin <= horaInicio) {
+            alertaMal('La hora de cierre debe ser posterior a la de apertura');
+            if (errorFin) {
+                errorFin.classList.remove('hidden');
+                errorFin.classList.add('flex');
+            }
+            // Reset values
+            const pickerFin = document.getElementById('picker-fin');
+            const inputFin = document.getElementById('hora_fin');
+            const textFin = pickerFin.querySelector('.selected-text');
+            const optionsFin = pickerFin.querySelectorAll('.time-option');
+            
+            inputFin.value = "";
+            textFin.textContent = "06:00 PM";
+            textFin.classList.add('text-gray-400');
+            textFin.classList.remove('font-black');
+            optionsFin.forEach(opt => opt.classList.remove('selected'));
+        } else {
+            if (errorFin) {
+                errorFin.classList.add('hidden');
+                errorFin.classList.remove('flex');
+            }
+        }
     }
 }
 
-document.getElementById('hora_inicio')?.addEventListener('change', function () {
-    validarHoraEnPunto(this, 'hora-error');
+// Global click to close dropdowns
+document.addEventListener('click', () => {
+    document.querySelectorAll('.time-dropdown.active').forEach(d => d.classList.remove('active'));
+    document.querySelectorAll('.time-display-btn.active').forEach(b => b.classList.remove('active'));
 });
 
-document.getElementById('hora_fin')?.addEventListener('change', function () {
-    validarHoraEnPunto(this, 'hora-fin-error');
-
-    const horaInicio = document.getElementById('hora_inicio').value;
-    const horaFin = this.value;
-
-    if (horaInicio && horaFin && horaFin <= horaInicio) {
-        alertaMal('La hora final debe ser posterior a la hora de inicio');
-        this.value = '';
-    }
-});
+setupCustomTimePicker('picker-inicio');
+setupCustomTimePicker('picker-fin');
 
 // --- ENVÍO DE DATOS ---
 

@@ -22,7 +22,7 @@ export function cerrarSesion() {
       return response.json();
     })
     .then((data) => {
-      console.log(data);
+      // console.log(data);
       localStorage.clear();
       location.href = "/";
     })
@@ -303,11 +303,11 @@ export default async function estadoWhatsApp() {
 
     // Si el tutorial está pendiente (0) y el script del tutorial está en la página
     if (tutorialStatus === 0 && window.tutorialGeneralPresente) {
-      console.log("Tutorial pendiente, esperando a que termine para validar WhatsApp...");
+      //  console.log("Tutorial pendiente, esperando a que termine para validar WhatsApp...");
 
       // Escuchamos el evento de finalización una sola vez
       window.addEventListener("tutorialTerminado", () => {
-        console.log("Tutorial detectado como terminado/cerrado, validando WhatsApp...");
+        // console.log("Tutorial detectado como terminado/cerrado, validando WhatsApp...");
         ejecutarValidacionWhatsApp();
       }, { once: true });
 

@@ -67,14 +67,14 @@ function cerrarMenu() {
 export function initializeSidebar() {
     const userid = sessionStorage.getItem("Id");
     let role = sessionStorage.getItem("Role");
-    
+
     // Si role es nulo o la cadena "undefined", limpiar
     if (role === "undefined" || !role) {
         role = null;
     }
-    
+
     if (role) role = role.toLowerCase();
-    
+
     // Mostrar botón hamburguesa solo si hay sesión activa
     if (userid && menuToggle) {
         menuToggle.classList.remove("hidden");
@@ -241,7 +241,7 @@ function validarCantidadCitas() {
             throw new Error("Respuesta inesperada");
         })
         .then(data => {
-            console.log(data);
+            //   console.log(data);
             if (data.success) {
 
 

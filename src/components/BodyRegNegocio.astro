@@ -246,54 +246,163 @@
               </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div class="flex flex-col">
-                <label for="hora_inicio" class="text-sm font-medium pb-2"
-                  >Hora de Apertura</label
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <!-- Apertura -->
+              <div class="flex flex-col group">
+                <label
+                  for="hora_inicio"
+                  class="text-xs font-bold uppercase tracking-wider text-gray-500 pb-2 flex items-center gap-2"
                 >
-                <div class="relative flex items-center">
+                  <span class="material-symbols-outlined text-sm">login</span>
+                  Hora de Apertura
+                </label>
+                <div class="relative custom-time-picker" id="picker-inicio">
                   <input
-                    type="time"
+                    type="hidden"
                     id="hora_inicio"
                     name="hora_inicio"
-                    min="06:00"
-                    max="22:00"
-                    step="3600"
-                    class="form-input flex w-full rounded-lg border border-[#cfd7e7] bg-white h-14 p-4 pl-12 text-base focus:ring-2 focus:ring-blue-200 outline-none"
                     required
                   />
-                  <span
-                    class="material-symbols-outlined absolute left-4 text-gray-400 pointer-events-none"
-                    >schedule</span
+                  <button
+                    type="button"
+                    class="time-display-btn flex w-full items-center rounded-xl border-2 border-[#cfd7e7] bg-white h-14 p-4 pl-12 text-base font-semibold text-gray-700 hover:border-blue-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all outline-none text-left"
                   >
+                    <span
+                      class="material-symbols-outlined absolute left-4 text-gray-400 group-focus-within:text-blue-500"
+                      >schedule</span
+                    >
+                    <span class="selected-text text-gray-400 text-xl"
+                      >06:00 AM</span
+                    >
+                    <span
+                      class="material-symbols-outlined absolute right-4 text-gray-400 transition-transform dropdown-arrow"
+                      >expand_more</span
+                    >
+                  </button>
+
+                  <div
+                    class="time-dropdown absolute z-50 mt-2 w-full min-w-[280px] left-0 overflow-hidden transform rounded-2xl border border-gray-100 bg-white shadow-2xl transition-all scale-95 opacity-0 pointer-events-none"
+                  >
+                    <div
+                      class="bg-gray-50/80 p-3 border-b border-gray-100 flex justify-between items-center"
+                    >
+                      <span
+                        class="text-[10px] font-black uppercase tracking-widest text-gray-400"
+                        >Apertura</span
+                      >
+                      <span class="text-[10px] font-bold text-blue-500"
+                        >Solo en punto</span
+                      >
+                    </div>
+                    <div
+                      class="grid grid-cols-3 gap-2 p-3 max-h-56 overflow-y-auto custom-scrollbar"
+                    >
+                      {
+                        Array.from({ length: 17 }, (_, i) => {
+                          const h = i + 6;
+                          const hour24 = h.toString().padStart(2, "0") + ":00";
+                          const period = h >= 12 ? "PM" : "AM";
+                          const h12 = h > 12 ? h - 12 : h;
+                          const hour12 =
+                            h12.toString().padStart(2, "0") + ":00 " + period;
+                          return (
+                            <button
+                              type="button"
+                              class="time-option p-2 text-xl font-bold rounded-lg border border-gray-50 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200 transition-all text-center"
+                              data-value={hour24}
+                              data-display={hour12}
+                            >
+                              {hour12}
+                            </button>
+                          );
+                        })
+                      }
+                    </div>
+                  </div>
                 </div>
-                <p id="hora-error" class="mt-1 text-xs text-red-500 hidden">
-                  Debe ser en punto (ej. 08:00)
+                <p
+                  id="hora-error"
+                  class="mt-2 text-[10px] font-medium text-red-500 hidden items-center gap-1"
+                >
+                  <span class="material-symbols-outlined text-xs">error</span>
+                  Por favor selecciona una hora
                 </p>
               </div>
 
-              <div class="flex flex-col">
-                <label for="hora_fin" class="text-sm font-medium pb-2"
-                  >Hora de Cierre</label
+              <!-- Cierre -->
+              <div class="flex flex-col group">
+                <label
+                  for="hora_fin"
+                  class="text-xs font-bold uppercase tracking-wider text-gray-500 pb-2 flex items-center gap-2"
                 >
-                <div class="relative flex items-center">
-                  <input
-                    type="time"
-                    id="hora_fin"
-                    name="hora_fin"
-                    min="06:00"
-                    max="22:00"
-                    step="3600"
-                    class="form-input flex w-full rounded-lg border border-[#cfd7e7] bg-white h-14 p-4 pl-12 text-base focus:ring-2 focus:ring-blue-200 outline-none"
-                    required
-                  />
-                  <span
-                    class="material-symbols-outlined absolute left-4 text-gray-400 pointer-events-none"
-                    >calendar_today</span
+                  <span class="material-symbols-outlined text-sm">logout</span>
+                  Hora de Cierre
+                </label>
+                <div class="relative custom-time-picker" id="picker-fin">
+                  <input type="hidden" id="hora_fin" name="hora_fin" required />
+                  <button
+                    type="button"
+                    class="time-display-btn flex w-full items-center rounded-xl border-2 border-[#cfd7e7] bg-white h-14 p-4 pl-12 text-base font-semibold text-gray-700 hover:border-blue-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all outline-none text-left"
                   >
+                    <span
+                      class="material-symbols-outlined absolute left-4 text-gray-400 group-focus-within:text-blue-500"
+                      >calendar_today</span
+                    >
+                    <span class="selected-text text-gray-400 text-xl"
+                      >06:00 PM</span
+                    >
+                    <span
+                      class="material-symbols-outlined absolute right-4 text-gray-400 transition-transform dropdown-arrow"
+                      >expand_more</span
+                    >
+                  </button>
+
+                  <div
+                    class="time-dropdown absolute z-50 mt-2 w-full min-w-[280px] right-0 overflow-hidden transform rounded-2xl border border-gray-100 bg-white shadow-2xl transition-all scale-95 opacity-0 pointer-events-none"
+                  >
+                    <div
+                      class="bg-gray-50/80 p-3 border-b border-gray-100 flex justify-between items-center"
+                    >
+                      <span
+                        class="text-[10px] font-black uppercase tracking-widest text-gray-400"
+                        >Cierre</span
+                      >
+                      <span class="text-[10px] font-bold text-blue-500"
+                        >Solo en punto</span
+                      >
+                    </div>
+                    <div
+                      class="grid grid-cols-3 gap-2 p-3 max-h-56 overflow-y-auto custom-scrollbar"
+                    >
+                      {
+                        Array.from({ length: 17 }, (_, i) => {
+                          const h = i + 6;
+                          const hour24 = h.toString().padStart(2, "0") + ":00";
+                          const period = h >= 12 ? "PM" : "AM";
+                          const h12 = h > 12 ? h - 12 : h;
+                          const hour12 =
+                            h12.toString().padStart(2, "0") + ":00 " + period;
+                          return (
+                            <button
+                              type="button"
+                              class="time-option p-2 text-xs font-bold rounded-lg border border-gray-50 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200 transition-all text-center"
+                              data-value={hour24}
+                              data-display={hour12}
+                            >
+                              {hour12}
+                            </button>
+                          );
+                        })
+                      }
+                    </div>
+                  </div>
                 </div>
-                <p id="hora-fin-error" class="mt-1 text-xs text-red-500 hidden">
-                  Debe ser en punto (ej. 18:00)
+                <p
+                  id="hora-fin-error"
+                  class="mt-2 text-[10px] font-medium text-red-500 hidden items-center gap-1"
+                >
+                  <span class="material-symbols-outlined text-xs">error</span>
+                  Debe ser posterior a la apertura
                 </p>
               </div>
             </div>
@@ -692,5 +801,39 @@
 
   .form-step {
     animation: slideIn 0.3s ease-out;
+  }
+
+  /* Custom Scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #e2e8f0;
+    border-radius: 10px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #cbd5e1;
+  }
+
+  /* Dropdown animations */
+  .time-dropdown.active {
+    scale: 1;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .time-display-btn.active .dropdown-arrow {
+    transform: rotate(180deg);
+  }
+
+  .time-option.selected {
+    background-color: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
   }
 </style>
