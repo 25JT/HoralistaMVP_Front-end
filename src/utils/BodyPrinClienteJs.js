@@ -68,7 +68,7 @@ function renderizarServicios() {
   const fin = inicio + serviciosPorPagina;
   const serviciosPagina = serviciosFiltrados.slice(inicio, fin);
 
-  conso//le.log(serviciosPagina);
+  //console.log(serviciosPagina);
 
 
   if (serviciosPagina.length === 0) {
