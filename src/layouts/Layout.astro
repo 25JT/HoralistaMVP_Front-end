@@ -77,6 +77,7 @@ const { title } = Astro.props;
       property="og:image"
       content="https://res.cloudinary.com/dzxhmzo6l/image/upload/c_pad,w_1200,h_630,b_auto,q_auto,f_auto/v1775057002/Proyecto_nuevo_f6x59q.png"
     />
+    <meta property="og:image:alt" content="Horalista agenda citas" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="es_CO" />
@@ -214,3 +215,12 @@ const { title } = Astro.props;
     font-display: swap;
   }
 </style>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://horalista.com",
+    "@type": "WebSite",
+    "name": "Horalista",
+    "description": "Horalista es la herramienta perfecta para agendar y organizar tus citas. Simplifica tu agenda y ofrece a tus clientes un servicio más profesional."
+  }
+</script>
