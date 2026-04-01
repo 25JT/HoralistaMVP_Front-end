@@ -54,28 +54,36 @@ const { title } = Astro.props;
     <!-- SEO -->
     <title>{title}</title>
     <meta
+      property="og:title"
+      content="Horalista | Agenda y organiza tus citas fácilmente"
+    />
+    <meta
       name="description"
       content="Horalista es la herramienta perfecta para agendar y organizar tus citas. Simplifica tu agenda y ofrece a tus clientes un servicio más profesional."
     />
     <meta
       name="keywords"
-      content="agenda online, agendamiento de citas, organización de agenda, gestión de clientes, citas en línea, horalista"
+      content="agenda online, agendamiento de citas, organización de agenda, gestión de clientes, citas en línea, horalista, hora lista, citas, barberia, manicure, gestion, citas rapidas"
     />
     <meta name="author" content="Horalista" />
 
     <!-- Open Graph -->
     <meta
-      property="og:title"
-      content="Horalista | Agenda y organiza tus citas fácilmente"
-    />
-    <meta
       property="og:description"
       content="Gestiona tus citas de manera sencilla, rápida y profesional con Horalista. Ideal para negocios de servicios como peluquerías, manicura, consultorios y más."
     />
-    <meta property="og:image" content="../assets/Logo/logo.png" />
+    <meta
+      property="og:image"
+      content="https://res.cloudinary.com/dzxhmzo6l/image/upload/v1775057012/date-alt-calender-svgrepo-com_1_g3kcgk.png"
+    />
     <meta property="og:locale" content="es_CO" />
     <meta property="og:site_name" content="Horalista" />
     <meta name="twitter:site" content="@Horalista" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="Astro v6.0.8" />
+    <meta name="author" content="25JT" />
+
     <script>
       import "../utils/fetchInterceptor.js";
     </script>
