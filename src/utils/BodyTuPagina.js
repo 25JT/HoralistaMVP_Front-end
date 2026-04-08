@@ -1,5 +1,5 @@
 import { ruta } from "../utils/ruta.js"
-import { alertaMal, alertaCheckReload } from "../assets/Alertas/Alertas";
+import { alertaMal, alertaCheckReload, alertaCheck } from "../assets/Alertas/Alertas";
 
 const tituloTienda = document.getElementById("shop-name");
 const direccionTienda = document.getElementById("shop-address");
@@ -370,3 +370,102 @@ function validarCantidadCitas() {
         });
 }
 
+// ===== COMPARTIR CATÁLOGO =====
+
+// Helper: obtener la URL del catálogo
+function obtenerUrlCatalogo() {
+    return fetch(`${ruta}/api/link/catalogo`, {
+        method: "GET",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" }
+    })
+        .then(response => {
+            if (response.status === 200 || response.status === 500) return response.json();
+            throw new Error("Respuesta inesperada");
+        })
+        .then(data => {
+            const id = data.rows[0].id;
+            const url = window.location.href;
+            return url.replace("TuPagina", "Catalogo") + `/${id}`;
+        });
+}
+
+// Toggle del dropdown
+const shareToggle = document.getElementById("btn-share-toggle");
+const shareDropdown = document.getElementById("share-dropdown");
+const shareChevron = document.getElementById("share-chevron");
+let dropdownOpen = false;
+
+shareToggle.addEventListener("click", (e) => {
+    e.stopPropagation();
+    dropdownOpen = !dropdownOpen;
+    if (dropdownOpen) {
+        shareDropdown.classList.remove("hidden");
+        shareDropdown.style.animation = "shareDropIn 0.18s ease";
+        shareChevron.textContent = "expand_less";
+    } else {
+        shareDropdown.classList.add("hidden");
+        shareChevron.textContent = "expand_more";
+    }
+});
+
+// Cerrar dropdown al hacer clic fuera
+document.addEventListener("click", () => {
+    if (dropdownOpen) {
+        dropdownOpen = false;
+        shareDropdown.classList.add("hidden");
+        shareChevron.textContent = "expand_more";
+    }
+});
+shareDropdown.addEventListener("click", e => e.stopPropagation());
+
+// Añadir animación CSS dinámicamente
+const shareStyle = document.createElement("style");
+shareStyle.textContent = `
+@keyframes shareDropIn {
+    from { opacity: 0; transform: scaleY(0.85) translateY(8px); }
+    to   { opacity: 1; transform: scaleY(1)   translateY(0);    }
+}
+#share-dropdown { transform-origin: bottom center; }
+`;
+document.head.appendChild(shareStyle);
+
+// Copiar link
+document.getElementById("btn-link").addEventListener("click", () => {
+    obtenerUrlCatalogo()
+        .then(urlFinal => {
+            navigator.clipboard.writeText(urlFinal);
+            alertaCheck("¡Link copiado al portapapeles!");
+            shareDropdown.classList.add("hidden");
+            shareChevron.textContent = "expand_more";
+            dropdownOpen = false;
+        })
+        .catch(error => console.error(error));
+});
+
+// Compartir por WhatsApp
+document.getElementById("btn-share-whatsapp").addEventListener("click", () => {
+    obtenerUrlCatalogo()
+        .then(urlFinal => {
+            const mensaje = encodeURIComponent(`¡Hola! Te comparto mi catálogo de servicios: ${urlFinal}`);
+            window.open(`https://wa.me/?text=${mensaje}`, "_blank");
+            shareDropdown.classList.add("hidden");
+            shareChevron.textContent = "expand_more";
+            dropdownOpen = false;
+        })
+        .catch(error => console.error(error));
+});
+
+// Compartir por correo
+document.getElementById("btn-share-email").addEventListener("click", () => {
+    obtenerUrlCatalogo()
+        .then(urlFinal => {
+            const asunto = encodeURIComponent("Te comparto mi catálogo de servicios");
+            const cuerpo = encodeURIComponent(`¡Hola!\n\nTe invito a ver mi catálogo de servicios en HoraLista:\n${urlFinal}\n\n¡Reserva tu cita fácilmente!`);
+            window.location.href = `mailto:?subject=${asunto}&body=${cuerpo}`;
+            shareDropdown.classList.add("hidden");
+            shareChevron.textContent = "expand_more";
+            dropdownOpen = false;
+        })
+        .catch(error => console.error(error));
+});
