@@ -183,7 +183,7 @@ function mostrarHorasDisponibles(data) {
                 spans[0].className = 'text-base font-black text-slate-800 group-hover:text-blue-600 transition-colors z-10';
                 spans[1].className = 'text-[10px] uppercase font-black text-slate-400 group-hover:text-blue-400 transition-colors z-10';
             });
-            
+
             boton.classList.add('border-blue-600', 'bg-blue-600', 'shadow-blue-200', 'ring-4', 'ring-blue-100');
             boton.classList.remove('bg-slate-50', 'border-slate-100');
             const activeSpans = boton.querySelectorAll('span');
@@ -191,7 +191,7 @@ function mostrarHorasDisponibles(data) {
             activeSpans[1].className = 'text-[10px] uppercase font-black text-blue-100 z-10';
 
             document.getElementById('hora').value = hora24;
-            
+
             // Actualizar label de hora seleccionada
             const labelSel = document.getElementById('label-horario-seleccionado');
             if (labelSel) {
@@ -275,9 +275,9 @@ function actualizarCirculosDias(diasStr) {
         1: 'Lunes', 2: 'Martes', 3: 'Miercoles', 4: 'Jueves', 5: 'Viernes', 6: 'Sabado', 0: 'Domingo'
     };
 
-    const circles = document.querySelectorAll('.dia-circle'); 
+    const circles = document.querySelectorAll('.dia-circle');
     circles.forEach(circleContainer => {
-        const dayName = circleContainer.dataset.day; 
+        const dayName = circleContainer.dataset.day;
         const dayNameLower = dayName.toLowerCase().replace('é', 'e').replace('á', 'a');
         const map = {
             'lunes': 1, 'martes': 2, 'miercoles': 3, 'jueves': 4, 'viernes': 5, 'sabado': 6, 'domingo': 0
@@ -311,7 +311,7 @@ document.addEventListener("DOMContentLoaded", () => {
             locale: Spanish,
             minDate: "today",
             disableMobile: "true", // Use custom flatpickr on mobile too for consistency
-            onChange: function(selectedDates, dateStr) {
+            onChange: function (selectedDates, dateStr) {
                 cargarHorasDisponibles();
             }
         });
@@ -325,11 +325,10 @@ fetch(`${ruta}/datosUsuario`, {
     body: JSON.stringify({ userid, id }),
     credentials: 'include',
 })
-
     .then((res) => {
-        if (res.statusText === "Unauthorized") {
-            alertaFallo("No autorizado Por favor inicia sesión");
 
+        if (res.status === 400) {
+            crearusuario();
             return;
         }
 
@@ -338,7 +337,7 @@ fetch(`${ruta}/datosUsuario`, {
     })
 
     .then((data) => {
-        //console.log(data);
+        if (!data) return; // viene de crearusuario (status 400)
         const usuario = data.data[0];
         const Establecimiento = data.rows2[0];
 
@@ -368,6 +367,214 @@ fetch(`${ruta}/datosUsuario`, {
         console.error("Error al obtener datos:", err);
     });
 
+// ===== MODAL DE REGISTRO PARA INVITADOS =====
+function crearusuario() {
+    const modal = document.getElementById("modal-registro-invitado");
+    if (!modal) return;
+
+    // Mostrar el modal
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+
+    // === Country Picker (selector de país con bandera) ===
+    const cpBtn = document.getElementById("reg-cp-btn");
+    const cpList = document.getElementById("reg-cp-list");
+    const cpFlag = document.getElementById("reg-cp-flag");
+    const cpCode = document.getElementById("reg-cp-code");
+
+    if (cpBtn && cpList) {
+        // Abrir / cerrar la lista
+        cpBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            cpList.classList.toggle("hidden");
+        });
+
+        // Seleccionar opción
+        cpList.querySelectorAll("li").forEach(li => {
+            li.addEventListener("click", () => {
+                const iso = li.dataset.iso;
+                const code = li.dataset.code;
+                if (cpFlag) {
+                    cpFlag.src = `https://flagcdn.com/w20/${iso}.png`;
+                    cpFlag.alt = iso.toUpperCase();
+                }
+                if (cpCode) cpCode.textContent = code;
+                cpList.classList.add("hidden");
+            });
+        });
+
+        // Cerrar al clic fuera
+        document.addEventListener("click", () => cpList.classList.add("hidden"));
+        cpList.addEventListener("click", e => e.stopPropagation());
+    }
+
+    // Toggle visibilidad contraseña
+    const togglePwdBtn = document.getElementById("toggle-pwd-reg");
+    const pwdInput = document.getElementById("reg-contrasena");
+    const pwdIcon = document.getElementById("icon-toggle-pwd");
+    if (togglePwdBtn && pwdInput && pwdIcon) {
+        togglePwdBtn.addEventListener("click", () => {
+            const isHidden = pwdInput.type === "password";
+            pwdInput.type = isHidden ? "text" : "password";
+            pwdIcon.textContent = isHidden ? "visibility_off" : "visibility";
+        });
+    }
+
+    // Botón REGISTRARSE
+    const btnRegistro = document.getElementById("btn-registro-invitado");
+    if (btnRegistro) {
+        btnRegistro.addEventListener("click", async () => {
+            const nombre = document.getElementById("reg-nombre")?.value?.trim();
+            const code_pais = (document.getElementById("reg-cp-code")?.textContent?.trim() || "+57").replace("+", "");
+            const telefonoRaw = document.getElementById("reg-telefono")?.value?.trim();
+            const telefono = telefonoRaw ? `${code_pais}${telefonoRaw}` : "";
+            const correo = document.getElementById("reg-correo")?.value?.trim();
+            const contrasena = document.getElementById("reg-contrasena")?.value;
+
+            if (!nombre || !telefono || !correo || !contrasena) {
+                alertaMal("Por favor, completa todos los campos.");
+                return;
+            }
+            if (contrasena.length < 6) {
+                alertaMal("La contraseña debe tener al menos 6 caracteres.");
+                return;
+            }
+
+            // Deshabilitar botón mientras carga
+            btnRegistro.disabled = true;
+            btnRegistro.innerHTML = `
+                <span class="inline-block w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                Creando cuenta...
+            `;
+
+            try {
+                const res = await fetch(`${ruta}/registro/cliente`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    credentials: "include",
+                    body: JSON.stringify({ nombre, code_pais, telefono, correo, contrasena }),
+                });
+
+                const data = await res.json();
+
+                if (res.ok && data.success) {
+                    // Guardar el nuevo ID de sesión y recargar la misma URL
+                    // (el server debería haber seteado la cookie de sesión)
+                    sessionStorage.setItem("Id", data.id || "");
+                    sessionStorage.setItem("Role", "cliente");
+                    modal.classList.add("hidden");
+                    modal.classList.remove("flex");
+                    // Recargar para que el fetch principal cargue los datos del nuevo usuario
+                    window.location.reload();
+                } else {
+                    alertaMal(data.message || "Error al crear la cuenta. Intenta de nuevo.");
+                    btnRegistro.disabled = false;
+                    btnRegistro.innerHTML = `
+                        <span class="material-symbols-outlined text-lg">check_circle</span>
+                        Crear cuenta y continuar
+                    `;
+                }
+            } catch (err) {
+                console.error("Error registro:", err);
+                alertaMal("Ocurrió un error. Intenta de nuevo.");
+                btnRegistro.disabled = false;
+                btnRegistro.innerHTML = `
+                    <span class="material-symbols-outlined text-lg">check_circle</span>
+                    Crear cuenta y continuar
+                `;
+            }
+        });
+    }
+
+    // Botón "Ya tengo cuenta" → mostrar panel login
+    const btnLogin = document.getElementById("btn-login-invitado");
+    const panelRegistro = document.getElementById("panel-registro");
+    const panelLogin = document.getElementById("panel-login");
+
+    if (btnLogin && panelRegistro && panelLogin) {
+        btnLogin.addEventListener("click", () => {
+            panelRegistro.classList.add("hidden");
+            panelLogin.classList.remove("hidden");
+        });
+    }
+
+    // Botón "Volver" → regresar al panel de registro
+    const btnVolverRegistro = document.getElementById("btn-volver-registro");
+    if (btnVolverRegistro && panelRegistro && panelLogin) {
+        btnVolverRegistro.addEventListener("click", () => {
+            panelLogin.classList.add("hidden");
+            panelRegistro.classList.remove("hidden");
+        });
+    }
+
+    // Toggle contraseña panel login
+    const togglePwdLoginBtn = document.getElementById("toggle-pwd-login");
+    const pwdLoginInput = document.getElementById("login-contrasena");
+    const pwdLoginIcon = document.getElementById("icon-toggle-pwd-login");
+    if (togglePwdLoginBtn && pwdLoginInput && pwdLoginIcon) {
+        togglePwdLoginBtn.addEventListener("click", () => {
+            const isHidden = pwdLoginInput.type === "password";
+            pwdLoginInput.type = isHidden ? "text" : "password";
+            pwdLoginIcon.textContent = isHidden ? "visibility_off" : "visibility";
+        });
+    }
+
+    // Botón INICIAR SESIÓN
+    const btnSubmitLogin = document.getElementById("btn-submit-login");
+    if (btnSubmitLogin) {
+        btnSubmitLogin.addEventListener("click", async () => {
+            const correo = document.getElementById("login-correo")?.value?.trim();
+            const contrasena = document.getElementById("login-contrasena")?.value;
+
+            if (!correo || !contrasena) {
+                alertaMal("Por favor, completa todos los campos.");
+                return;
+            }
+
+            btnSubmitLogin.disabled = true;
+            btnSubmitLogin.innerHTML = `
+                <span class="inline-block w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                Ingresando...
+            `;
+
+            try {
+                const res = await fetch(`${ruta}/login`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    credentials: "include",
+                    body: JSON.stringify({ correo, contrasena }),
+                });
+
+                const data = await res.json();
+
+                if (res.ok && data.success) {
+                    sessionStorage.setItem("Id", data.id || "");
+                    sessionStorage.setItem("Role", data.role || "cliente");
+                    modal.classList.add("hidden");
+                    modal.classList.remove("flex");
+                    window.location.reload();
+                } else {
+                    alertaMal(data.message || "Correo o contraseña incorrectos.");
+                    btnSubmitLogin.disabled = false;
+                    btnSubmitLogin.innerHTML = `
+                        <span class="material-symbols-outlined text-lg">login</span>
+                        Ingresar
+                    `;
+                }
+            } catch (err) {
+                console.error("Error login:", err);
+                alertaMal("Ocurrió un error. Intenta de nuevo.");
+                btnSubmitLogin.disabled = false;
+                btnSubmitLogin.innerHTML = `
+                    <span class="material-symbols-outlined text-lg">login</span>
+                    Ingresar
+                `;
+            }
+        });
+    }
+}
+
+
 // Función para cargar datos de la cita en modo edición
 async function cargarDatosCitaEdicion() {
     try {
@@ -385,7 +592,7 @@ async function cargarDatosCitaEdicion() {
                 const fechaLimpia = cita.fecha.split('T')[0];
                 const input = document.getElementById("fecha");
                 input.value = fechaLimpia;
-                
+
                 // Actualizar Flatpickr si existe
                 if (input._flatpickr) {
                     input._flatpickr.setDate(fechaLimpia);

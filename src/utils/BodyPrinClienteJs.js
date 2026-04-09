@@ -1,9 +1,9 @@
 import { ruta } from "../utils/ruta.js";
 import { alertaFallo } from "../assets/Alertas/Alertas.js";
-import { validarInicioCliente } from "./validarInicio.js";
+
 import { animacionPrinCliente } from "../assets/Animaciones/animacionPrinCliente.js";
 
-validarInicioCliente();
+
 animacionPrinCliente();
 // Variables de estado
 let paginaActual = 1;

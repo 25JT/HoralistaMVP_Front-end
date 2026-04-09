@@ -105,7 +105,7 @@ async function verificarEstadoGlobal() {
 
 // Inicializar al cargar el script
 initializeAuthButtons();
-verificarEstadoGlobal();
+//verificarEstadoGlobal();
 
 // Escuchar cambios en la sesión desde otros scripts
 window.addEventListener("sessionStateChanged", initializeAuthButtons);
