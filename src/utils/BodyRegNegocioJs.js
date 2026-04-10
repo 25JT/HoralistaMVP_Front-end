@@ -8,7 +8,8 @@ animar();
 
 // --- VARIABLES Y ESTADO ---
 let currentStep = 1;
-const totalSteps = 5;
+const totalSteps = 6;
+let map, marker;
 
 // Selectores
 const form = document.getElementById("registroNegocio");
@@ -32,6 +33,15 @@ function updateStepperUI() {
     steps.forEach(step => {
         if (parseInt(step.dataset.step) === currentStep) {
             step.classList.remove("hidden");
+            // Si entramos al paso del mapa, redibujarlo si ya existe
+            if (currentStep === 2 && map) {
+                setTimeout(() => {
+                    map.invalidateSize();
+                }, 100);
+            } else if (currentStep === 2 && !map) {
+                // Si no existe, inicializarlo
+                setTimeout(initMap, 200);
+            }
         } else {
             step.classList.add("hidden");
         }
@@ -100,6 +110,18 @@ function validateCurrentStep() {
 
     // Validaciones especiales por paso
     if (currentStep === 2) {
+        const lat = document.getElementById("latitud").value;
+        const lon = document.getElementById("longitud").value;
+
+        console.log(lat, lon);
+
+        if (!lat || !lon) {
+            alertaMal("Por favor selecciona tu ubicación en el mapa");
+            isValid = false;
+        }
+    }
+
+    if (currentStep === 3) {
         const diasChecked = document.querySelectorAll('input[name="dias_trabajo"]:checked');
         if (diasChecked.length === 0) {
             alertaMal("Selecciona al menos un día de trabajo");
@@ -133,6 +155,99 @@ descripcionText?.addEventListener("input", (e) => {
     if (length >= 140) charCount.classList.add("text-orange-500");
     else charCount.classList.remove("text-orange-500");
 });
+
+// --- LÓGICA DEL MAPA (Leaflet) ---
+
+function initMap() {
+    if (map) return;
+
+    // Inicializar mapa (Centrado por defecto en Colombia si no hay ubicación)
+    map = L.map('map').setView([4.5709, -74.2973], 6);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Marker inicial
+    marker = L.marker([4.5709, -74.2973], { draggable: true }).addTo(map);
+
+    // Evento al mover el marcador
+    marker.on('dragend', function (event) {
+        const position = marker.getLatLng();
+        updateCoords(position.lat, position.lng);
+    });
+
+    // Evento al hacer clic en el mapa
+    map.on('click', function (e) {
+        marker.setLatLng(e.latlng);
+        updateCoords(e.latlng.lat, e.latlng.lng);
+    });
+
+    setupMapSearch();
+}
+
+function updateCoords(lat, lng) {
+    document.getElementById("latitud").value = lat;
+    document.getElementById("longitud").value = lng;
+}
+
+function setupMapSearch() {
+    const searchInput = document.getElementById("search-location");
+    const btnSearch = document.getElementById("btn-search-loc");
+    const resultsList = document.getElementById("search-results");
+
+    const performSearch = async () => {
+        const query = searchInput.value;
+        if (query.length < 3) return;
+
+        try {
+            const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=5`);
+            const data = await response.json();
+
+            resultsList.innerHTML = "";
+            if (data.length > 0) {
+                resultsList.classList.remove("hidden");
+                data.forEach(place => {
+                    const li = document.createElement("li");
+                    li.className = "p-3 hover:bg-blue-50 cursor-pointer border-b border-gray-100 text-sm";
+                    li.textContent = place.display_name;
+                    li.addEventListener("click", () => {
+                        const lat = parseFloat(place.lat);
+                        const lon = parseFloat(place.lon);
+
+                        map.setView([lat, lon], 16);
+                        marker.setLatLng([lat, lon]);
+                        updateCoords(lat, lon);
+
+                        resultsList.classList.add("hidden");
+                        searchInput.value = place.display_name;
+                    });
+                    resultsList.appendChild(li);
+                });
+            } else {
+                resultsList.classList.add("hidden");
+            }
+        } catch (error) {
+            console.error("Error buscando ubicación:", error);
+        }
+    };
+
+    btnSearch.addEventListener("click", performSearch);
+
+    searchInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            performSearch();
+        }
+    });
+
+    // Cerrar resultados al hacer clic fuera
+    document.addEventListener("click", (e) => {
+        if (!searchInput.contains(e.target) && !resultsList.contains(e.target)) {
+            resultsList.classList.add("hidden");
+        }
+    });
+}
 
 // --- GESTIÓN DE IMÁGENES (Previews) ---
 function setupImagePreview(inputId, previewId, placeholderId) {
@@ -172,6 +287,17 @@ function updateSummary() {
     document.getElementById("summary-address").textContent = formData.get("direccion") || "Dirección no especificada";
     document.getElementById("summary-phone").textContent = formData.get("telefono_establecimiento") || "Sin teléfono";
     document.getElementById("summary-description").textContent = formData.get("descripcion") ? `"${formData.get("descripcion")}"` : "Sin descripción.";
+
+    const lat = formData.get("latitud");
+    const lon = formData.get("longitud");
+
+
+    if (lat && lon) {
+        const locInfo = document.createElement("p");
+        locInfo.className = "text-[10px] text-gray-400 mt-1";
+        locInfo.textContent = `Coordenadas: ${parseFloat(lat).toFixed(4)}, ${parseFloat(lon).toFixed(4)}`;
+        document.getElementById("summary-address").parentElement.appendChild(locInfo);
+    }
 
     const tipo = formData.get("tipo_servicio");
     document.getElementById("summary-type").textContent = tipo === "estilista" ? "Estilista" : tipo === "barbero" ? "Barbería" : "Negocio";
@@ -246,7 +372,7 @@ function setupCustomTimePicker(pickerId) {
                 d.closest('.custom-time-picker').querySelector('.time-display-btn').classList.remove('active');
             }
         });
-        
+
         btn.classList.toggle('active');
         dropdown.classList.toggle('active');
     });
@@ -256,7 +382,7 @@ function setupCustomTimePicker(pickerId) {
         option.addEventListener('click', () => {
             const val = option.dataset.value;
             const displayVal = option.dataset.display;
-            
+
             input.value = val;
             selectedText.textContent = displayVal;
             selectedText.classList.remove('text-gray-400');
@@ -272,7 +398,7 @@ function setupCustomTimePicker(pickerId) {
 
             // Trigger validation
             validarHoras();
-            
+
             // Hide error if selected
             const errorId = input.id === 'hora_inicio' ? 'hora-error' : 'hora-fin-error';
             const errorEl = document.getElementById(errorId);
@@ -301,7 +427,7 @@ function validarHoras() {
             const inputFin = document.getElementById('hora_fin');
             const textFin = pickerFin.querySelector('.selected-text');
             const optionsFin = pickerFin.querySelectorAll('.time-option');
-            
+
             inputFin.value = "";
             textFin.textContent = "06:00 PM";
             textFin.classList.add('text-gray-400');
@@ -344,6 +470,8 @@ form?.addEventListener("submit", async (e) => {
     try {
         btnSubmit.disabled = true;
         btnSubmit.innerHTML = `<span class="animate-spin material-symbols-outlined">sync</span> Registrando...`;
+
+        console.log("formData", formData);
 
         const response = await fetch(`${ruta}/registroNegocio`, {
             method: "POST",

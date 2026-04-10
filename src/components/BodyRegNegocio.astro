@@ -14,6 +14,18 @@
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 />
+<!-- Leaflet CSS -->
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin=""
+/>
+<!-- Leaflet JS -->
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""></script>
 
 <div class="bg-blue-50 font-display text-[#0d121b] min-h-screen">
   <div
@@ -64,6 +76,20 @@
             <div
               class="step-circle flex h-10 w-10 items-center justify-center rounded-full border-4 border-white bg-gray-200 text-gray-400 shadow-md transition-all"
             >
+              <span class="material-symbols-outlined text-sm">location_on</span>
+            </div>
+            <span class="mt-2 text-xs font-medium text-gray-500 sm:text-sm"
+              >Mapa</span
+            >
+          </div>
+
+          <div
+            class="step-item relative z-10 flex flex-col items-center"
+            data-step="3"
+          >
+            <div
+              class="step-circle flex h-10 w-10 items-center justify-center rounded-full border-4 border-white bg-gray-200 text-gray-400 shadow-md transition-all"
+            >
               <span class="material-symbols-outlined text-sm">schedule</span>
             </div>
             <span class="mt-2 text-xs font-medium text-gray-500 sm:text-sm"
@@ -73,7 +99,7 @@
 
           <div
             class="step-item relative z-10 flex flex-col items-center"
-            data-step="3"
+            data-step="4"
           >
             <div
               class="step-circle flex h-10 w-10 items-center justify-center rounded-full border-4 border-white bg-gray-200 text-gray-400 shadow-md transition-all"
@@ -87,7 +113,7 @@
 
           <div
             class="step-item relative z-10 flex flex-col items-center"
-            data-step="4"
+            data-step="5"
           >
             <div
               class="step-circle flex h-10 w-10 items-center justify-center rounded-full border-4 border-white bg-gray-200 text-gray-400 shadow-md transition-all"
@@ -101,7 +127,7 @@
 
           <div
             class="step-item relative z-10 flex flex-col items-center"
-            data-step="5"
+            data-step="6"
           >
             <div
               class="step-circle flex h-10 w-10 items-center justify-center rounded-full border-4 border-white bg-gray-200 text-gray-400 shadow-md transition-all"
@@ -116,6 +142,8 @@
       </div>
 
       <form id="registroNegocio" class="space-y-8">
+        <input type="hidden" id="latitud" name="latitud" />
+        <input type="hidden" id="longitud" name="longitud" />
         <!-- Step 1: Información General -->
         <section class="form-step" data-step="1">
           <div class="mb-6">
@@ -201,9 +229,62 @@
           </div>
         </section>
 
-        <!-- Step 2: Horarios -->
+        <!-- Step 2: mapa -->
+
         <section class="form-step hidden" data-step="2">
-          <div class="mb-6">
+          <div class="mb-2">
+            <h2
+              class="text-xl font-bold text-gray-800 border-b-2 border-blue-500 pb-2 inline-block"
+            >
+              Ubicación de tu Negocio
+            </h2>
+            <p class="text-sm text-gray-500 mt-2">
+              Busca tu ciudad y mueve el marcador exactamente a tu local.
+            </p>
+          </div>
+
+          <!-- Buscador de Ciudad -->
+          <div class="mb-2 relative">
+            <div class="relative flex items-center">
+              <input
+                id="search-location"
+                type="text"
+                class="form-input flex w-full rounded-lg border border-[#cfd7e7] bg-white h-14 p-4 pl-12 text-base focus:ring-2 focus:ring-blue-200 outline-none transition-all"
+                placeholder="Escribe el nombre de tu ciudad o dirección..."
+              />
+              <span
+                class="material-symbols-outlined absolute left-4 text-gray-400"
+                >search</span
+              >
+              <button
+                type="button"
+                id="btn-search-loc"
+                class="absolute right-2 px-4 py-2 bg-blue-500 text-white rounded-lg font-bold text-sm hover:bg-blue-600 transition-all"
+              >
+                Buscar
+              </button>
+            </div>
+            <!-- Sugerencias de búsqueda -->
+            <ul
+              id="search-results"
+              class="absolute z-[1000] w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-xl max-h-60 overflow-y-auto hidden"
+            >
+            </ul>
+          </div>
+
+          <div
+            id="map"
+            class="w-full h-96 rounded-xl border-2 border-slate-200 shadow-inner z-10"
+          >
+          </div>
+          <div class="mt-2 text-xs text-gray-400 flex items-center gap-1">
+            <span class="material-symbols-outlined text-xs">info</span>
+            Puedes hacer clic en el mapa para ajustar la ubicación exacta.
+          </div>
+        </section>
+        <!-- Step 3: horartios -->
+        <section class="form-step hidden" data-step="3">
+          <div class="mb-2">
             <h2
               class="text-xl font-bold text-gray-800 border-b-2 border-blue-500 pb-2 inline-block"
             >
@@ -409,8 +490,8 @@
           </div>
         </section>
 
-        <!-- Step 3: Servicios y Precios -->
-        <section class="form-step hidden" data-step="3">
+        <!-- Step 4: Servicios y Precios -->
+        <section class="form-step hidden" data-step="4">
           <div class="mb-6">
             <h2
               class="text-xl font-bold text-gray-800 border-b-2 border-blue-500 pb-2 inline-block"
@@ -509,8 +590,8 @@
           </div>
         </section>
 
-        <!-- Step 4: Imagen de Marca -->
-        <section class="form-step hidden" data-step="4">
+        <!-- Step 5: Imagen de Marca -->
+        <section class="form-step hidden" data-step="5">
           <div class="mb-6">
             <h2
               class="text-xl font-bold text-gray-800 border-b-2 border-blue-500 pb-2 inline-block"
@@ -592,8 +673,8 @@
           </div>
         </section>
 
-        <!-- Step 5: Resumen -->
-        <section class="form-step hidden" data-step="5">
+        <!-- Step 6: Resumen -->
+        <section class="form-step hidden" data-step="6">
           <div class="mb-6">
             <h2
               class="text-xl font-bold text-gray-800 border-b-2 border-blue-500 pb-2 inline-block"
@@ -734,7 +815,7 @@
 
         <!-- Navigation Buttons -->
         <div
-          class="flex justify-between items-center pt-8 mt-4 border-t border-gray-100"
+          class="flex justify-between items-center pt-2 mt-4 border-t border-gray-100"
         >
           <button
             type="button"

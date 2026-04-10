@@ -1,3 +1,14 @@
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin=""
+/>
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""></script>
+
 <main class="min-h-screen bg-[#f8fafc] pt-24 pb-12 px-4 sm:px-6 lg:px-8">
   <div class="max-w-5xl mx-auto space-y-8">
     <!-- Header Section -->
@@ -61,6 +72,22 @@
               <span>No laborable</span>
             </div>
           </div>
+        </section>
+        <section
+          class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4"
+        >
+          <div class="flex items-center gap-2 text-slate-800">
+            <span class="material-symbols-outlined text-blue-500"
+              >map_search</span
+            >
+            <h2 class="font-bold text-lg">Ubicacion</h2>
+          </div>
+          <button
+            id="ubicacion"
+            class="w-full h-14 pl-12 pr-4 rounded-xl border border-slate-200 bg-slate-50 focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all text-slate-900 !text-xl"
+          >
+            Ubicacion
+          </button>
         </section>
 
         <!-- Special Dates Card -->
@@ -573,6 +600,50 @@
     </div>
   </div>
 </main>
+
+<!-- MODAL DE MAPA -->
+<div
+  id="modal-mapa"
+  class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm hidden"
+>
+  <div
+    class="bg-white w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl transform transition-all scale-95 opacity-0 duration-300"
+    id="modal-mapa-content"
+  >
+    <div class="p-6 border-b border-gray-100 flex justify-between items-center">
+      <div>
+        <h3 id="modal-mapa-titulo" class="text-xl font-black text-slate-800">
+          Ubicación del Negocio
+        </h3>
+        <p id="modal-mapa-direccion" class="text-sm text-slate-500"></p>
+      </div>
+      <button
+        id="cerrar-modal-mapa"
+        class="h-10 w-10 flex items-center justify-center rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-900 transition-colors"
+      >
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div id="contenedor-mapa-modal" class="h-96 w-full relative z-10"></div>
+    <div
+      class="p-6 bg-gray-50 flex flex-col sm:flex-row gap-4 items-center justify-between"
+    >
+      <div class="flex items-center gap-2 text-primary font-bold">
+        <span class="material-symbols-outlined">info</span>
+        <span class="text-xs">Usa Google Maps para navegar</span>
+      </div>
+      <a
+        id="btn-google-maps"
+        href="#"
+        target="_blank"
+        class="w-full sm:w-auto flex items-center justify-center gap-2 bg-slate-900 text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-slate-800 transition-all shadow-lg active:scale-95"
+      >
+        <span class="material-symbols-outlined">map_search</span>
+        Abrir en Google Maps
+      </a>
+    </div>
+  </div>
+</div>
 
 <style>
   .custom-scrollbar::-webkit-scrollbar {

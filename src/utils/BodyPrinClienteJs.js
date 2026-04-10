@@ -23,6 +23,10 @@ const inputBusqueda = document.getElementById("input-busqueda");
 const btnTodas = document.getElementById("btn-todas-categorias");
 const btnManicure = document.getElementById("btn-manicure");
 const btnBarberia = document.getElementById("btn-barberia");
+const modalMapa = document.getElementById("modal-mapa");
+const modalMapaContent = document.getElementById("modal-mapa-content");
+const btnCerrarMapa = document.getElementById("cerrar-modal-mapa");
+let leafletMap;
 
 
 function filtrarServicios() {
@@ -148,9 +152,10 @@ function renderizarServicios() {
               ${servicio.descripcion}
             </p>
             <div
-              class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100"
+              id="btn-mapa-${servicio.id}"
+              class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100 cursor-pointer hover:bg-slate-100 transition-colors group/loc"
             >
-              <span class="material-symbols-outlined text-primary text-xl"
+              <span class="material-symbols-outlined text-primary text-xl group-hover/loc:scale-110 transition-transform"
                 >location_on</span
               >
               <div class="flex flex-col">
@@ -164,6 +169,7 @@ function renderizarServicios() {
                   >${servicio.direccion}</span
                 >
               </div>
+              <span class="material-symbols-outlined ml-auto text-slate-300 text-sm">open_in_new</span>
             </div>
             <div
               class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100"
@@ -223,6 +229,14 @@ function renderizarServicios() {
 
         sessionStorage.removeItem("editCitaId");
         window.location.href = `/Catalogo/${servicio.id}`;
+      });
+    }
+
+    // Event listener para mapa
+    const btnMapa = document.getElementById(`btn-mapa-${servicio.id}`);
+    if (btnMapa) {
+      btnMapa.addEventListener("click", () => {
+        abrirModalMapa(servicio);
       });
     }
   });
@@ -356,3 +370,79 @@ fetch(`${ruta}/serviciosDisponibles`, { credentials: 'include' })
     console.error("Error al obtener datos:", error);
     alertaFallo("Error de conexión");
   });
+
+// --- LÓGICA DEL MODAL DE MAPA ---
+
+function abrirModalMapa(servicio) {
+  if (!modalMapa) return;
+
+  const titulo = document.getElementById("modal-mapa-titulo");
+  const direccion = document.getElementById("modal-mapa-direccion");
+  const btnGoogle = document.getElementById("btn-google-maps");
+
+  titulo.textContent = servicio.nombre_establecimiento;
+  direccion.textContent = servicio.direccion;
+  
+  // Link de Google Maps
+  btnGoogle.href = `https://www.google.com/maps/search/?api=1&query=${servicio.lat},${servicio.lon}`;
+
+  // Mostrar modal
+  modalMapa.classList.remove("hidden");
+  setTimeout(() => {
+    modalMapaContent.classList.replace("scale-95", "scale-100");
+    modalMapaContent.classList.replace("opacity-0", "opacity-100");
+  }, 10);
+
+  // Inicializar o actualizar mapa Leaflet
+  initLeafletModalMap(servicio.lat, servicio.lon, servicio.nombre_establecimiento);
+}
+
+function initLeafletModalMap(lat, lon, nombre) {
+  const container = document.getElementById("contenedor-mapa-modal");
+  
+  if (!leafletMap) {
+    leafletMap = L.map(container).setView([lat, lon], 16);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(leafletMap);
+  } else {
+    leafletMap.setView([lat, lon], 16);
+  }
+
+  // Limpiar marcadores previos si existen
+  leafletMap.eachLayer((layer) => {
+    if (layer instanceof L.Marker) {
+      leafletMap.removeLayer(layer);
+    }
+  });
+
+  L.marker([lat, lon]).addTo(leafletMap)
+    .bindPopup(nombre)
+    .openPopup();
+
+  // Forzar redibujado
+  setTimeout(() => {
+    leafletMap.invalidateSize();
+  }, 300);
+}
+
+function cerrarModalMapa() {
+  modalMapaContent.classList.replace("scale-100", "scale-95");
+  modalMapaContent.classList.replace("opacity-100", "opacity-0");
+  setTimeout(() => {
+    modalMapa.classList.add("hidden");
+  }, 300);
+}
+
+btnCerrarMapa?.addEventListener("click", cerrarModalMapa);
+
+modalMapa?.addEventListener("click", (e) => {
+  if (e.target === modalMapa) cerrarModalMapa();
+});
+
+// Cerrar con escape
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && !modalMapa.classList.contains("hidden")) {
+    cerrarModalMapa();
+  }
+});
