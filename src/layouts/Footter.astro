@@ -12,19 +12,25 @@ import { Image } from "astro:assets";
           <div class="text-primary">
             <Image
               src={Logo}
-              alt="Logo"
-              class="h-8 w-40 sm:h-10 sm:w-48 md:h-12 md:w-56 hover:cursor-pointer"
+              alt="Logo Horalista"
+              class="h-auto w-32 sm:w-40 md:w-48 hover:cursor-pointer transition-transform hover:scale-105"
               priority={true}
-              width={224}
-              height={48}
               onclick='window.location.href = "/"'
             />
           </div>
         </div>
-        <p class="text-slate-500 text-sm">
+        <p class="text-slate-500 text-sm mb-4">
           Gestionamos tus citas con la mayor eficiencia y profesionalidad del
           mercado.
         </p>
+        <div
+          class="flex items-center gap-2 text-slate-500 text-sm hover:text-primary transition-colors"
+        >
+          <span class="material-symbols-outlined text-base">mail</span>
+          <a href="mailto:horalistaoficial@gmail.com"
+            >horalistaoficial@gmail.com</a
+          >
+        </div>
       </div>
       <div>
         <h4 class="font-bold mb-4">Enlaces</h4>
@@ -36,9 +42,11 @@ import { Image } from "astro:assets";
       <div>
         <h4 class="font-bold mb-4">Legal</h4>
         <ul class="space-y-2 text-sm text-slate-500">
-          <li><a class="hover:text-primary" href="#">Privacidad</a></li>
-          <li><a class="hover:text-primary" href="#">Términos</a></li>
-          <li><a class="hover:text-primary" href="#">Cookies</a></li>
+          <li>
+            <a class="hover:text-primary" href="/privacidad">Privacidad</a>
+          </li>
+          <li><a class="hover:text-primary" href="/terminos">Términos</a></li>
+          <!-- <li><a class="hover:text-primary" href="#">Cookies</a></li> -->
         </ul>
       </div>
       <div>

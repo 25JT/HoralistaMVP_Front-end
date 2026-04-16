@@ -857,6 +857,140 @@
   </div>
 </div>
 
+<!-- Modal Términos Profesionales -->
+<div
+  id="modalTerminosProfesionales"
+  class="fixed inset-0 z-[10000] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
+>
+  <div
+    class="bg-white w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] animate-in fade-in zoom-in duration-300"
+  >
+    <div class="bg-blue-600 p-8 text-white">
+      <div class="flex items-center gap-3 mb-2">
+        <span class="material-symbols-outlined text-3xl">verified_user</span>
+        <h2 class="text-xl md:text-2xl font-black uppercase tracking-tighter">
+          Términos para Profesionales
+        </h2>
+      </div>
+      <p class="text-blue-100 text-sm font-medium opacity-80">
+        Por favor, lee y acepta las condiciones para continuar con el registro
+        de tu negocio.
+      </p>
+    </div>
+
+    <div
+      class="p-8 overflow-y-auto text-gray-700 space-y-6 custom-scrollbar leading-relaxed"
+    >
+      <div class="space-y-4">
+        <h3 class="font-bold text-gray-900 border-b pb-2">1. Introducción</h3>
+        <p class="text-sm">
+          Los presentes Términos y Condiciones regulan el uso de la plataforma
+          Horalista por parte de los profesionales (personas naturales o
+          negocios) que ofrecen servicios a través de ella. Al registrarse en la
+          plataforma, el profesional acepta cumplir con estas condiciones.
+        </p>
+
+        <h3 class="font-bold text-gray-900 border-b pb-2">
+          2. Naturaleza de la relación
+        </h3>
+        <p class="text-sm">
+          El profesional reconoce que Horalista es una plataforma tecnológica de
+          intermediación. No existe relación laboral, sociedad, agencia o
+          representación entre Horalista y el profesional. El profesional actúa
+          de manera independiente y bajo su propia responsabilidad.
+        </p>
+
+        <h3 class="font-bold text-gray-900 border-b pb-2">
+          3. Registro del profesional
+        </h3>
+        <p class="text-sm">
+          El profesional se compromete a proporcionar información veraz,
+          completa y actualizada y a mantener actualizados sus datos. Horalista
+          podrá suspender o eliminar cuentas que incumplan estas condiciones.
+        </p>
+
+        <h3 class="font-bold text-gray-900 border-b pb-2">
+          4. Obligaciones del profesional
+        </h3>
+        <ul class="list-disc pl-5 text-sm space-y-2">
+          <li>
+            Prestar los servicios de manera responsable, ética y profesional.
+          </li>
+          <li>
+            Cumplir con los horarios agendados y respetar las citas programadas.
+          </li>
+          <li>
+            Cumplir con la normativa legal aplicable en Colombia (sanitaria,
+            comercial, etc.).
+          </li>
+        </ul>
+
+        <h3 class="font-bold text-gray-900 border-b pb-2">
+          5. Veracidad de la información
+        </h3>
+        <p class="text-sm">
+          El profesional es el único responsable de la información publicada en
+          la plataforma, incluyendo ubicación, servicios, precios e imágenes. El
+          suministro de información falsa podrá resultar en la eliminación de la
+          cuenta.
+        </p>
+
+        <h3 class="font-bold text-gray-900 border-b pb-2">
+          6. Ubicación y prestación del servicio
+        </h3>
+        <p class="text-sm font-medium text-orange-600">
+          Horalista no verifica físicamente la información proporcionada por el
+          profesional. En caso de información del local incorrecta o
+          inexistente, el profesional será el único responsable frente a los
+          clientes y autoridades.
+        </p>
+
+        <h3 class="font-bold text-gray-900 border-b pb-2">
+          10. Atención de menores de edad
+        </h3>
+        <p class="text-sm">
+          El profesional se compromete a exigir la presencia de un adulto
+          responsable y negarse a prestar el servicio si el menor no está
+          acompañado.
+        </p>
+
+        <h3 class="font-bold text-gray-900 border-b pb-2">
+          13. Protección de datos
+        </h3>
+        <p class="text-sm">
+          El profesional se compromete a utilizar los datos de los clientes
+          únicamente para la prestación del servicio y cumplir con la Ley 1581
+          de 2012.
+        </p>
+      </div>
+    </div>
+
+    <div class="p-8 bg-gray-50 border-t flex flex-col gap-5">
+      <label class="flex items-start gap-4 cursor-pointer group">
+        <input
+          type="checkbox"
+          id="checkAceptarTerminosProf"
+          class="mt-1 w-6 h-6 rounded-lg border-gray-300 text-blue-600 focus:ring-blue-500 transition-all cursor-pointer"
+        />
+        <span
+          class="text-sm font-semibold text-gray-700 group-hover:text-blue-600 transition-colors"
+        >
+          He leído y acepto los términos y condiciones de uso para profesionales
+          de Horalista. Entiendo que mi dirección IP será registrada para fines
+          de seguridad y cumplimiento legal.
+        </span>
+      </label>
+      <button
+        id="btnAceptarTerminosProf"
+        disabled
+        class="w-full py-5 bg-blue-600 text-white font-black text-lg rounded-2xl shadow-xl shadow-blue-200 opacity-50 cursor-not-allowed transition-all hover:scale-[1.02] active:scale-95 disabled:hover:scale-100 uppercase tracking-widest"
+      >
+        Aceptar y Continuar
+      </button>
+    </div>
+  </div>
+</div>
+
 <script src="../utils/BodyRegNegocioJs.js"></script>
 
 <style>

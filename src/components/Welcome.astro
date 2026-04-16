@@ -264,8 +264,20 @@ import Footter from "../layouts/Footter.astro";
                   </div>
                 </fieldset>
               </div>
+              <div class="flex items-start gap-2 mb-2">
+                <input
+                  type="checkbox"
+                  id="terminos"
+                  class="mt-1 w-4 h-4 text-blue-600 bg-white border-gray-300 rounded focus:ring-blue-500 transition-all cursor-pointer"
+                />
+                <label for="terminos" class="text-xs sm:text-sm text-gray-600">
+                  Acepto los <a href="/terminos" class="text-blue-600 font-bold hover:underline">términos y condiciones</a> y la <a href="/privacidad" class="text-blue-600 font-bold hover:underline">política de privacidad</a>
+                </label>
+              </div>
               <button
-                class="border-2 border-blue-500 w-full flex items-center justify-center rounded-lg h-10 form-button-small sm:h-12 px-6 sm:px-8 bg-primary text-black text-sm sm:text-base font-semibold shadow-lg hover:bg-primary-hover transition-colors"
+                id="submit-btn"
+                disabled
+                class="border-2 border-blue-500 w-full flex items-center justify-center rounded-lg h-10 form-button-small sm:h-12 px-6 sm:px-8 bg-primary text-black text-sm sm:text-base font-semibold shadow-lg hover:bg-primary-hover transition-colors opacity-50 cursor-not-allowed"
                 type="submit"
               >
                 Registrarse
@@ -602,5 +614,20 @@ import Footter from "../layouts/Footter.astro";
     const wrapper = document.getElementById("cpWrapper");
     if (wrapper && !wrapper.contains(e.target as Node))
       cpList?.classList.add("hidden");
+  });
+
+  // Lógica para el checkbox de términos y condiciones
+  const terminos = document.getElementById("terminos") as HTMLInputElement | null;
+  const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement | null;
+
+  terminos?.addEventListener("change", () => {
+    if (submitBtn && terminos) {
+      submitBtn.disabled = !terminos.checked;
+      if (terminos.checked) {
+        submitBtn.classList.remove("opacity-50", "cursor-not-allowed");
+      } else {
+        submitBtn.classList.add("opacity-50", "cursor-not-allowed");
+      }
+    }
   });
 </script>

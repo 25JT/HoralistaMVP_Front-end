@@ -463,19 +463,24 @@ form?.addEventListener("submit", async (e) => {
     }
 
     const formData = new FormData(form);
-    // Agregamos el userID al formData
-    // formData.append("userid", userid); // El backend lo toma de la sesión, pero por si acaso
-
-
+    
     try {
         btnSubmit.disabled = true;
         btnSubmit.innerHTML = `<span class="animate-spin material-symbols-outlined">sync</span> Registrando...`;
 
-        console.log("formData", formData);
+        // Obtener IP pública desde el front para asegurar que no sea ::1
+        try {
+            const ipRes = await fetch('https://api.ipify.org?format=json');
+            const ipData = await ipRes.json();
+            formData.append("ip_frontend", ipData.ip);
+        } catch (ipErr) {
+            console.error("No se pudo obtener la IP pública:", ipErr);
+            formData.append("ip_frontend", "0.0.0.0"); // Fallback
+        }
 
         const response = await fetch(`${ruta}/registroNegocio`, {
             method: "POST",
-            body: formData, // Enviamos FormData directamente (sin JSON.stringify)
+            body: formData,
             credentials: 'include',
         });
 
@@ -498,3 +503,32 @@ form?.addEventListener("submit", async (e) => {
 
 // Final initialization
 updateStepperUI();
+
+// --- LÓGICA MODAL TÉRMINOS PROFESIONALES ---
+const modalTerminosProf = document.getElementById("modalTerminosProfesionales");
+const checkAceptarProf = document.getElementById("checkAceptarTerminosProf");
+const btnAceptarProf = document.getElementById("btnAceptarTerminosProf");
+
+checkAceptarProf?.addEventListener("change", () => {
+    if (btnAceptarProf) {
+        btnAceptarProf.disabled = !checkAceptarProf.checked;
+        if (checkAceptarProf.checked) {
+            btnAceptarProf.classList.remove("opacity-50", "cursor-not-allowed");
+        } else {
+            btnAceptarProf.classList.add("opacity-50", "cursor-not-allowed");
+        }
+    }
+});
+
+btnAceptarProf?.addEventListener("click", () => {
+    if (checkAceptarProf?.checked) {
+        modalTerminosProf?.classList.add("hidden");
+        // Opcional: Guardar en localStorage que ya aceptó en esta sesión
+        sessionStorage.setItem("terminosProfesionalesAceptados", "true");
+    }
+});
+
+// Asegurar que el modal se vea si no ha sido aceptado
+if (sessionStorage.getItem("terminosProfesionalesAceptados") === "true") {
+    modalTerminosProf?.classList.add("hidden");
+}
